@@ -12,5 +12,5 @@ connectToMongoDB();
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor iniciado en el puerto ${PORT}`);
+    console.log(`Server started on port ${PORT}`);
 });
