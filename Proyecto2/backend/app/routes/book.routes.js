@@ -11,7 +11,7 @@ import {
     updateBook,
     deleteBook,
     searchBooks
-} from '../controllers/booksController.js';
+} from '../controllers/bookController.js';
 
 router.get('', getBooks);
 
