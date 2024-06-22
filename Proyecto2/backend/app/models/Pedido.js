@@ -2,10 +2,11 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-const Pedido = new Schema({
+const { Schema } = mongoose;
+
+const pedidoSchema = new Schema({
     usuario_id: { type: Schema.Types.ObjectId, ref: 'Usuario', required: true },
     libros: [
         {
@@ -15,7 +16,7 @@ const Pedido = new Schema({
     ],
     direccion_envio: { type: String, required: true },
     metodo_pago: { type: String, required: true },
-    estado: { type: String, enum: ['en proceso', 'enviado', 'entregado'], default: 'en proceso' },
+    estado: { type: String, enum: ['En proceso', 'Enviado', 'Entregado'], default: 'En proceso' },
     fecha_pedido: { type: Date, default: Date.now },
     fecha_envio: { type: Date },
     fecha_entrega: { type: Date }
@@ -23,4 +24,7 @@ const Pedido = new Schema({
     collection: 'Pedido',
     versionKey: false
 });
-module.exports = mongoose.model('Pedido', Pedido);
+
+const Pedido = mongoose.model('Pedido', pedidoSchema);
+
+export default Pedido;

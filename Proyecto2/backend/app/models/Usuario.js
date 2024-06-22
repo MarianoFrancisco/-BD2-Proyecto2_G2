@@ -2,11 +2,12 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
-const Usuario = new Schema({
+const { Schema } = mongoose;
+
+const usuarioSchema = new Schema({
     nombre: { type: String, required: true },
     apellido: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -27,16 +28,17 @@ const Usuario = new Schema({
     versionKey: false
 });
 
-Usuario.pre('save', async function(next) {
+usuarioSchema.pre('save', async function(next) {
     if (!this.isModified('contrasenia')) return next();
     const salt = await bcrypt.genSalt(10);
     this.contrasenia = await bcrypt.hash(this.contrasenia, salt);
     next();
 });
 
-Usuario.methods.matchPassword = async function(enteredPassword) {
+usuarioSchema.methods.matchPassword = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.contrasenia);
 };
 
-module.exports = mongoose.model('Usuario', Usuario);
+const Usuario = mongoose.model('Usuario', usuarioSchema);
 
+export default Usuario;

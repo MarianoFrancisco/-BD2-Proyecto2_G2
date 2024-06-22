@@ -2,10 +2,11 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-const Carrito = new Schema({
+const { Schema } = mongoose;
+
+const carritoSchema = new Schema({
     usuario_id: { type: Schema.Types.ObjectId, ref: 'Usuario', required: true },
     libros: [
         {
@@ -19,5 +20,6 @@ const Carrito = new Schema({
     versionKey: false
 });
 
-module.exports = mongoose.model('Carrito', Carrito);
+const Carrito = mongoose.model('Carrito', carritoSchema);
 
+export default Carrito;

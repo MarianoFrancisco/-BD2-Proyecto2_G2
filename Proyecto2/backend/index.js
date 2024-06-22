@@ -2,13 +2,15 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-require("dotenv").config();
+import app from './app.js';
+import connectToMongoDB from './config/connect.js';
 
-const app = require('./app.js')
-const connectToMongoDB = require('./config/connect.js');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000;
 
+// Conexión a MongoDB
 connectToMongoDB();
+
+// Iniciar el servidor
 app.listen(PORT, () => {
-    console.log("Port: ", PORT, " enabled");
-})
+    console.log(`Servidor iniciado en el puerto ${PORT}`);
+});

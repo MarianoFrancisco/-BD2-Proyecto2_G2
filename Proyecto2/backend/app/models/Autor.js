@@ -2,10 +2,11 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-const Autor = new Schema({
+const { Schema } = mongoose;
+
+const autorSchema = new Schema({
     nombre: { type: String, required: true },
     biografia: { type: String, required: true },
     foto_url: { type: String, required: true },
@@ -15,4 +16,6 @@ const Autor = new Schema({
     versionKey: false
 });
 
-module.exports = mongoose.model('Autor', Autor);
+const Autor = mongoose.model('Autor', autorSchema);
+
+export default Autor;

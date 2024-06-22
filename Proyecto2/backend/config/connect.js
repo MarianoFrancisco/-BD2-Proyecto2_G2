@@ -2,8 +2,10 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const uri = process.env.BOOK_STORE_URI;
 
@@ -20,4 +22,4 @@ async function connectToMongoDB() {
     }
 }
 
-module.exports = connectToMongoDB;
+export default connectToMongoDB;
