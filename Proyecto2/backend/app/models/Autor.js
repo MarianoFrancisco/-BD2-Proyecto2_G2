@@ -10,6 +10,9 @@ const Autor = new Schema({
     biografia: { type: String, required: true },
     foto_url: { type: String, required: true },
     libros: [{ type: Schema.Types.ObjectId, ref: 'Libro' }]
+}, {
+    collection: 'Autor',
+    versionKey: false
 });
 
 module.exports = mongoose.model('Autor', Autor);

@@ -50,7 +50,7 @@ const protect = async (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
         req.user = await Usuario.findById(decoded.id).select('-contrasenia');
         next();
     } catch (error) {

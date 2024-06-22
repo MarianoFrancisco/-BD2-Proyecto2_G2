@@ -16,6 +16,9 @@ const Libro = new Schema({
     puntuacion_promedio: { type: Number, default: 0 },
     precio: { type: Number, required: true },
     imagen_url: { type: String, required: true }
+}, {
+    collection: 'Libro',
+    versionKey: false
 });
 
 module.exports = mongoose.model('Libro', Libro);

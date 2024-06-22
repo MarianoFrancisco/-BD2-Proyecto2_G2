@@ -11,6 +11,9 @@ const Reseña = new Schema({
     comentario: { type: String, required: true },
     puntuacion: { type: Number, required: true },
     fecha: { type: Date, default: Date.now }
+}, {
+    collection: 'Reseña',
+    versionKey: false
 });
 
 module.exports = mongoose.model('Reseña', Reseña);
