@@ -14,6 +14,9 @@ const Carrito = new Schema({
         }
     ],
     total: { type: Number, required: true }
+}, {
+    collection: 'Carrito',
+    versionKey: false
 });
 
 module.exports = mongoose.model('Carrito', Carrito);

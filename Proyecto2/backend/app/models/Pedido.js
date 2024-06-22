@@ -19,6 +19,8 @@ const Pedido = new Schema({
     fecha_pedido: { type: Date, default: Date.now },
     fecha_envio: { type: Date },
     fecha_entrega: { type: Date }
+}, {
+    collection: 'Pedido',
+    versionKey: false
 });
-
 module.exports = mongoose.model('Pedido', Pedido);
