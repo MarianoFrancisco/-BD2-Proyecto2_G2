@@ -2,12 +2,12 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-const Usuario = require('../models/Usuario');
-const jwt = require('jsonwebtoken');
+import Usuario from '../models/Usuario.js';
+import jwt from 'jsonwebtoken';
 
 const register = async (req, res) => {
     const { nombre, apellido, email, telefono, direccion, contrasenia, rol } = req.body;
-    try {   
+    try {
         const user = new Usuario({
             nombre, apellido, email, telefono, direccion, contrasenia, rol
         });
@@ -31,12 +31,12 @@ const login = async (req, res) => {
             return res.status(401).json({ message: 'Incorrect password' });
         }
 
-        const dataToken ={
+        const dataToken = {
             id: user._id,
             nombre: user.nombre,
             apellido: user.apellido,
             rol: user.rol
-        }
+        };
 
         const token = jwt.sign(dataToken, process.env.SECRET_KEY, { expiresIn: '1h' });
 
@@ -46,27 +46,4 @@ const login = async (req, res) => {
     }
 };
 
-const protect = async (req, res, next) => {
-    let token;
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-        token = req.headers.authorization.split(' ')[1];
-    }
-
-    if (!token) {
-        return res.status(401).json({ message: 'Not authorized, no token' });
-    }
-
-    try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        req.user = await Usuario.findById(decoded.id).select('-contrasenia');
-        next();
-    } catch (error) {
-        res.status(401).json({ message: 'Not authorized, invalid token' });
-    }
-};
-
-module.exports = {
-    register,
-    login,
-    protect
-};
+export { register, login };

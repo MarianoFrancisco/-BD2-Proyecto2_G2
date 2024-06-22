@@ -2,10 +2,11 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-const Libro = new Schema({
+const { Schema } = mongoose;
+
+const libroSchema = new Schema({
     titulo: { type: String, required: true },
     autor_id: { type: Schema.Types.ObjectId, ref: 'Author', required: true },
     descripcion: { type: String, required: true },
@@ -21,4 +22,6 @@ const Libro = new Schema({
     versionKey: false
 });
 
-module.exports = mongoose.model('Libro', Libro);
+const Libro = mongoose.model('Libro', libroSchema);
+
+export default Libro;

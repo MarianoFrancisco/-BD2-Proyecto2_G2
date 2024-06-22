@@ -2,10 +2,11 @@
 * @authors
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
 
-const Reseña = new Schema({
+const { Schema } = mongoose;
+
+const reseñaSchema = new Schema({
     libro_id: { type: Schema.Types.ObjectId, ref: 'Libro', required: true },
     usuario_id: { type: Schema.Types.ObjectId, ref: 'Usuario', required: true },
     comentario: { type: String, required: true },
@@ -16,5 +17,6 @@ const Reseña = new Schema({
     versionKey: false
 });
 
-module.exports = mongoose.model('Reseña', Reseña);
+const Reseña = mongoose.model('Reseña', reseñaSchema);
 
+export default Reseña;
