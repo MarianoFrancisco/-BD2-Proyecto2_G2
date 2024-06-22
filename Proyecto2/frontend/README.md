@@ -1,1 +1,1 @@
-# Project 2 - BookStore - Frontend
+# BookStore - Frontend
