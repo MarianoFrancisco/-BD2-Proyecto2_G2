@@ -1,0 +1,14 @@
+/*
+* @authors
+* Mariano Camposeco {@literal (mariano1941@outlook.es)}
+*/
+require("dotenv").config();
+
+const app = require('./app.js')
+const connectToMongoDB = require('./config/connect.js');
+const PORT = process.env.PORT || 5000
+
+connectToMongoDB();
+app.listen(PORT, () => {
+    console.log("Port: ", PORT, " enabled");
+})
