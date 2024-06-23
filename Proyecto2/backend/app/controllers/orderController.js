@@ -15,6 +15,67 @@ const getOrder = async (req, res) => {
     }
 };
 
+const getTopBooks = async (req, res) => {
+    try {
+        const topBooks = await Pedido.aggregate([
+            { $unwind: "$libros" },
+            {
+                $group: {
+                    _id: "$libros.libro_id",
+                    totalCantidad: { $sum: "$libros.cantidad" }
+                }
+            },
+            { $sort: { totalCantidad: -1 } },
+            { $limit: 5 },
+            {
+                $lookup: {
+                    from: "Libro",
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "libro"
+                }
+            },
+            { $unwind: "$libro" },
+            {
+                $lookup: {
+                    from: "Autor",
+                    localField: "libro.autor_id",
+                    foreignField: "_id",
+                    as: "autor"
+                }
+            },
+            { $unwind: "$autor" },
+            {
+                $lookup: {
+                    from: "GeneroLibro",
+                    localField: "libro.genero_id",
+                    foreignField: "_id",
+                    as: "genero"
+                }
+            },
+            { $unwind: "$genero" },
+            {
+                $project: {
+                    _id: "$libro._id",
+                    titulo: "$libro.titulo",
+                    autor: "$autor.nombre",
+                    descripcion: "$libro.descripcion",
+                    genero: "$genero.nombre",
+                    fecha_publicacion: "$libro.fecha_publicacion",
+                    puntuacion_promedio: "$libro.puntuacion_promedio",
+                    imagen_url: "$libro.imagen_url",
+                    totalCantidad: 1
+                }
+            }
+        ]);
+
+        res.json(topBooks);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
 const searchOrder = async (req, res) => {
     try {
         let query = {};
@@ -109,5 +170,6 @@ export {
     addOrder,
     updateOrderStatus,
     searchOrder,
-    getOrder
+    getOrder,
+    getTopBooks
 };

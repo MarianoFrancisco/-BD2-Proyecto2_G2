@@ -6,9 +6,11 @@ import express from 'express';
 const router = express.Router();
 
 import protect from '../middleware/verifyToken.js';
-import { getOrder, searchOrder, addOrder, updateOrderStatus } from '../controllers/orderController.js';
+import { getOrder, getTopBooks, searchOrder, addOrder, updateOrderStatus } from '../controllers/orderController.js';
 
 router.get('', protect, getOrder);
+
+router.get('/top', protect, getTopBooks);
 
 router.get('/search', protect, searchOrder);
 
