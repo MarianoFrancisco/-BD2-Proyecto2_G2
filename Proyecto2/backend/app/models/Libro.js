@@ -14,7 +14,7 @@ const libroSchema = new Schema({
     fecha_publicacion: { type: Date, required: true },
     disponibilidad: { type: Boolean, required: true },
     cantidad_stock: { type: Number, required: true },
-    puntuacion_promedio: { type: Number, default: 5 },
+    puntuacion_promedio: { type: Number, default: 0 },
     precio: { type: Number, required: true },
     imagen_url: { type: String, required: true }
 }, {

@@ -10,6 +10,7 @@ import userRouter from './app/routes/user.routes.js';
 import authorRouter from './app/routes/author.routes.js';
 import bookRouter from './app/routes/book.routes.js';
 import orderRouter from './app/routes/order.routes.js';
+import reviewRouter from './app/routes/review.routes.js';
 
 const app = express();
 
@@ -23,11 +24,13 @@ const user = api + '/user';
 const author = api + '/author';
 const book = api + '/book';
 const order = api + '/order';
+const review = api + '/review';
 
 app.use(auth, authRouter);
 app.use(user, userRouter);
 app.use(author, authorRouter);
 app.use(book, bookRouter);
 app.use(order, orderRouter);
+app.use(review, reviewRouter);
 
 export default app;
