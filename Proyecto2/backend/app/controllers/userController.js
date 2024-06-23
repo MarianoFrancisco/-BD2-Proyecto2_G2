@@ -4,9 +4,45 @@
 */
 import Usuario from '../models/Usuario.js';
 
+const getUserById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        let user = await Usuario.findById(id)
+            .select('-contrasenia')
+            .populate({
+                path: 'compras',
+                model: 'Pedido',
+                select: 'direccion_envio metodo_pago estado fecha_pedido fecha_envio fecha_entrega libros',
+                populate: {
+                    path: 'libros.libro_id',
+                    select: 'titulo descripcion fecha_publicacion puntuacion_promedio imagen_url autor_id genero_id',
+                    populate: [
+                        {
+                            path: 'autor_id',
+                            select: 'nombre biografia foto_url'
+                        },
+                        {
+                            path: 'genero_id',
+                            select: 'nombre'
+                        }
+                    ]
+                }
+            });
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 const updateUserById = async (req, res) => {
     const { id } = req.params;
-    const { nombre, apellido, email, telefono, direccion, contrasenia } = req.body;
+    const { nombre, apellido, email, telefono, direccion, contrasenia, metodo_pago } = req.body;
 
     try {
         let user = await Usuario.findById(id);
@@ -20,18 +56,23 @@ const updateUserById = async (req, res) => {
         user.email = email;
         user.telefono = telefono;
         user.direccion = direccion;
+        user.metodo_pago = metodo_pago;
         if (contrasenia) {
             user.contrasenia = contrasenia;
         }
 
         await user.save();
 
-        res.json(user);
+        const userResponse = user.toObject();
+        delete userResponse.contrasenia;
+
+        res.json(userResponse);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
 export {
-    updateUserById
+    updateUserById,
+    getUserById
 };

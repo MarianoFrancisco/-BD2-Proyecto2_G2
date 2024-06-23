@@ -22,7 +22,8 @@ const usuarioSchema = new Schema({
     },
     contrasenia: { type: String, required: true },
     compras: [{ type: Schema.Types.ObjectId, ref: 'Pedido' }],
-    rol: { type: String, enum: ['Administrador', 'Cliente'], required: true }
+    rol: { type: String, enum: ['Administrador', 'Cliente'], required: true },
+    metodo_pago: { type: String, enum: ['Efectivo'], default: 'Efectivo' }
 }, {
     collection: 'Usuario',
     versionKey: false

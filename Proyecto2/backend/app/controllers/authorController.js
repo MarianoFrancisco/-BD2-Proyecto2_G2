@@ -6,9 +6,15 @@ import Autor from '../models/Autor.js';
 
 const getAuthors = async (req, res) => {
     try {
-        const authors = await Autor.find();
+        const authors = await Autor.find()
+            .populate({
+                path: 'libros',
+                select: 'titulo descripcion fecha_publicacion cantidad_stock puntuacion_promedio precio imagen_url',
+                populate: { path: 'genero_id', select: 'nombre' }
+            });
         res.json(authors);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };

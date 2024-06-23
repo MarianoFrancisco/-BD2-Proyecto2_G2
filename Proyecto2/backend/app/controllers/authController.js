@@ -6,10 +6,10 @@ import Usuario from '../models/Usuario.js';
 import jwt from 'jsonwebtoken';
 
 const register = async (req, res) => {
-    const { nombre, apellido, email, telefono, direccion, contrasenia, rol } = req.body;
+    const { nombre, apellido, email, telefono, direccion, contrasenia, metodo_pago, rol } = req.body;
     try {
         const user = new Usuario({
-            nombre, apellido, email, telefono, direccion, contrasenia, rol
+            nombre, apellido, email, telefono, direccion, contrasenia, metodo_pago, rol
         });
         await user.save();
         res.status(201).json({ message: 'User registered successfully' });
@@ -38,7 +38,7 @@ const login = async (req, res) => {
             rol: user.rol
         };
 
-        const token = jwt.sign(dataToken, process.env.SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign(dataToken, process.env.SECRET_KEY, { expiresIn: '5h' });
 
         res.json({ token });
     } catch (error) {

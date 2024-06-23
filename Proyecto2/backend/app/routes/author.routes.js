@@ -5,12 +5,14 @@
 import express from 'express';
 const router = express.Router();
 
+import protect from '../middleware/protectMiddleware.js';
 import { getAuthors, addAuthor, deleteAuthor } from '../controllers/authorController.js';
+import { admin } from '../middleware/roleMiddleware.js';
 
-router.get('', getAuthors);
+router.get('', protect, getAuthors);
 
-router.post('', addAuthor);
+router.post('', protect, admin, addAuthor);
 
-router.delete('/:id', deleteAuthor);
+router.delete('/:id', protect, admin, deleteAuthor);
 
 export default router;
