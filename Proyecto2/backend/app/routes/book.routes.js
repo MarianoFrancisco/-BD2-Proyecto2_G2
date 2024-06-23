@@ -5,7 +5,7 @@
 import express from 'express';
 const router = express.Router();
 
-import protect from '../middleware/verifyToken.js';
+import protect from '../middleware/protectMiddleware.js';
 import {
     getBooks,
     addBook,
@@ -13,15 +13,16 @@ import {
     deleteBook,
     searchBooks
 } from '../controllers/bookController.js';
+import { admin } from '../middleware/roleMiddleware.js';
 
 router.get('', protect, getBooks);
 
 router.get('/search', protect, searchBooks);
 
-router.post('', protect, addBook);
+router.post('', protect, admin, addBook);
 
-router.put('/:id', protect, updateBook);
+router.put('/:id', protect, admin, updateBook);
 
-router.delete('/:id', protect, deleteBook);
+router.delete('/:id', protect, admin, deleteBook);
 
 export default router;
