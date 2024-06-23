@@ -8,7 +8,27 @@ const getUserById = async (req, res) => {
     const { id } = req.params;
 
     try {
-        let user = await Usuario.findById(id).select('-contrasenia');
+        let user = await Usuario.findById(id)
+            .select('-contrasenia')
+            .populate({
+                path: 'compras',
+                model: 'Pedido',
+                select: 'direccion_envio metodo_pago estado fecha_pedido fecha_envio fecha_entrega libros',
+                populate: {
+                    path: 'libros.libro_id',
+                    select: 'titulo descripcion fecha_publicacion puntuacion_promedio imagen_url autor_id genero_id',
+                    populate: [
+                        {
+                            path: 'autor_id',
+                            select: 'nombre biografia foto_url'
+                        },
+                        {
+                            path: 'genero_id',
+                            select: 'nombre'
+                        }
+                    ]
+                }
+            });
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

@@ -4,11 +4,20 @@
 */
 import Pedido from '../models/Pedido.js';
 import Libro from '../models/Libro.js';
+import Usuario from '../models/Usuario.js';
 import mongoose from 'mongoose';
 
 const getOrder = async (req, res) => {
     try {
-        const pedidos = await Pedido.find().populate('usuario_id libros.libro_id');
+        const pedidos = await Pedido.find()
+            .populate({
+                path: 'libros.libro_id',
+                populate: { path: 'autor_id genero_id', select: 'nombre biografia foto_url' }
+            })
+            .populate({
+                path: 'usuario_id',
+                select: 'nombre apellido email telefono direccion'
+            });
         res.json(pedidos);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
@@ -88,7 +97,16 @@ const searchOrder = async (req, res) => {
             query.estado = req.query.estado;
         }
 
-        const pedidos = await Pedido.find(query).populate('usuario_id libros.libro_id');
+        const pedidos = await Pedido.find(query)
+            .populate({
+                path: 'libros.libro_id',
+                populate: { path: 'autor_id genero_id', select: 'nombre biografia foto_url' }
+            })
+            .populate({
+                path: 'usuario_id',
+                select: 'nombre apellido email telefono direccion'
+            });
+
         res.json(pedidos);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
@@ -126,6 +144,16 @@ const addOrder = async (req, res) => {
         });
 
         const savedPedido = await newPedido.save({ session });
+
+        const usuario = await Usuario.findById(usuario_id).session(session);
+        if (!usuario) {
+            await session.abortTransaction();
+            session.endSession();
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        usuario.compras.push(savedPedido._id);
+        await usuario.save({ session });
 
         await session.commitTransaction();
         session.endSession();

@@ -9,7 +9,9 @@ import mongoose from 'mongoose';
 
 const getBooks = async (req, res) => {
     try {
-        const books = await Libro.find({ disponibilidad: true });
+        const books = await Libro.find({ disponibilidad: true })
+            .populate('autor_id', 'nombre biografia foto_url')
+            .populate('genero_id', 'nombre');
         res.json(books);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
@@ -19,7 +21,7 @@ const getBooks = async (req, res) => {
 const searchBooks = async (req, res) => {
     try {
         let query = { disponibilidad: true };
-        
+
         if (req.query.titulo) {
             query.titulo = { $regex: req.query.titulo, $options: 'i' };
         }
@@ -63,7 +65,9 @@ const searchBooks = async (req, res) => {
             query.puntuacion_promedio = { $gte: Number(req.query.minPuntuacion) };
         }
 
-        const books = await Libro.find(query);
+        const books = await Libro.find(query)
+            .populate('autor_id', 'nombre biografia foto_url')
+            .populate('genero_id', 'nombre');
         res.json(books);
     } catch (error) {
         res.status(500).json({ error: error.message });
