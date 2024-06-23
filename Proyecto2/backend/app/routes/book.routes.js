@@ -11,9 +11,11 @@ import {
     addBook,
     updateBook,
     deleteBook,
-    searchBooks
+    searchBooks,
 } from '../controllers/bookController.js';
 import { admin } from '../middleware/roleMiddleware.js';
+
+router.get('', protect, getBooks);
 
 router.get('', protect, getBooks);
 

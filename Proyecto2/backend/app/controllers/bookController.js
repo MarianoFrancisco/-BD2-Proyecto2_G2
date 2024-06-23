@@ -8,12 +8,28 @@ import GeneroLibro from '../models/GeneroLibro.js';
 import mongoose from 'mongoose';
 
 const getBooks = async (req, res) => {
+    const { id } = req.query;
+
     try {
-        const books = await Libro.find({ disponibilidad: true })
-            .populate('autor_id', 'nombre biografia foto_url')
-            .populate('genero_id', 'nombre');
-        res.json(books);
+        if (id) {
+            const libro = await Libro.findById(id)
+                .populate('autor_id', 'nombre biografia foto_url')
+                .populate('genero_id', 'nombre');
+
+            if (!libro) {
+                return res.status(404).json({ error: 'Book not found' });
+            }
+
+            res.json(libro);
+        } else {
+            const libros = await Libro.find({ disponibilidad: true })
+                .populate('autor_id', 'nombre biografia foto_url')
+                .populate('genero_id', 'nombre');
+
+            res.json(libros);
+        }
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };

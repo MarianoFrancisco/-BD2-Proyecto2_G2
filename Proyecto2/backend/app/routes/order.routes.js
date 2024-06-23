@@ -6,10 +6,10 @@ import express from 'express';
 const router = express.Router();
 
 import protect from '../middleware/protectMiddleware.js';
-import { getOrder, getTopBooks, searchOrder, addOrder, updateOrderStatus } from '../controllers/orderController.js';
+import { getOrders, getTopBooks, searchOrder, addOrder, updateOrderStatus } from '../controllers/orderController.js';
 import { admin } from '../middleware/roleMiddleware.js';
 
-router.get('', protect, getOrder);
+router.get('', protect, getOrders);
 
 router.get('/top', protect, admin, getTopBooks);
 

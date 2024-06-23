@@ -5,14 +5,32 @@
 import Autor from '../models/Autor.js';
 
 const getAuthors = async (req, res) => {
+    const { id } = req.query;
+
     try {
-        const authors = await Autor.find()
-            .populate({
-                path: 'libros',
-                select: 'titulo descripcion fecha_publicacion cantidad_stock puntuacion_promedio precio imagen_url',
-                populate: { path: 'genero_id', select: 'nombre' }
-            });
-        res.json(authors);
+        if (id) {
+            const autor = await Autor.findById(id)
+                .populate({
+                    path: 'libros',
+                    select: 'titulo descripcion fecha_publicacion cantidad_stock puntuacion_promedio precio imagen_url',
+                    populate: { path: 'genero_id', select: 'nombre' }
+                });
+
+            if (!autor) {
+                return res.status(404).json({ error: 'Author not found' });
+            }
+
+            res.json(autor);
+        } else {
+            const autores = await Autor.find()
+                .populate({
+                    path: 'libros',
+                    select: 'titulo descripcion fecha_publicacion cantidad_stock puntuacion_promedio precio imagen_url',
+                    populate: { path: 'genero_id', select: 'nombre' }
+                });
+
+            res.json(autores);
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
