@@ -7,18 +7,39 @@ import Libro from '../models/Libro.js';
 import Usuario from '../models/Usuario.js';
 import mongoose from 'mongoose';
 
-const getOrder = async (req, res) => {
+const getOrders = async (req, res) => {
+    const { id } = req.query;
+
     try {
-        const pedidos = await Pedido.find()
-            .populate({
-                path: 'libros.libro_id',
-                populate: { path: 'autor_id genero_id', select: 'nombre biografia foto_url' }
-            })
-            .populate({
-                path: 'usuario_id',
-                select: 'nombre apellido email telefono direccion'
-            });
-        res.json(pedidos);
+        if (id) {
+            const pedido = await Pedido.findById(id)
+                .populate({
+                    path: 'libros.libro_id',
+                    populate: { path: 'autor_id genero_id', select: 'nombre biografia foto_url' }
+                })
+                .populate({
+                    path: 'usuario_id',
+                    select: 'nombre apellido email telefono direccion'
+                });
+
+            if (!pedido) {
+                return res.status(404).json({ error: 'Order not found' });
+            }
+
+            res.json(pedido);
+        } else {
+            const pedidos = await Pedido.find()
+                .populate({
+                    path: 'libros.libro_id',
+                    populate: { path: 'autor_id genero_id', select: 'nombre biografia foto_url' }
+                })
+                .populate({
+                    path: 'usuario_id',
+                    select: 'nombre apellido email telefono direccion'
+                });
+
+            res.json(pedidos);
+        }
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }
@@ -90,7 +111,7 @@ const searchOrder = async (req, res) => {
         let query = {};
 
         if (req.query.id) {
-            query._id = req.query.id;
+            query.usuario_id = req.query.id;
         }
 
         if (req.query.estado) {
@@ -198,6 +219,6 @@ export {
     addOrder,
     updateOrderStatus,
     searchOrder,
-    getOrder,
+    getOrders,
     getTopBooks
 };
