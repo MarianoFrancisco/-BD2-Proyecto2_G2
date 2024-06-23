@@ -1,6 +1,5 @@
 //use BookStore
 db.createCollection("Autor");
-db.createCollection("Carrito");
 db.createCollection("GeneroLibro");
 db.createCollection("Libro");
 db.createCollection("Pedido");

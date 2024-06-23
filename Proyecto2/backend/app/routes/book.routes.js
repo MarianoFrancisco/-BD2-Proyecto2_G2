@@ -5,6 +5,7 @@
 import express from 'express';
 const router = express.Router();
 
+import protect from '../middleware/verifyToken.js';
 import {
     getBooks,
     addBook,
@@ -13,14 +14,14 @@ import {
     searchBooks
 } from '../controllers/bookController.js';
 
-router.get('', getBooks);
+router.get('', protect, getBooks);
 
-router.get('/search', searchBooks);
+router.get('/search', protect, searchBooks);
 
-router.post('', addBook);
+router.post('', protect, addBook);
 
-router.put('/:id', updateBook);
+router.put('/:id', protect, updateBook);
 
-router.delete('/:id', deleteBook);
+router.delete('/:id', protect, deleteBook);
 
 export default router;
