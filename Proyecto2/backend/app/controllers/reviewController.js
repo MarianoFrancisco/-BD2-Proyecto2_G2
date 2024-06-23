@@ -25,8 +25,8 @@ const getReviewsByBookId = async (req, res) => {
 };
 
 const addReview = async (req, res) => {
-    const { libro_id, usuario_id, comentario, puntuacion } = req.body;
-
+    const { libro_id, comentario, puntuacion } = req.body;
+    const usuario_id = req.id;
     const session = await mongoose.startSession();
     session.startTransaction();
 
