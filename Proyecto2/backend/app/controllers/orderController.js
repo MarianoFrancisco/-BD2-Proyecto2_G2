@@ -110,8 +110,8 @@ const searchOrder = async (req, res) => {
     try {
         let query = {};
 
-        if (req.query.id) {
-            query.usuario_id = req.query.id;
+        if (req.query.usuario == "Si") {
+            query.usuario_id = req.id;
         }
 
         if (req.query.estado) {
@@ -135,8 +135,8 @@ const searchOrder = async (req, res) => {
 };
 
 const addOrder = async (req, res) => {
-    const { usuario_id, libros, direccion_envio, metodo_pago } = req.body;
-
+    const { libros, direccion_envio, metodo_pago } = req.body;
+    const usuario_id = req.id;
     const session = await mongoose.startSession();
     session.startTransaction();
 

@@ -6,9 +6,9 @@ import express from 'express';
 const router = express.Router();
 
 import protect from '../middleware/protectMiddleware.js';
-import { getUserById, updateUserById } from '../controllers/userController.js';
+import { getUser, updateUser } from '../controllers/userController.js';
 
-router.get('/:id', protect, getUserById);
-router.put('/:id', protect, updateUserById);
+router.get('', protect, getUser);
+router.put('', protect, updateUser);
 
 export default router;
