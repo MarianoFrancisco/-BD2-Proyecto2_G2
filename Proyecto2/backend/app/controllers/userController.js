@@ -4,8 +4,8 @@
 */
 import Usuario from '../models/Usuario.js';
 
-const getUserById = async (req, res) => {
-    const { id } = req.params;
+const getUser = async (req, res) => {
+    const id = req.id;
 
     try {
         let user = await Usuario.findById(id)
@@ -40,8 +40,8 @@ const getUserById = async (req, res) => {
     }
 };
 
-const updateUserById = async (req, res) => {
-    const { id } = req.params;
+const updateUser = async (req, res) => {
+    const id = req.id;
     const { nombre, apellido, email, telefono, direccion, contrasenia, metodo_pago } = req.body;
 
     try {
@@ -73,6 +73,6 @@ const updateUserById = async (req, res) => {
 };
 
 export {
-    updateUserById,
-    getUserById
+    updateUser,
+    getUser
 };
