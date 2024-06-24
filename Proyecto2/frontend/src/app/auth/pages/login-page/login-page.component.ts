@@ -19,6 +19,12 @@ export class LoginPageComponent {
   onLogin(): void {
     if (this.loginForm.valid) {
 
+    } else {
+      Object.values(this.loginForm.controls).forEach(control => {
+        if (!control.touched) {
+          control.markAsTouched();
+        }
+      });
     }
   }
 
