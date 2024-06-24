@@ -1,0 +1,22 @@
+<form class="row g-2" [formGroup]="userDataForm">
+    <div class="col-6">
+        <label for="name" class="form-label">Nombre</label>
+        <input class="form-control" type="text" id="name" placeholder="Nick" formControlName="nombre">
+    </div>
+    <div class="col-6">
+        <label for="lastname" class="form-label">Apellido</label>
+        <input class="form-control" type="text" id="lastname" placeholder="Doe" formControlName="apellido">
+    </div>
+    <div class="col-6">
+        <label for="phone" class="form-label">Teléfono</label>
+        <input class="form-control" type="text" id="phone" placeholder="0000-0000" formControlName="telefono">
+    </div>
+    <div class="col-6">
+        <label for="date" class="form-label">Fecha de Nacimiento</label>
+        <input class="form-control" type="date" id="date" placeholder="0000-0000" formControlName="fecha_nacimiento">
+    </div>
+    <div class="col-12">
+        <label for="address" class="form-label">Dirección</label>
+        <input class="form-control" type="text" id="address" placeholder="7. Calle, Example" formControlName="direccion">
+    </div>
+</form>

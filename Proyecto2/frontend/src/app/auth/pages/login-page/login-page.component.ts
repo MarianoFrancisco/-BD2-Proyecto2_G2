@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -6,5 +8,22 @@ import { Component } from '@angular/core';
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
+
+  private router = inject(Router);
+  private formBuilder = inject(FormBuilder);
+
+  public loginForm: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required]],
+    contrasenia: ['', [Validators.required]]
+  });
+
+  onLogin(): void {
+    if (this.loginForm.valid) {
+      
+    }
+  }
+
+
+
 
 }

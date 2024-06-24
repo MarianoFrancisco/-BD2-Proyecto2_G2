@@ -1,1 +1,16 @@
-<p>auth-layout works!</p>
+<div class="background-container d-flex justify-content-center align-items-center">
+    <div class="overlay"></div>
+    <!-- Aquí puedes añadir contenido adicional si lo necesitas -->
+    <div class="pages">
+        <div class="rounded-4 shadow-lg" style="width: 55rem; height: 33rem; background-color: white;">
+            <div class="row g-0">
+                <div class="col-6">
+                    <div class="auth-image rounded-start-4"></div>
+                </div>
+                <div class="col-6 d-flex flex-column justify-content-between">
+                    <router-outlet/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

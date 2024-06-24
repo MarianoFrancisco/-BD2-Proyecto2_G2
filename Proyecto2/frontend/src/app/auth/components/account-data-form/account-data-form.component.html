@@ -1,0 +1,14 @@
+<form class="row g-2" [formGroup]="accountDataForm">
+    <div class="col-12">
+        <label for="email" class="form-label">Email</label>
+        <input class="form-control" type="text" id="email" placeholder="nick@example.com" formControlName="email">
+    </div>
+    <div class="col-12">
+        <label for="password" class="form-label">Contraseña</label>
+        <input class="form-control" type="password" id="password" placeholder="••••••••" formControlName="contrasenia">
+    </div>
+    <div class="col-12">
+        <label for="cpassword" class="form-label">Confirmar Contraseña</label>
+        <input class="form-control" type="password" id="cpassword" placeholder="••••••••" formControlName="contrasenia">
+    </div>
+</form>
