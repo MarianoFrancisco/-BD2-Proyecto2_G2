@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent {
 
@@ -19,7 +18,7 @@ export class LoginPageComponent {
 
   onLogin(): void {
     if (this.loginForm.valid) {
-      
+
     }
   }
 

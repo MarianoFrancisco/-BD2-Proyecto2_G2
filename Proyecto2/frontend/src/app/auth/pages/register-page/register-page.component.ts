@@ -1,13 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { AccountDataFormComponent } from '../../components/account-data-form/account-data-form.component';
 import { UserDataFormComponent } from '../../components/user-data-form/user-data-form.component';
-import { FormGroup } from '@angular/forms';
-import { AccountDataForm, UserDataForm } from '../../interfaces/auth.interface';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrl: './register-page.component.css'
 })
 export class RegisterPageComponent {
 
@@ -17,8 +14,16 @@ export class RegisterPageComponent {
   public currentStep: number = 1;
 
   public continue(): void {
-    if (this.currentStep === 1 && this.firstForm.userDataForm.valid) {
-      this.currentStep = 2;
+    if (this.currentStep === 1) {
+      if (this.firstForm.userDataForm.valid) {
+        this.currentStep = 2;
+      } else {
+        Object.values(this.firstForm.userDataForm.controls).forEach(control => {
+          if (!control.touched) {
+            control.markAsTouched();
+          }
+        });
+      }
     }
   }
 
@@ -30,7 +35,13 @@ export class RegisterPageComponent {
 
   public onRegister(): void {
     if (this.secondForm.accountDataForm.valid) {
-      
+
+    } else {
+      Object.values(this.secondForm.accountDataForm.controls).forEach(control => {
+        if (!control.touched) {
+          control.markAsTouched();
+        }
+      });
     }
   }
 
