@@ -1,1 +1,5 @@
-<router-outlet/>
+@if (isLoading) {
+    <shared-loading message="Comprobando credenciales." />
+} @else {
+    <router-outlet/>
+}

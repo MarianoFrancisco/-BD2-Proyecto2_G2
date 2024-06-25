@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { addressPattern, namePattern, phonePattern } from '../../../shared/validators/patterns';
 
 @Component({
   selector: 'auth-user-data-form',
@@ -11,11 +12,11 @@ export class UserDataFormComponent {
   public maxDate: Date;
 
   public userDataForm: FormGroup = this.formBuilder.group({
-    nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern("^[A-Za-z ]+$")]],
-    apellido: ['', [Validators.required, Validators.minLength(3), Validators.pattern("^[A-Za-z ]+$")]],
-    telefono: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern("^[0-9]{8}$")]],
+    nombre: ['', [Validators.required, Validators.minLength(3), Validators.pattern(namePattern)]],
+    apellido: ['', [Validators.required, Validators.minLength(3), Validators.pattern(namePattern)]],
+    telefono: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern(phonePattern)]],
     fecha_nacimiento: ['', [Validators.required, this.checkMaxDate()]],
-    direccion: ['', [Validators.required, Validators.minLength(5), Validators.pattern("^[A-Za-z0-9., ]+$")]]
+    direccion: ['', [Validators.required, Validators.minLength(5), Validators.pattern(addressPattern)]]
   });
 
   constructor() {

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable, inject } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { environments } from '../../../environments/environments';
-import { BehaviorSubject, Observable, catchError, map, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, switchMap, throwError, timer } from 'rxjs';
 import { AuthStatus, Register, Tokens, User } from '../interfaces/user.interface';
 
 @Injectable({
@@ -19,7 +19,9 @@ export class AuthService {
   private _currentUser: BehaviorSubject<User|null> = new BehaviorSubject<User|null>(null);
   private _isLoggedIn: BehaviorSubject<AuthStatus> = new BehaviorSubject<AuthStatus>(AuthStatus.Checking);
 
-  constructor() { }
+  constructor() {
+    this.checkAuthStatus().subscribe();
+  }
 
   private getToken(): string {
     return this.cookieService.get('token');
@@ -52,7 +54,10 @@ export class AuthService {
         this.setAuth(user);
         return true;
       }),
-      catchError((error: HttpErrorResponse) => throwError(() => error))
+      catchError((error: HttpErrorResponse) => {
+        this.logout();
+        return throwError(() => error);
+      })
     );
   }
 
@@ -66,6 +71,33 @@ export class AuthService {
     const url: string = `${this.authURL}/register`;
     const request = this.httpClient.post<Tokens>(url, regData);
     return this.processAuthRequest(request);
+  }
+
+  public logout() {
+    this._currentUser.next(null);
+    this._isLoggedIn.next(AuthStatus.NotAuthenticated);
+    this.cookieService.delete('token');
+  }
+
+  public checkAuthStatus(): Observable<boolean> {
+    return timer(500).pipe(
+      switchMap(() => {
+        if (this.cookieService.check('token')) {
+          return this.getUser();
+        } else {
+          this.logout();
+          return of(false);
+        }
+      })
+    );
+  }
+
+  public isLoggedIn(): Observable<AuthStatus> {
+    return this._isLoggedIn.asObservable();
+  }
+
+  public currentUser(): Observable<User|null> {
+    return this._currentUser.asObservable();
   }
 
 }

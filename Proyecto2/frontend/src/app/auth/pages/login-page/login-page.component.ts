@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { NotificationService } from '../../../shared/services/notification.service';
+import { emailPattern, passwordPattern } from '../../../shared/validators/patterns';
 
 @Component({
   selector: 'app-login-page',
@@ -16,8 +17,8 @@ export class LoginPageComponent {
   private notifService = inject(NotificationService);
 
   public loginForm: FormGroup = this.formBuilder.group({
-    email: ['', [Validators.required,]],
-    contrasenia: ['', [Validators.required]]
+    email: ['', [Validators.required, Validators.minLength(5), Validators.pattern(emailPattern)]],
+    contrasenia: ['', [Validators.required, Validators.minLength(5), Validators.pattern(passwordPattern)]]
   });
 
   onLogin(): void {

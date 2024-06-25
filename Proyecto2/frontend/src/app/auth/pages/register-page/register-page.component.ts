@@ -4,6 +4,7 @@ import { UserDataFormComponent } from '../../components/user-data-form/user-data
 import { NotificationService } from '../../../shared/services/notification.service';
 import { AuthService } from '../../services/auth.service';
 import { Register, UserRole } from '../../interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -14,6 +15,7 @@ export class RegisterPageComponent {
   @ViewChild('firstForm') public firstForm: UserDataFormComponent =  new UserDataFormComponent();
   @ViewChild('secondForm') public secondForm: AccountDataFormComponent = new AccountDataFormComponent();
 
+  private router = inject(Router);
   private authService = inject(AuthService);
   private notifService = inject(NotificationService);
 
@@ -61,8 +63,9 @@ export class RegisterPageComponent {
       this.authService.register(this.createRaw()).subscribe({
         next: () => {
           this.notifService.show('Bienvenido a BookStore.', 'success');
+          this.router.navigateByUrl('/');
         },
-        error: (error) => {
+        error: () => {
           this.notifService.show('Algo salio mal.');
         }
       });
