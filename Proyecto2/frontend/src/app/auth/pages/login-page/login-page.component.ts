@@ -27,7 +27,7 @@ export class LoginPageComponent {
       this.authService.login(email, contrasenia).subscribe({
         next: () => {
           this.notifService.show('Bienvenido a BookStore.', 'success');
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/homeUser');
         },
         error: () => this.notifService.show('Usuario no encontrado.')
       });

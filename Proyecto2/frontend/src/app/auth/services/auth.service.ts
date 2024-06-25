@@ -27,7 +27,7 @@ export class AuthService {
     return this.cookieService.get('token');
   }
 
-  private setHeaders(): HttpHeaders {
+  public setHeaders(): HttpHeaders {
     return new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
   }
 
@@ -101,3 +101,5 @@ export class AuthService {
   }
 
 }
+
+export { AuthStatus };

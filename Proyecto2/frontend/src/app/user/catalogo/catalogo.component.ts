@@ -1,36 +1,41 @@
-import { Component } from '@angular/core';
+import { LibroService } from './../service/libro.service';
+import { Libro } from './../interfaces/books.interface';
+import { Component, OnInit } from '@angular/core';
+import { AuthService, AuthStatus } from './../../auth/services/auth.service';  // Importa el servicio de autenticación y el enum AuthStatus
 
 @Component({
   selector: 'app-catalogo',
   templateUrl: './catalogo.component.html',
-  styleUrl: './catalogo.component.css'
+  styleUrls: ['./catalogo.component.css']
 })
-export class CatalogoComponent {
-  products = [
-    {
-      name: 'Autor 1',
-      description: 'Descripción del Autor 1',
-      image: '../../../assets/portatil.png',
-    },
-    {
-      name: 'Autor 2',
-      description: 'Descripción del Autor 2',
-      image: '../../../assets/portatil.png'
-    },
-    {
-      name: 'Autor 3',
-      description: 'Descripción del Autor 2',
-      image: '../../../assets/portatil.png'
-    },
-  
-    // Solo para probar xD
-  ];
-  
-  filteredProducts = [...this.products];
+export class CatalogoComponent implements OnInit {
+  products: any[] = [];
+  filteredProducts: any[] = [];
 
-  constructor() { }
+  constructor(private libroService: LibroService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.isLoggedIn().subscribe(authStatus => {
+      if (authStatus === AuthStatus.Authenticated) {
+        this.loadLibros();
+      } else {
+        this.authService.login('tu_usuario', 'tu_contraseña').subscribe(() => {
+          this.loadLibros();
+        });
+      }
+    });
+  }
+
+  loadLibros(): void {
+    this.libroService.getLibros().subscribe((libros: Libro[]) => {
+      this.products = libros.map(libro => ({
+        name: libro.titulo,
+        description: libro.descripcion,
+        image: libro.imagen_url,
+        price: libro.precio // Agrega el precio aquí
+      }));
+      this.filteredProducts = [...this.products];
+    });
   }
 
   onSearch(event: any): void {
@@ -43,11 +48,11 @@ export class CatalogoComponent {
 
   addToCart(product: any): void {
     console.log('Producto agregado al carrito:', product);
-    //Proximamente
+    // Próximamente
   }
 
   verifyProduct(product: any): void {
     console.log('Verificar producto:', product);
-    //Proximamente
+    // Próximamente
   }
 }
