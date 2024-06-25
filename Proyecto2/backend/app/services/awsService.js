@@ -1,6 +1,8 @@
-require('dotenv').config();
-const AWS = require('aws-sdk');
-const crypto = require('crypto');
+import dotenv from 'dotenv';
+import AWS from 'aws-sdk';
+import crypto from 'crypto';
+
+dotenv.config();
 
 // Configurar AWS SDK
 const s3 = new AWS.S3({
@@ -27,6 +29,4 @@ const uploadImageToS3 = async (buffer) => {
     return s3.upload(params).promise();
 };
 
-module.exports = {
-    uploadImageToS3
-};
+export { uploadImageToS3 };
