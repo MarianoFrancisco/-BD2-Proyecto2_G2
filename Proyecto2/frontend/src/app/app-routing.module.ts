@@ -1,22 +1,16 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-//admin
-
-//user
-import { InicioComponent } from './user/inicio/inicio.component';
-import { CatalogoComponent } from './user/catalogo/catalogo.component';
+import { noAuthGuard } from './auth/guards/no-auth.guard';
 
 const routes: Routes = [
 
   {
-    path: 'user', component: InicioComponent, children: [
-      { path: 'catalogue', component: CatalogoComponent }
-    ]
-  }
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate: [ noAuthGuard ]
+  },
 
-  ]
-;
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
