@@ -42,7 +42,7 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const id = req.id;
-    const { nombre, apellido, email, telefono, direccion, contrasenia, metodo_pago } = req.body;
+    const { nombre, apellido, email, telefono, direccion, contrasenia, metodo_pago, fecha_nacimiento } = req.body;
 
     try {
         let user = await Usuario.findById(id);
@@ -57,6 +57,7 @@ const updateUser = async (req, res) => {
         user.telefono = telefono;
         user.direccion = direccion;
         user.metodo_pago = metodo_pago;
+        user.fecha_nacimiento = fecha_nacimiento;
         if (contrasenia) {
             user.contrasenia = contrasenia;
         }

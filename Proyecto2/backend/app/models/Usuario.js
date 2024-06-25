@@ -20,6 +20,7 @@ const usuarioSchema = new Schema({
             return this._fecha_registro.toISOString().slice(0, 10);
         }
     },
+    fecha_nacimiento: { type: Date, required: true},
     contrasenia: { type: String, required: true },
     compras: [{ type: Schema.Types.ObjectId, ref: 'Pedido' }],
     rol: { type: String, enum: ['Administrador', 'Cliente'], required: true },
