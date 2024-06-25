@@ -62,8 +62,11 @@ export class AuthService {
     return this.processAuthRequest(request);
   }
 
-  public register(): void {
-
+  public register(regData: FormData): Observable<boolean> {
+    regData.forEach((value, key) => console.log(value, key))
+    const url: string = `${this.authURL}/register`;
+    const request = this.httpClient.post<Tokens>(url, regData);
+    return this.processAuthRequest(request);
   }
 
 }

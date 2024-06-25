@@ -8,7 +8,6 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { UserDataFormComponent } from './components/user-data-form/user-data-form.component';
 import { AccountDataFormComponent } from './components/account-data-form/account-data-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -22,8 +21,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule,
-    SharedModule
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }
