@@ -12,12 +12,14 @@ import { FormsModule } from '@angular/forms';  // Importa FormsModule
 import { InicioComponent } from './user/inicio/inicio.component';
 import { CatalogoComponent } from './user/catalogo/catalogo.component';
 import { LibroService } from './user/service/libro.service';
+import { AutoresComponent } from './user/autores/autores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    AutoresComponent
   ],
   imports: [
     SharedModule,

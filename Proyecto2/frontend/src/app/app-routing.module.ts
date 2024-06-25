@@ -5,6 +5,8 @@ import { noAuthGuard } from './auth/guards/no-auth.guard';
 //User
 import { InicioComponent } from './user/inicio/inicio.component';
 import { CatalogoComponent } from './user/catalogo/catalogo.component';
+import { AutoresComponent } from './user/autores/autores.component';
+
 const routes: Routes = [
 
   {
@@ -15,6 +17,7 @@ const routes: Routes = [
   {
     path: 'homeUser', component: InicioComponent, children: [
       { path: 'catalogue', component: CatalogoComponent },
+      { path: 'autores', component: AutoresComponent}
     ]
   },
 ];

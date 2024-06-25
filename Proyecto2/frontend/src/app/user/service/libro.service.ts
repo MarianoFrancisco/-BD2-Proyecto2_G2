@@ -27,4 +27,9 @@ export class LibroService {
     });
     return this.http.get<Libro[]>(`${this.apiUrl}/search`, { headers, params: httpParams });
   }
+
+  getLibroById(id: string): Observable<Libro> {
+    const headers = this.authService.setHeaders();
+    return this.http.get<Libro>(`${this.apiUrl}?id=${id}`, { headers });
+  }
 }
