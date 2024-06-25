@@ -11,11 +11,6 @@ const routes: Routes = [
     canActivate: [ noAuthGuard ]
   },
 
-  {
-    path: 'temp',
-    component: UpdateInfoComponent
-  }
-
 ];
 
 @NgModule({
