@@ -56,8 +56,25 @@ export class DetalleReseniaComponent implements OnInit {
   escribirResena(): void {
     console.log('Calificación:', this.calificacion);
     console.log('Reseña:', this.resena);
-    // Aquí puedes llamar a tu servicio para guardar la reseña
-    // Ejemplo: this.libroService.guardarReseña(this.libroId, this.calificacion, this.resena).subscribe(...)
+
+    this.libroService.guardarReseña(this.libroId, this.resena, this.calificacion).subscribe(
+      (response) => {
+        console.log('Reseña guardada exitosamente', response);
+        // Actualizar la lista de reseñas después de guardar la nueva reseña
+        this.getReseñasByLibro(this.libroId);
+        // Limpiar los campos de calificación y reseña después de guardar
+        this.calificacion = 0;
+        this.resena = '';
+      },
+      (error) => {
+        console.error('Error al guardar la reseña', error);
+        if (error.error === 'You have already reviewed this book') {
+          alert('Ya has realizado una reseña de este libro anteriormente.');
+        } else {
+          alert('Ocurrió un error al guardar la reseña. Por favor, intenta nuevamente más tarde.');
+        }
+      }
+    );
   }
 
   generarEstrellas(calificacion: number): number[] {

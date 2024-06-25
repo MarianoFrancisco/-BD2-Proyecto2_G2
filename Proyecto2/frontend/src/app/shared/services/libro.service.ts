@@ -46,11 +46,16 @@ export class LibroService {
     );
   }
 
-  // Método para guardar una reseña 
-  guardarReseña(libroId: string, calificacion: number, reseña: string): Observable<any> {
-    const url = `${this.apiUrl}/${libroId}/resenas`;
-    const body = { calificacion, reseña };
-    return this.http.post(url, body).pipe(
+  // Método para guardar una reseña de un libro
+  guardarReseña(libro_id: string, comentario: string, puntuacion: number): Observable<any> {
+    const url = `${this.apiUrl}/review`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`,
+      'Content-Type': 'application/json'
+    });
+    const body = { libro_id, comentario, puntuacion };
+    console.log(body)
+    return this.http.post(url, body, { headers }).pipe(
       catchError(this.handleError)
     );
   }
