@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { noAuthGuard } from './auth/guards/no-auth.guard';
-import { UpdateInfoComponent } from './auth/pages/update-info/update-info.component';
 
 const routes: Routes = [
 
@@ -10,6 +9,13 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
     canActivate: [ noAuthGuard ]
   },
+  {
+    path: 'user', component: InicioComponent, children: [
+      { path: 'catalogue', component: CatalogoComponent },
+      { path: 'resenia', component: ReseniaComponent },
+      { path: 'resenia/:id', component: DetalleReseniaComponent }
+    ]
+  }
 
 ];
 

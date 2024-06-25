@@ -1,0 +1,12 @@
+<!-- INICIO CONTENEDOR DE LIBROS-->
+<div class="libros-container">
+    <div class="libro-card" *ngFor="let book of books">
+        <img [src]="book.imagen_url" alt="{{ book.titulo }}">
+        <h3>{{ book.titulo }}</h3>
+        <p>{{ book.descripcion }}</p>
+        <div class="libro-actions">
+            <button (click)="verDetalle(book)">Escribir Reseña</button>
+        </div>
+    </div>
+</div>
+<!-- FIN CONTENEDOR DE LIBROS-->
