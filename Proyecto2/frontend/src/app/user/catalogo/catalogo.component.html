@@ -1,19 +1,51 @@
-<!-- INICIO BUSCADOR--> 
-<div class="search-container">
+<!-- CONTENEDOR PRINCIPAL -->
+<div class="catalog-container">
+  
+  <!-- BUSCADOR -->
+  <div class="search-container">
     <input type="text" placeholder="Buscar productos..." (input)="onSearch($event)">
-</div>
-<!-- FIN BUSCADOR--> 
-
-<!-- INICIO CONTENEDOR DE PRODUCTOS--> 
-<div class="products-container">
-    <div class="product-card" *ngFor="let product of filteredProducts">
-      <img [src]="product.image" alt="{{product.name}}">
-      <h3>{{product.name}}</h3>
-      <p>{{product.description}}</p>
-      <p class="price">{{product.price | currency}}</p> <!-- Muestra el precio aquí -->
-      <div class="product-actions">
-        <button (click)="addToCart(product)">Ver</button>
+  </div>
+  
+  <!-- CONTENEDOR PRINCIPAL DE PRODUCTOS Y FILTROS -->
+  <div class="main-content">
+    
+    <!-- PRODUCTOS -->
+    <div class="products-container">
+      <div class="product-card" *ngFor="let product of filteredProducts">
+        <img [src]="product.image" alt="{{product.name}}">
+        <h3>{{product.name}}</h3>
+        <p>{{product.description}}</p>
+        <p class="price">{{product.price | currency}}</p>
+        <div class="product-actions">
+          <button (click)="addToCart(product)">Ver</button>
+        </div>
       </div>
     </div>
+    <!-- FIN PRODUCTOS -->
+    
+    <!-- FILTROS -->
+    <div class="filters-container">
+      <input type="text" placeholder="Título" [(ngModel)]="filters.titulo">
+      <input type="text" placeholder="Autor" [(ngModel)]="filters.autor">
+      <input type="text" placeholder="Género" [(ngModel)]="filters.genero">
+      <div class="price-slider">
+        <label>Min. Precio: {{ filters.minPrecio }}</label>
+        <input type="range" min="0" max="100" [(ngModel)]="filters.minPrecio">
+      </div>
+      <div class="price-slider">
+        <label>Max. Precio: {{ filters.maxPrecio }}</label>
+        <input type="range" min="0" max="1000" [(ngModel)]="filters.maxPrecio">
+      </div>
+      <div class="rating-slider">
+        <label>Min. Puntuación: {{ filters.minPuntuacion }}</label>
+        <input type="range" min="0" max="5" step="0.1" [(ngModel)]="filters.minPuntuacion">
+      </div>
+      <button (click)="applyFilters()">Aplicar Filtros</button>
+    </div>
+    <!-- FIN FILTROS -->
+    
   </div>
-<!--FIN CONTENEDOR PRODUCTOS--> 
+  <!-- FIN CONTENEDOR PRINCIPAL DE PRODUCTOS Y FILTROS -->
+  
+</div>
+<!-- FIN CONTENEDOR PRINCIPAL -->

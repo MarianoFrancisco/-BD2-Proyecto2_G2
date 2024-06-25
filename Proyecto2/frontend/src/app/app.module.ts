@@ -7,6 +7,7 @@ import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@an
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';  // Importa FormsModule
 
 import { InicioComponent } from './user/inicio/inicio.component';
 import { CatalogoComponent } from './user/catalogo/catalogo.component';
@@ -22,6 +23,7 @@ import { LibroService } from './user/service/libro.service';
     SharedModule,
     BrowserModule,
     HttpClientModule ,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

@@ -1,7 +1,7 @@
 import { Libro } from './../interfaces/books.interface';
 import { AuthService } from './../../auth/services/auth.service';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,5 +15,16 @@ export class LibroService {
   getLibros(): Observable<Libro[]> {
     const headers = this.authService.setHeaders();
     return this.http.get<Libro[]>(this.apiUrl, { headers });
+  }
+
+  searchLibros(params: any): Observable<Libro[]> {
+    const headers = this.authService.setHeaders();
+    let httpParams = new HttpParams();
+    Object.keys(params).forEach(key => {
+      if (params[key]) {
+        httpParams = httpParams.set(key, params[key]);
+      }
+    });
+    return this.http.get<Libro[]>(`${this.apiUrl}/search`, { headers, params: httpParams });
   }
 }

@@ -11,6 +11,14 @@ import { AuthService, AuthStatus } from './../../auth/services/auth.service';  /
 export class CatalogoComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
+  filters: any = {
+    titulo: '',
+    autor: '',
+    genero: '',
+    minPrecio: null,
+    maxPrecio: null,
+    minPuntuacion: null
+  };
 
   constructor(private libroService: LibroService, private authService: AuthService) { }
 
@@ -44,6 +52,27 @@ export class CatalogoComponent implements OnInit {
       product.name.toLowerCase().includes(searchTerm) ||
       product.description.toLowerCase().includes(searchTerm)
     );
+  }
+
+  applyFilters(): void {
+    const params = {
+      titulo: this.filters.titulo,
+      autor: this.filters.autor,
+      genero: this.filters.genero,
+      minPrecio: this.filters.minPrecio,
+      maxPrecio: this.filters.maxPrecio,
+      minPuntuacion: this.filters.minPuntuacion
+    };
+
+    this.libroService.searchLibros(params).subscribe((libros: Libro[]) => {
+      this.products = libros.map(libro => ({
+        name: libro.titulo,
+        description: libro.descripcion,
+        image: libro.imagen_url,
+        price: libro.precio // Agrega el precio aquí
+      }));
+      this.filteredProducts = [...this.products];
+    });
   }
 
   addToCart(product: any): void {
