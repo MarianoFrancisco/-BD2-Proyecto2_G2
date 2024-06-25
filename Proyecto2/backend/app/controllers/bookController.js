@@ -6,6 +6,7 @@ import Libro from '../models/Libro.js';
 import Autor from '../models/Autor.js';
 import GeneroLibro from '../models/GeneroLibro.js';
 import mongoose from 'mongoose';
+import { uploadImageToS3 } from '../services/awsService.js';
 
 const getBooks = async (req, res) => {
     const { id } = req.query;
@@ -99,14 +100,21 @@ const addBook = async (req, res) => {
         fecha_publicacion,
         disponibilidad,
         cantidad_stock,
-        precio,
-        imagen_url
+        precio
     } = req.body;
 
     const session = await mongoose.startSession();
     session.startTransaction();
 
     try {
+        let imagen_url = null;
+
+        if (req.file) {
+            // Subir la imagen a S3
+            const data = await uploadImageToS3(req.file.buffer);
+            imagen_url = data.Location;
+        }
+
         const newBook = new Libro({
             titulo,
             autor_id,
@@ -139,7 +147,9 @@ const addBook = async (req, res) => {
     } catch (error) {
         await session.abortTransaction();
         session.endSession();
-
+        if (error.message.includes('File upload only supports the following filetypes')) {
+            return res.status(400).json({ error: error.message });
+        }
         res.status(400).json({ error: error.message });
     }
 };
