@@ -4,7 +4,7 @@ export enum AuthStatus {
     NotAuthenticated
 }
 
-enum UserRole {
+export enum UserRole {
     Cliente = 'Cliente',
     Administrador = 'Administrador'
 }
@@ -15,13 +15,18 @@ export interface Tokens {
 }
 
 export interface User {
-    _id:                string;
+    _id?:               string;
     nombre:             string;
     apellido:           string;
     telefono:           string;
     direccion:          string;
     rol:                UserRole;
     fecha_nacimiento:   Date;
-    fecha_registro:     Date;
+    fecha_registro?:    Date;
     metodo_pago:        string;
+}
+
+export interface Register extends User {
+    email:          string;
+    contrasenia:    string;
 }

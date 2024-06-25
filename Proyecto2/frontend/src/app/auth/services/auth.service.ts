@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { environments } from '../../../environments/environments';
 import { BehaviorSubject, Observable, catchError, map, switchMap, throwError } from 'rxjs';
-import { AuthStatus, Tokens, User } from '../interfaces/user.interface';
+import { AuthStatus, Register, Tokens, User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -62,8 +62,7 @@ export class AuthService {
     return this.processAuthRequest(request);
   }
 
-  public register(regData: FormData): Observable<boolean> {
-    regData.forEach((value, key) => console.log(value, key))
+  public register(regData: Register): Observable<boolean> {
     const url: string = `${this.authURL}/register`;
     const request = this.httpClient.post<Tokens>(url, regData);
     return this.processAuthRequest(request);

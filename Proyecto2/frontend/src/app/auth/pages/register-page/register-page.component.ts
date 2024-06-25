@@ -3,6 +3,7 @@ import { AccountDataFormComponent } from '../../components/account-data-form/acc
 import { UserDataFormComponent } from '../../components/user-data-form/user-data-form.component';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { AuthService } from '../../services/auth.service';
+import { Register, UserRole } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-register-page',
@@ -18,19 +19,20 @@ export class RegisterPageComponent {
 
   public currentStep: number = 1;
 
-  private createFormData(): FormData {
-    const formData = new FormData();
+  private createRaw(): Register {
     const userData = this.firstForm.userDataForm.value;
     const accountData = this.secondForm.accountDataForm.value;
-    formData.append('rol', 'Cliente');
-    formData.append('metodo_pago', 'Efectivo');
-    Object.keys(userData).forEach((key) => {
-      formData.append(key, userData[key]);
-    })
-    Object.keys(accountData).forEach((key) => {
-      if (key !== 'c_contrasenia') formData.append(key, accountData[key]);
-    })
-    return formData;
+    return {
+      nombre: userData['nombre'],
+      apellido: userData['apellido'],
+      telefono: userData['telefono'],
+      direccion:  userData['direccion'],
+      fecha_nacimiento: userData['fecha_nacimiento'],
+      email:  accountData['email'],
+      contrasenia: accountData['contrasenia'],
+      rol:  UserRole.Cliente,
+      metodo_pago:  'Efectivo'
+    };
   }
 
   public continue(): void {
@@ -56,13 +58,12 @@ export class RegisterPageComponent {
 
   public onRegister(): void {
     if (this.secondForm.accountDataForm.valid) {
-      this.authService.register(this.createFormData()).subscribe({
+      this.authService.register(this.createRaw()).subscribe({
         next: () => {
           this.notifService.show('Bienvenido a BookStore.', 'success');
         },
         error: (error) => {
           this.notifService.show('Algo salio mal.');
-          console.log(error);
         }
       });
     } else {

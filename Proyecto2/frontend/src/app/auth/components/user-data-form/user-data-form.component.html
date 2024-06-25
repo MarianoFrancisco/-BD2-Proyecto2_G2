@@ -19,7 +19,8 @@
     </div>
     <div class="col-6">
         <label for="date" class="form-label">Fecha de Nacimiento</label>
-        <input class="form-control" type="date" id="date" placeholder="0000-0000" formControlName="fecha_nacimiento"
+        <input class="form-control" type="date" id="date" [max]="maxDate.toISOString().split('T')[0]" 
+            placeholder="0000-0000" formControlName="fecha_nacimiento"
             [ngClass]="userDataForm.get('fecha_nacimiento')?.touched ? (userDataForm.get('fecha_nacimiento')?.invalid ? 'is-invalid' : '') : ''"
         >
     </div>

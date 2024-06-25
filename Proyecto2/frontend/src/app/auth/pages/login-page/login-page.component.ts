@@ -16,7 +16,7 @@ export class LoginPageComponent {
   private notifService = inject(NotificationService);
 
   public loginForm: FormGroup = this.formBuilder.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required,]],
     contrasenia: ['', [Validators.required]]
   });
 
