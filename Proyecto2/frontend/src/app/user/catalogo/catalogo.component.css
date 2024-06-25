@@ -1,0 +1,108 @@
+/*
+-------------------------------------------------
+------------- Config Search----------------------
+.------------------------------------------------
+*/
+
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #955b5b; /* Color contorno */
+    border-radius: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-container input:focus {
+    border-color: #5b2f2f;
+    box-shadow: 0 0 5px rgba(91, 47, 47, 0.5); /* Sombra */
+}
+
+
+/*
+-------------------------------------------------
+------------- Config Products----------------------
+.------------------------------------------------
+*/
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s;
+}
+/*Ajustar la imagen*/
+.product-card img {
+    width: 70%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: center; /* Centra los botones */
+    gap: 10px; /* Espacio entre botones */
+    margin-top: 20px;
+}
+
+.product-actions button {
+    background-color: #955b5b; /* Morado */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-actions button:hover {
+    background-color: #760b0b; /* Morado más oscuro */
+}
+
+
+/*
+-------------------------------------------------
+------------- REsponsive----------------------
+.------------------------------------------------
+*/
+@media (max-width: 768px) {
+    .search-container input {
+        width: 80%;
+    }
+
+    .products-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
