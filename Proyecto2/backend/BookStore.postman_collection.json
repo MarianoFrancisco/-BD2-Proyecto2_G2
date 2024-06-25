@@ -1,0 +1,1368 @@
+{
+	"info": {
+		"_postman_id": "c12edfba-3e70-42ed-b247-faf4f305c24c",
+		"name": "BookStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "LoginClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"mariano@outlook.es\",\r\n  \"contrasenia\": \"1234\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"francisco@outlook.es\",\r\n  \"contrasenia\": \"1234\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Nery\",\r\n  \"apellido\": \"Cifuentes\",\r\n  \"email\": \"mariano@outlook.es\",\r\n  \"telefono\": \"31840649\",\r\n  \"direccion\": \"Cuidad de Guatemala, zona 3\",\r\n  \"contrasenia\": \"1234\",\r\n  \"metodo_pago\": \"Efectivo\",\r\n  \"rol\": \"Cliente\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Francisco\",\r\n  \"apellido\": \"Camposeco\",\r\n  \"email\": \"francisco@outlook.es\",\r\n  \"telefono\": \"31840649\",\r\n  \"direccion\": \"Cuidad de Guatemala, zona 3\",\r\n  \"contrasenia\": \"1234\",\r\n  \"metodo_pago\": \"Efectivo\",\r\n  \"rol\": \"Administrador\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Mariano\",\r\n  \"apellido\": \"Camposeco\",\r\n  \"email\": \"mariano@outlook.es\",\r\n  \"telefono\": \"31840649\",\r\n  \"direccion\": \"Cuidad de Guatemala, zona 3\",\r\n  \"contrasenia\": \"1234\",\r\n  \"metodo_pago\": \"Efectivo\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTA5Nzk5MiwiZXhwIjoxNzE5MTAxNTkyfQ.2wSTCtIM-RyDhz3l6krw12tErVhNjpSBBQ0JoXStzKk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titulo\": \"Cien años de soledad\",\r\n  \"autor_id\": \"66775c4c6c57c1d94fd9bc9a\",\r\n  \"descripcion\": \"Cien años de soledad es una novela del escritor colombiano Gabriel García Márquez, publicada en 1967. Es considerada una obra maestra de la literatura hispanoamericana y universal.\",\r\n  \"genero_id\": \"667763e63e812d346073f439\",\r\n  \"fecha_publicacion\": \"1967-05-30\",\r\n  \"disponibilidad\": true,\r\n  \"cantidad_stock\": 100,\r\n  \"puntuacion_promedio\": 4.5,\r\n  \"precio\": 25.99,\r\n  \"imagen_url\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllBooks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book?id=6677669f7519ceaf7ebcb428",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6677669f7519ceaf7ebcb428"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book/66775e484e41bea9f8205df7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book",
+								"66775e484e41bea9f8205df7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titulo\": \"Cien años de soledad\",\r\n  \"autor_id\": \"66775c4c6c57c1d94fd9bc9a\",\r\n  \"descripcion\": \"Cien años de soledad es una novela del escritor colombiano Gabriel García Márquez, publicada en 1967. Es considerada una obra maestra de la literatura hispanoamericana y universal.\",\r\n  \"genero_id\": \"667763e63e812d346073f439\",\r\n  \"fecha_publicacion\": \"1967-05-30\",\r\n  \"disponibilidad\": true,\r\n  \"cantidad_stock\": 100,\r\n  \"puntuacion_promedio\": 4.5,\r\n  \"precio\": 25.99,\r\n  \"imagen_url\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/book/6677669f7519ceaf7ebcb428",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book",
+								"6677669f7519ceaf7ebcb428"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBooksByTitle",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book/search?titulo=de soledad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book",
+								"search"
+							],
+							"query": [
+								{
+									"key": "titulo",
+									"value": "de soledad"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBooksByAuthor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book/search?autor=Gabriel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book",
+								"search"
+							],
+							"query": [
+								{
+									"key": "autor",
+									"value": "Gabriel"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBooksByGenre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book/search?genero=Fantasía",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book",
+								"search"
+							],
+							"query": [
+								{
+									"key": "genero",
+									"value": "Fantasía"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBooksByRange",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book/search?minPrecio=10&maxPrecio=50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book",
+								"search"
+							],
+							"query": [
+								{
+									"key": "minPrecio",
+									"value": "10"
+								},
+								{
+									"key": "maxPrecio",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBooksByMinRating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book/search?minPuntuacion=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book",
+								"search"
+							],
+							"query": [
+								{
+									"key": "minPuntuacion",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBooksByMultipleParameter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/book/search?titulo=de soledad&autor=Gabriel&genero=Fantasía&minPrecio=10&maxPrecio=50&minPuntuacion=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"book",
+								"search"
+							],
+							"query": [
+								{
+									"key": "titulo",
+									"value": "de soledad"
+								},
+								{
+									"key": "autor",
+									"value": "Gabriel"
+								},
+								{
+									"key": "genero",
+									"value": "Fantasía"
+								},
+								{
+									"key": "minPrecio",
+									"value": "10"
+								},
+								{
+									"key": "maxPrecio",
+									"value": "50"
+								},
+								{
+									"key": "minPuntuacion",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTA5Nzk5MiwiZXhwIjoxNzE5MTAxNTkyfQ.2wSTCtIM-RyDhz3l6krw12tErVhNjpSBBQ0JoXStzKk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Gabriel García Márquez\",\r\n  \"biografia\": \"Gabriel García Márquez fue un escritor, novelista, cuentista, guionista y periodista colombiano. Es conocido por su obra cumbre, Cien años de soledad, y por recibir el Premio Nobel de Literatura en 1982.\",\r\n  \"foto_url\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/author",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAuthorById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/author?id=66775c4c6c57c1d94fd9bc9a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"author"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "66775c4c6c57c1d94fd9bc9a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllAuthors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwNjY4NSwiZXhwIjoxNzE5MTI0Njg1fQ.vrAcwZwtdooIrIHywnPYLXBI22cmJN52tXjRmtYdruc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/author",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/author/66775be26c57c1d94fd9bc95",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"author",
+								"66775be26c57c1d94fd9bc95"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "GetByUserInProcess",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order/search/?usuario=Si&estado=En proceso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "Si"
+								},
+								{
+									"key": "estado",
+									"value": "En proceso"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByUserSent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order/search/?usuario=Si&estado=Enviado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "Si"
+								},
+								{
+									"key": "estado",
+									"value": "Enviado"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByUserInDelivered",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order/search/?usuario=Si&estado=Entregado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "Si"
+								},
+								{
+									"key": "estado",
+									"value": "Entregado"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllInProcess",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order/search/?usuario=No&estado=En proceso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "No"
+								},
+								{
+									"key": "estado",
+									"value": "En proceso"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllSent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order/search/?usuario=No&estado=Enviado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "No"
+								},
+								{
+									"key": "estado",
+									"value": "Enviado"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllDelivered",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order/search/?usuario=No&estado=Entregado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "No"
+								},
+								{
+									"key": "estado",
+									"value": "Entregado"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOrders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order?id=667777f7844f7574bb644462",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "667777f7844f7574bb644462"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllByUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjQ2OTIsImV4cCI6MTcxOTE4MjY5Mn0.uHJEQdL1DfsNp-dQfHJ431WhM7Au1ukVRHC0HEwjI-U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order/search/?usuario=Si",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "Si"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTop",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Nzc4YjE5OTFiMzA4OWYyMzAwYjMwMiIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQWRtaW5pc3RyYWRvciIsImlhdCI6MTcxOTExMDQ2MCwiZXhwIjoxNzE5MTI4NDYwfQ.38MF8OD3BT2VZatxkw0RoRecoyy9ZlYUZUKw7Tao4Ag",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/order/top",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"top"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Nzg2YTdiYWJlMThjYmJkZWFkYTdkZCIsIm5vbWJyZSI6Ik5lcnkiLCJhcGVsbGlkbyI6IkNpZnVlbnRlcyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjc2NjUsImV4cCI6MTcxOTE4NTY2NX0.MBCn1wv2PBIM8EDq8KWzN3k899h5S4RFC9X6aMCIwmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"libros\": [\r\n    { \"libro_id\": \"6677669f7519ceaf7ebcb428\", \"cantidad\": 2 }\r\n  ],\r\n  \"direccion_envio\": \"Quetzaltenango, zona 5\",\r\n  \"metodo_pago\": \"En efectivo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateStatusInProcess",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwMzAzNywiZXhwIjoxNzE5MTA2NjM3fQ.LlWzXmERwOqEJWfs4AuDfsG4qwgDZqaaAJ9HAXdm9aw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"estado\": \"En proceso\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/order/667777f7844f7574bb644462",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"667777f7844f7574bb644462"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateStatusSent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwMzAzNywiZXhwIjoxNzE5MTA2NjM3fQ.LlWzXmERwOqEJWfs4AuDfsG4qwgDZqaaAJ9HAXdm9aw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"estado\": \"Enviado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/order/667777f7844f7574bb644462",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"667777f7844f7574bb644462"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateStatusDelivered",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6IkZyYW5jaXNjbyIsImFwZWxsaWRvIjoiQ2FtcG9zZWNvIiwicm9sIjoiQ2xpZW50ZSIsImlhdCI6MTcxOTEwMzAzNywiZXhwIjoxNzE5MTA2NjM3fQ.LlWzXmERwOqEJWfs4AuDfsG4qwgDZqaaAJ9HAXdm9aw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"estado\": \"Entregado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/order/667777f7844f7574bb644462",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order",
+								"667777f7844f7574bb644462"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reseña",
+			"item": [
+				{
+					"name": "GetReviewsByBook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Nzg2YTdiYWJlMThjYmJkZWFkYTdkZCIsIm5vbWJyZSI6Ik5lcnkiLCJhcGVsbGlkbyI6IkNpZnVlbnRlcyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjc2NjUsImV4cCI6MTcxOTE4NTY2NX0.MBCn1wv2PBIM8EDq8KWzN3k899h5S4RFC9X6aMCIwmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/review/book?id=6677669f7519ceaf7ebcb428",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"review",
+								"book"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6677669f7519ceaf7ebcb428"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Nzg2YTdiYWJlMThjYmJkZWFkYTdkZCIsIm5vbWJyZSI6Ik5lcnkiLCJhcGVsbGlkbyI6IkNpZnVlbnRlcyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkxNjc2NjUsImV4cCI6MTcxOTE4NTY2NX0.MBCn1wv2PBIM8EDq8KWzN3k899h5S4RFC9X6aMCIwmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"libro_id\": \"6677669f7519ceaf7ebcb428\",\r\n  \"comentario\": \"Excelente libro, lo recomiendo totalmente.\",\r\n  \"puntuacion\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/review",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"review"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

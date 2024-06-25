@@ -6,13 +6,23 @@ import Usuario from '../models/Usuario.js';
 import jwt from 'jsonwebtoken';
 
 const register = async (req, res) => {
-    const { nombre, apellido, email, telefono, direccion, fecha_nacimiento,contrasenia, metodo_pago, rol } = req.body;
+    const { nombre, apellido, email, telefono, direccion, fecha_nacimiento, contrasenia, metodo_pago, rol } = req.body;
     try {
         const user = new Usuario({
             nombre, apellido, email, telefono, direccion, fecha_nacimiento, contrasenia, metodo_pago, rol
         });
         await user.save();
-        res.status(201).json({ message: 'User registered successfully' });
+
+        const dataToken = {
+            id: user._id,
+            nombre: user.nombre,
+            apellido: user.apellido,
+            rol: user.rol
+        };
+
+        const token = jwt.sign(dataToken, process.env.SECRET_KEY, { expiresIn: '5h' });
+
+        res.status(201).json({ token });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

@@ -3,6 +3,7 @@
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
 import Autor from '../models/Autor.js';
+import { uploadImageToS3 } from '../services/awsService.js';
 
 const getAuthors = async (req, res) => {
     const { id } = req.query;
@@ -38,9 +39,17 @@ const getAuthors = async (req, res) => {
 };
 
 const addAuthor = async (req, res) => {
-    const { nombre, biografia, foto_url } = req.body;
+    const { nombre, biografia } = req.body;
 
     try {
+        let foto_url = null;
+
+        if (req.file) {
+            // Subir la imagen a S3
+            const data = await uploadImageToS3(req.file.buffer);
+            foto_url = data.Location;
+        }
+
         const newAuthor = new Autor({
             nombre,
             biografia,
@@ -51,6 +60,9 @@ const addAuthor = async (req, res) => {
 
         res.status(201).json({ message: 'Author added successfully', author: newAuthor });
     } catch (error) {
+        if (error.message.includes('File upload only supports the following filetypes')) {
+            return res.status(400).json({ error: error.message });
+        }
         res.status(400).json({ error: error.message });
     }
 };
