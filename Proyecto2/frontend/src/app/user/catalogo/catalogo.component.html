@@ -16,7 +16,8 @@
         <h3>{{product.name}}</h3>
         <p>{{product.description}}</p>
         <p class="price">{{product.price | currency}}</p>
-        <div class="product-actions">
+        <div class="product-actions"> 
+          <button (click)="addToCart(product)">Agregar</button>
           <button (click)="addToCart(product)">Ver</button>
         </div>
       </div>

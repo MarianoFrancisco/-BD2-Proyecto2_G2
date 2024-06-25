@@ -40,7 +40,7 @@ export class CatalogoComponent implements OnInit {
         name: libro.titulo,
         description: libro.descripcion,
         image: libro.imagen_url,
-        price: libro.precio // Agrega el precio aquí
+        price: libro.precio 
       }));
       this.filteredProducts = [...this.products];
     });
@@ -69,7 +69,7 @@ export class CatalogoComponent implements OnInit {
         name: libro.titulo,
         description: libro.descripcion,
         image: libro.imagen_url,
-        price: libro.precio // Agrega el precio aquí
+        price: libro.precio 
       }));
       this.filteredProducts = [...this.products];
     });
