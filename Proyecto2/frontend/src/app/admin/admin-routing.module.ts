@@ -4,6 +4,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { UpdateInfoComponent } from '../auth/pages/update-info/update-info.component';
 import { AddAdminComponent } from '../auth/components/add-admin/add-admin.component';
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
         path: 'registry-book',
         title: 'Registrar libro',
         component: RegistryBooksComponent
+      },
+      {
+        path: 'edit-book/:id',
+        title: 'Editar libro',
+        component: EditBookComponent
       },
       {
         path: '**',
