@@ -15,9 +15,11 @@ import { FormsModule } from '@angular/forms';  // Importa FormsModule
 
 import { InicioComponent } from './user/inicio/inicio.component';
 import { CatalogoComponent } from './user/catalogo/catalogo.component';
-import { LibroService } from './user/service/libro.service';
+import { LibroService } from './user/services/libro.service';
 import { AutoresComponent } from './user/autores/autores.component';
 import { InicioAdminComponent } from './admin/inicio-admin/inicio-admin.component';
+import { UserOrdersComponent } from './user/pages/user-orders/user-orders.component';
+import { OrderComponent } from './user/components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { InicioAdminComponent } from './admin/inicio-admin/inicio-admin.componen
     ReseniaComponent,
     DetalleReseniaComponent,
     AutoresComponent,
-    InicioAdminComponent
+    InicioAdminComponent,
+    UserOrdersComponent,
+    OrderComponent
   ],
   imports: [
     SharedModule,
