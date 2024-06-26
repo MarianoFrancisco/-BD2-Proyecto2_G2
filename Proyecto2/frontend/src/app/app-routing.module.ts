@@ -14,6 +14,8 @@ import { authGuard } from './auth/guards/auth.guard';
 import { roleGuard } from './auth/guards/role.guard';
 import { UserRole } from './auth/interfaces/user.interface';
 
+import { DetalleBookComponent } from './user/detalle-book/detalle-book.component';
+import { DetalleAuthorComponent } from './user/detalle-author/detalle-author.component';
 
 const routes: Routes = [
 
@@ -34,8 +36,9 @@ const routes: Routes = [
       { path: 'resenia', component: ReseniaComponent },
       { path: 'resenia/:id', component: DetalleReseniaComponent },
       { path: 'profile', component: UpdateInfoComponent},
-      { path: 'catalogue', component: CatalogoComponent },
-      { path: 'autores', component: AutoresComponent}
+      { path: 'autores', component: AutoresComponent},
+      { path: 'detailbook/:id', component: DetalleBookComponent},
+      { path: 'detailauthor', component: DetalleAuthorComponent}
     ]
   }
 ];

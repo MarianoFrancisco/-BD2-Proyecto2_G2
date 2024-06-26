@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div *ngIf="libro">
+          <h2>{{ libro.titulo }}</h2>
+          <img [src]="libro.imagen_url" alt="{{ libro.titulo }}" class="img-fluid mb-3">
+          <p><strong>Puntuación Promedio:</strong> {{ libro.puntuacion_promedio }}</p>
+          <div class="stars mb-3">
+            <span *ngFor="let star of getStars(libro.puntuacion_promedio)">&#9733;</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div *ngIf="libro" class="card mb-3">
+          <div class="card-body">
+            <p><strong>Autor:</strong> {{ libro.autor_id.nombre }}</p>
+            <p><strong>Descripción:</strong> {{ libro.descripcion }}</p>
+            <p><strong>Género:</strong> {{ libro.genero_id.nombre }}</p>
+            <p><strong>Fecha de Publicación:</strong> {{ libro.fecha_publicacion | date }}</p>
+            <p><strong>Disponibilidad:</strong> {{ libro.disponibilidad ? 'Disponible' : 'No disponible' }}</p>
+            <p><strong>Stock:</strong> {{ libro.cantidad_stock }}</p>
+            <p><strong>Precio:</strong> {{ libro.precio | currency }}</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>Reseñas</h3>
+            <div>
+              <p><strong>Reseñas</strong> Comentarios</p>
+            </div>
+            <div class="mt-3">
+              <h4>Dejar una reseña</h4>
+              <textarea class="form-control mb-2" placeholder="Escribe tu comentario"></textarea>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-primary">Enviar</button>
+                <div class="stars-input">
+                  <span *ngFor="let star of [1, 2, 3, 4, 5]" (click)="rate(star)">&#9733;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

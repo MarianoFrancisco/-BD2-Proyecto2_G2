@@ -1,7 +1,7 @@
-import { LibroService } from './../service/libro.service';
-import { Libro } from './../interfaces/books.interface';
 import { Component, OnInit } from '@angular/core';
 import { AuthService, AuthStatus } from './../../auth/services/auth.service';  // Importa el servicio de autenticación y el enum AuthStatus
+import { LibroService } from './../service/libro.service';
+import { Libro } from './../interfaces/books.interface';
 
 @Component({
   selector: 'app-catalogo',
@@ -40,7 +40,8 @@ export class CatalogoComponent implements OnInit {
         name: libro.titulo,
         description: libro.descripcion,
         image: libro.imagen_url,
-        price: libro.precio 
+        price: libro.precio,
+        id:libro._id
       }));
       this.filteredProducts = [...this.products];
     });

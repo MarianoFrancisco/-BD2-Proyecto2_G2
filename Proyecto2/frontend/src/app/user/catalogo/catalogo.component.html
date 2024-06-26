@@ -18,7 +18,7 @@
         <p class="price">{{product.price | currency}}</p>
         <div class="product-actions"> 
           <button (click)="addToCart(product)">Agregar</button>
-          <button (click)="addToCart(product)">Ver</button>
+          <a [routerLink]="['/user/detailbook', product.id]" class="btnaction">Ver</a>
         </div>
       </div>
     </div>
