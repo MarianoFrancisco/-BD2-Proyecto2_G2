@@ -63,7 +63,7 @@ export class RegisterPageComponent {
       this.authService.register(this.createRaw()).subscribe({
         next: () => {
           this.notifService.show('Bienvenido a BookStore.', 'success');
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/user');
         },
         error: () => {
           this.notifService.show('Algo salio mal.');

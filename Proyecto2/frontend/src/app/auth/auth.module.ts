@@ -10,6 +10,7 @@ import { AccountDataFormComponent } from './components/account-data-form/account
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateInfoComponent } from './pages/update-info/update-info.component';
 import { UpdatePwrdFormComponent } from './components/update-pwrd-form/update-pwrd-form.component';
+import { AddAdminComponent } from './components/add-admin/add-admin.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UpdatePwrdFormComponent } from './components/update-pwrd-form/update-pw
     UserDataFormComponent,
     AccountDataFormComponent,
     UpdateInfoComponent,
-    UpdatePwrdFormComponent
+    UpdatePwrdFormComponent,
+    AddAdminComponent
   ],
   imports: [
     CommonModule,

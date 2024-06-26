@@ -1,0 +1,14 @@
+<div class="search-container">
+    <input type="text" placeholder="Buscar productos..." (input)="onSearch($event)">
+</div>
+
+<div class="products-container">
+    <div class="product-card" *ngFor="let product of filteredProducts">
+        <img [src]="product.image" alt="{{product.name}}">
+        <h3>{{product.name}}</h3>
+        <p>{{product.description}}</p>
+        <div class="product-actions">
+            <button (click)="addToCart(product)">Ver</button>
+        </div>
+    </div>
+</div>

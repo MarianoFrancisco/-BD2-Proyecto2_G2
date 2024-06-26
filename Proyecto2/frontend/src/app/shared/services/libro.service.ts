@@ -9,7 +9,7 @@ import { Book, Order, Review } from '../../models';
 })
 export class LibroService {
   private apiUrl = 'http://localhost:5000/api'; // URL de tu API
-  private token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzczMTIyNDBkNzEwMWEyMzRmYzU5OCIsIm5vbWJyZSI6Ik1hcmlhbm8iLCJhcGVsbGlkbyI6IkNhbXBvc2VjbyIsInJvbCI6IkNsaWVudGUiLCJpYXQiOjE3MTkzNDkwMDEsImV4cCI6MTcxOTM2NzAwMX0.gd9jbTE11sZgAHJsvk7kf8tF3lpL2p6UYhsFL7bZHCg';
+  private token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2N2E1NmVlNzQwYjhlYTA1MzljMWJlYiIsIm5vbWJyZSI6IlBhYmxvIiwiYXBlbGxpZG8iOiJNaW5lcmEiLCJyb2wiOiJDbGllbnRlIiwiaWF0IjoxNzE5MzUwMjcwLCJleHAiOjE3MTkzNjgyNzB9.Tysdz9UrVs8eTQDzjSN_O190-wWpoB4de4WCXN0kHHc';
 
   constructor(private http: HttpClient) { }
 

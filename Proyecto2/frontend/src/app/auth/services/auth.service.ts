@@ -27,7 +27,7 @@ export class AuthService {
     return this.cookieService.get('token');
   }
 
-  private setHeaders(): HttpHeaders {
+  public setHeaders(): HttpHeaders {
     return new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
   }
 
@@ -71,6 +71,14 @@ export class AuthService {
     const url: string = `${this.authURL}/register`;
     const request = this.httpClient.post<Tokens>(url, regData);
     return this.processAuthRequest(request);
+  }
+
+  public registerAdmin(regData: Register): Observable<boolean> {
+    const url: string = `${this.authURL}/register`;
+    return this.httpClient.post<Tokens>(url, regData).pipe(
+      map(() => true),
+      catchError((error: HttpErrorResponse) => throwError(() => error))
+    );
   }
 
   public logout() {
@@ -126,3 +134,5 @@ export class AuthService {
   }
 
 }
+
+export { AuthStatus };
