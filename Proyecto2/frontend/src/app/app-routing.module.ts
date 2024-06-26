@@ -26,24 +26,17 @@ const routes: Routes = [
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'resenia', component: ReseniaComponent },
       { path: 'resenia/:id', component: DetalleReseniaComponent },
-      { path: 'profile', component: UpdateInfoComponent}
-    ]
-  }
-
-];
-  {
-    path: 'user', component: InicioComponent, children: [
+      { path: 'profile', component: UpdateInfoComponent},
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'autores', component: AutoresComponent}
     ]
   },
   {
     path: 'admin', component: InicioAdminComponent, children: [
-
     ]
   },
 ];
-
+  
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
