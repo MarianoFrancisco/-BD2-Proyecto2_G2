@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-    canActivate: [ noAuthGuard ]
+    canActivate: [noAuthGuard]
+  },
+  {
+    path: 'shopping',
+    loadChildren: () => import('./shopping/shopping.module').then(m => m.ShoppingModule)
   },
 
 ];
