@@ -1,0 +1,23 @@
+<!-- INICIO CONTENEDOR DE AUTORES-->
+<div class="autores-container">
+    <div class="autor-card" *ngFor="let autor of autores">
+      <img [src]="autor.foto_url" alt="{{ autor.nombre }}" (error)="setDefaultImage($event)">
+      <h3>{{ autor.nombre }}</h3>
+      <p>{{ autor.biografia }}</p>
+      <div class="libros-autor">
+        <h4>Libros:</h4>
+        <div *ngIf="autor.libros && autor.libros.length > 0; else noLibros">
+          <div class="libro-card" *ngFor="let book of autor.libros">
+            <h5>{{ book.titulo }}</h5>
+          </div>
+        </div>
+        <ng-template #noLibros>
+          <p>Este autor no tiene libros.</p>
+        </ng-template>
+      </div>
+      <div class="libro-actions">
+        <button>Ver Más</button>
+      </div>
+    </div>
+</div>
+<!-- FIN CONTENEDOR DE AUTORES-->

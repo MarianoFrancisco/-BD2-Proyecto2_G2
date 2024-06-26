@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LibroService } from '../../shared/services/libro.service';
 import { Book, Order } from '../../models';
+import { AuthService } from './../../auth/services/auth.service'; 
 
 @Component({
   selector: 'app-resenia',
@@ -10,9 +11,10 @@ import { Book, Order } from '../../models';
 })
 export class ReseniaComponent implements OnInit {
   books: Book[] = [];
+  //private userId = this.authService.getuser(); 
   private userId = "667777f7844f7574bb644462"; // ID de usuario de ejemplo
 
-  constructor(private router: Router, private libroService: LibroService) { }
+  constructor(private router: Router, private libroService: LibroService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getOrders();

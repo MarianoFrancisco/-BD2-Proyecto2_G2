@@ -18,6 +18,8 @@ import { CatalogoComponent } from './user/catalogo/catalogo.component';
 import { LibroService } from './user/service/libro.service';
 import { AutoresComponent } from './user/autores/autores.component';
 import { InicioAdminComponent } from './admin/inicio-admin/inicio-admin.component';
+import { AutorComponent } from './admin/autor/autor.component';
+import { DetalleAutorComponent } from './admin/detalle-autor/detalle-autor.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { InicioAdminComponent } from './admin/inicio-admin/inicio-admin.componen
     ReseniaComponent,
     DetalleReseniaComponent,
     AutoresComponent,
-    InicioAdminComponent
+    InicioAdminComponent,
+    AutorComponent,
+    DetalleAutorComponent
   ],
   imports: [
     SharedModule,
