@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-inicio',
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './inicio.component.css'
 })
 export class InicioComponent {
+
+  private authService = inject(AuthService);
+
+  onLogout(): void {
+    this.authService.logout();
+  }
 }
