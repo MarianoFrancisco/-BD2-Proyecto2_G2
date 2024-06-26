@@ -7,6 +7,9 @@ import { InicioComponent } from './user/inicio/inicio.component';
 import { CatalogoComponent } from './user/catalogo/catalogo.component';
 import { AutoresComponent } from './user/autores/autores.component';
 
+//Admin
+import { InicioAdminComponent } from './admin/inicio-admin/inicio-admin.component';
+
 const routes: Routes = [
 
   {
@@ -18,6 +21,11 @@ const routes: Routes = [
     path: 'user', component: InicioComponent, children: [
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'autores', component: AutoresComponent}
+    ]
+  },
+  {
+    path: 'admin', component: InicioAdminComponent, children: [
+
     ]
   },
 ];
