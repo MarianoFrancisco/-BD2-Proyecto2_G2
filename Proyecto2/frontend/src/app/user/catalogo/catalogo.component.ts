@@ -1,7 +1,10 @@
 import { LibroService } from '../services/libro.service';
 import { Libro } from './../interfaces/books.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AuthService, AuthStatus } from './../../auth/services/auth.service';  // Importa el servicio de autenticación y el enum AuthStatus
+import { ShoppingServieService } from '../../shopping/services/shopping-servie.service';
+import { LibroPedido } from '../../shopping/interfaces/libro-pedido';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-catalogo',
@@ -19,6 +22,9 @@ export class CatalogoComponent implements OnInit {
     maxPrecio: null,
     minPuntuacion: null
   };
+
+  private readonly shoppingService = inject(ShoppingServieService)
+
 
   constructor(private libroService: LibroService, private authService: AuthService) { }
 
@@ -40,7 +46,11 @@ export class CatalogoComponent implements OnInit {
         name: libro.titulo,
         description: libro.descripcion,
         image: libro.imagen_url,
-        price: libro.precio 
+        price: libro.precio,
+        cantidad_stock: libro.cantidad_stock,
+        autor_id: libro.autor_id._id,
+        disponibilidad: libro.disponibilidad,
+        _id: libro._id
       }));
       this.filteredProducts = [...this.products];
     });
@@ -61,7 +71,8 @@ export class CatalogoComponent implements OnInit {
       genero: this.filters.genero,
       minPrecio: this.filters.minPrecio,
       maxPrecio: this.filters.maxPrecio,
-      minPuntuacion: this.filters.minPuntuacion
+      minPuntuacion: this.filters.minPuntuacion,
+      _id: this.filters._id
     };
 
     this.libroService.searchLibros(params).subscribe((libros: Libro[]) => {
@@ -69,7 +80,10 @@ export class CatalogoComponent implements OnInit {
         name: libro.titulo,
         description: libro.descripcion,
         image: libro.imagen_url,
-        price: libro.precio 
+        price: libro.precio,
+        cantidad_stock: libro.cantidad_stock,
+        autor_id: libro.autor_id._id,
+        disponibilidad: libro.disponibilidad
       }));
       this.filteredProducts = [...this.products];
     });
@@ -77,7 +91,45 @@ export class CatalogoComponent implements OnInit {
 
   addToCart(product: any): void {
     console.log('Producto agregado al carrito:', product);
-    // Próximamente
+    if (!product.disponibilidad || product.cantidad_stock < 1) {
+      Swal.fire({
+        title: "No Disponible",
+        text: "El libro no se encuentra disponible, intente mas tarde",
+        icon: "info"
+      });
+      return
+    }
+    const libroShopp: LibroPedido = {
+      titulo: product.name,
+      autor_id: product.autor_id._id,
+      disponibilidad: product.disponibilidad,
+      cantidad_stock: product.cantidad_stock,
+      precio: product.price,
+      cantidad_pedido: 1,
+      libro_id : product._id
+    }
+    
+    const exist = this.shoppingService.librosPedio.find(li => li.libro_id === libroShopp.libro_id)
+    if (exist) {
+      if (exist.cantidad_stock < exist.cantidad_pedido+1) {
+        Swal.fire({
+          title: "No Disponible",
+          text: "El libro no se encuentra disponible, intente mas tarde",
+          icon: "info"
+        });
+        return
+      }
+      exist.cantidad_pedido++;
+    }else{
+      this.shoppingService.librosPedio.push(libroShopp)
+    }
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "El libro se agrego al carrito",
+      showConfirmButton: false,
+      timer: 1200
+    });
   }
 
   verifyProduct(product: any): void {
