@@ -10,6 +10,9 @@ import { AutoresComponent } from './user/autores/autores.component';
 import { ReseniaComponent } from './user/resenia/resenia.component';
 import { DetalleReseniaComponent } from './user/detalle-resenia/detalle-resenia.component';
 import { UpdateInfoComponent } from './auth/pages/update-info/update-info.component';
+import { authGuard } from './auth/guards/auth.guard';
+import { roleGuard } from './auth/guards/role.guard';
+import { UserRole } from './auth/interfaces/user.interface';
 
 
 const routes: Routes = [
@@ -21,7 +24,9 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate: [ authGuard, roleGuard ],
+    data: { rol: UserRole.Administrador }
   },
   {
     path: 'user', component: InicioComponent, children: [

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UpdateInfoComponent } from '../auth/pages/update-info/update-info.component';
 import { AddAdminComponent } from '../auth/components/add-admin/add-admin.component';
+import { RegistryBooksComponent } from './registry-books/registry-books.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
         path: 'add-admin',
         title: 'Agregar Admin',
         component: AddAdminComponent
+      },
+      {
+        path: 'registry-book',
+        title: 'Registrar libro',
+        component: RegistryBooksComponent
       },
       {
         path: '**',

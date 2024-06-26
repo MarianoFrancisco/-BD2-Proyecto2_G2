@@ -63,3 +63,11 @@ export interface Author {
     fecha: string;
   }
   
+  export interface AuthorWithBooks extends Author {
+    libros: Book[];
+  }
+
+  export interface Genero {
+    _id: string;
+    nombre: string;
+  }
