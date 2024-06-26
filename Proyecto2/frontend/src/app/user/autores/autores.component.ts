@@ -15,15 +15,7 @@ export class AutoresComponent implements OnInit {
   constructor(private autorService: AutorService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.isLoggedIn().subscribe(authStatus => {
-      if (authStatus === AuthStatus.Authenticated) {
-        this.loadAutores();
-      } else {
-        this.authService.login('tu_usuario', 'tu_contraseña').subscribe(() => {
-          this.loadAutores();
-        });
-      }
-    });
+    this.loadAutores();
   }
 
   loadAutores(): void {
@@ -31,7 +23,8 @@ export class AutoresComponent implements OnInit {
       this.products = autores.map(autor => ({
         name: autor.nombre,
         description: autor.biografia,
-        image: autor.foto_url
+        image: autor.foto_url,
+        id: autor._id
       }));
       this.filteredProducts = [...this.products];
     });
@@ -43,15 +36,5 @@ export class AutoresComponent implements OnInit {
       product.name.toLowerCase().includes(searchTerm) ||
       product.description.toLowerCase().includes(searchTerm)
     );
-  }
-
-  addToCart(product: any): void {
-    console.log('Producto agregado al carrito:', product);
-    // Lógica para agregar el producto al carrito
-  }
-
-  verifyProduct(product: any): void {
-    console.log('Verificar producto:', product);
-    // Lógica para verificar el producto
   }
 }

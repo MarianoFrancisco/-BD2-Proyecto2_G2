@@ -64,19 +64,25 @@
     margin-top: 20px;
 }
 
-.product-actions button {
-    background-color: #955b5b; /* Morado */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.product-actions button,
+.product-actions .btnaction {
+  background-color: #955b5b; /* Morado */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s;
+  text-decoration: none; /* Asegura que el enlace no tenga subrayado */
 }
 
-.product-actions button:hover {
-    background-color: #7a2020; /* Morado más oscuro */
+.product-actions button:hover,
+.product-actions .btnaction:hover {
+  background-color: #760b0b; /* Morado más oscuro */
 }
+
 
 @media (max-width: 768px) {
     .search-container input {

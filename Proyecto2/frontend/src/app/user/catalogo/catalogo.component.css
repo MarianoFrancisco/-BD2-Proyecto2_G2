@@ -88,19 +88,26 @@
     margin-top: 20px;
   }
   
-  .product-actions button {
+  .product-actions button,
+  .product-actions .btnaction {
     background-color: #955b5b; /* Morado */
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+    display: inline-block;
     transition: background-color 0.3s;
+    text-decoration: none; /* Asegura que el enlace no tenga subrayado */
   }
   
-  .product-actions button:hover {
+  .product-actions button:hover,
+  .product-actions .btnaction:hover {
     background-color: #760b0b; /* Morado más oscuro */
   }
+  
+
   
   .filters-container {
     width: 250px; /* Ancho fijo para los filtros */

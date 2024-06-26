@@ -15,6 +15,8 @@ import { roleGuard } from './auth/guards/role.guard';
 import { UserRole } from './auth/interfaces/user.interface';
 import { UserOrdersComponent } from './user/pages/user-orders/user-orders.component';
 
+import { DetalleBookComponent } from './user/detalle-book/detalle-book.component';
+import { DetalleAuthorComponent } from './user/detalle-author/detalle-author.component';
 
 const routes: Routes = [
 
@@ -44,8 +46,11 @@ const routes: Routes = [
       {
         path: 'shopping',
         loadChildren: () => import('./shopping/shopping.module').then(m => m.ShoppingModule)
-      }
+      },
       
+      { path: 'autores', component: AutoresComponent},
+      { path: 'detailbook/:id', component: DetalleBookComponent},
+      { path: 'detailauthor/:id', component: DetalleAuthorComponent}
     ]
   }
 ];

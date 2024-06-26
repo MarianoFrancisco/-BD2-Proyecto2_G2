@@ -20,6 +20,8 @@ import { AutoresComponent } from './user/autores/autores.component';
 import { InicioAdminComponent } from './admin/inicio-admin/inicio-admin.component';
 import { UserOrdersComponent } from './user/pages/user-orders/user-orders.component';
 import { OrderComponent } from './user/components/order/order.component';
+import { DetalleBookComponent } from './user/detalle-book/detalle-book.component';
+import { DetalleAuthorComponent } from './user/detalle-author/detalle-author.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { OrderComponent } from './user/components/order/order.component';
     AutoresComponent,
     InicioAdminComponent,
     UserOrdersComponent,
-    OrderComponent
+    OrderComponent,
+    DetalleBookComponent,
+    DetalleAuthorComponent
   ],
   imports: [
     SharedModule,

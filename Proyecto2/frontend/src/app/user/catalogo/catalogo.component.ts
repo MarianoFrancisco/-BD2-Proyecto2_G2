@@ -1,10 +1,13 @@
 import { LibroService } from '../services/libro.service';
 import { Libro } from './../interfaces/books.interface';
 import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService, AuthStatus } from './../../auth/services/auth.service';  // Importa el servicio de autenticación y el enum AuthStatus
 import { ShoppingServieService } from '../../shopping/services/shopping-servie.service';
 import { LibroPedido } from '../../shopping/interfaces/libro-pedido';
 import Swal from 'sweetalert2';
+import { LibroService } from './../service/libro.service';
+import { Libro } from './../interfaces/books.interface';
 
 @Component({
   selector: 'app-catalogo',
@@ -51,6 +54,8 @@ export class CatalogoComponent implements OnInit {
         autor_id: libro.autor_id._id,
         disponibilidad: libro.disponibilidad,
         _id: libro._id
+        price: libro.precio,
+        id:libro._id
       }));
       this.filteredProducts = [...this.products];
     });
