@@ -5,6 +5,7 @@ import { InicioComponent } from './user/inicio/inicio.component';
 import { CatalogoComponent } from './user/catalogo/catalogo.component';
 import { ReseniaComponent } from './user/resenia/resenia.component';
 import { DetalleReseniaComponent } from './user/detalle-resenia/detalle-resenia.component';
+import { UpdateInfoComponent } from './auth/pages/update-info/update-info.component';
 
 const routes: Routes = [
 
@@ -17,7 +18,8 @@ const routes: Routes = [
     path: 'user', component: InicioComponent, children: [
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'resenia', component: ReseniaComponent },
-      { path: 'resenia/:id', component: DetalleReseniaComponent }
+      { path: 'resenia/:id', component: DetalleReseniaComponent },
+      { path: 'profile', component: UpdateInfoComponent}
     ]
   }
 
