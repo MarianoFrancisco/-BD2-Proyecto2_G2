@@ -40,8 +40,8 @@
                             </tr>
                             }
                             <tr>
-                                <td class="text-end" colspan="3">Total: </td>
-                                <td class="text-center">Q {{ getTotalSum() }}</td>
+                                <td class="text-end fw-bold" colspan="3">Total: </td>
+                                <td class="text-center fw-bold">Q {{ getTotalSum() }}</td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -51,7 +51,7 @@
                     <button type="button" class="btn btn-light " (click)="deleteShopping()">
                         Borrar Carrito
                     </button>
-                    <button type="button" class="btn btn-primary ms-2">
+                    <button type="button" class="btn btn-primary ms-2" (click)="confirmPedido()">
                         Confirmar pedido
                     </button>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Direccion de envio</label>
                         <input type="text" class="form-control" id="formGroupExampleInput"
-                            placeholder="7ma calle zona 4, Mixco...">
+                            placeholder="7ma calle zona 4, Mixco..." [(ngModel)]="direccion">
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput2" class="form-label">Forma de pago</label>

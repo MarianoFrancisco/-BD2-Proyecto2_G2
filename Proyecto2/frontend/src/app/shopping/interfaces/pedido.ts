@@ -3,10 +3,11 @@ export interface Pedido {
     libros: libro[];
     direccion_envio: string;
     metodo_pago: string;
-    estado: estadoPedido;
-    fecha_pedido: Date;
-    fecha_envio: Date;
-    fecha_entrega: Date;
+    monto_pago?: string;
+    estado?: estadoPedido;
+    fecha_pedido?: Date;
+    fecha_envio?: Date;
+    fecha_entrega?: Date;
 }
 
 export interface libro {
