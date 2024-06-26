@@ -7,20 +7,23 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 
 
 @NgModule({
   declarations: [
     AdminLayoutComponent,
-    RegistryBooksComponent
+    RegistryBooksComponent,
+    EditBookComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
