@@ -52,6 +52,9 @@ const routes: Routes = [
       { path: 'detailbook/:id', component: DetalleBookComponent},
       { path: 'detailauthor/:id', component: DetalleAuthorComponent}
     ]
+  }, {
+    path: '**',
+    redirectTo: 'user'
   }
 ];
   
