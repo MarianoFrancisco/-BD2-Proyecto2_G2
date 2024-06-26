@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; 
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { InicioComponent } from './user/inicio/inicio.component';
-import { CatalogoComponent } from './user/catalogo/catalogo.component';
+
 import { ReseniaComponent } from './user/resenia/resenia.component';
 import { DetalleReseniaComponent } from './user/detalle-resenia/detalle-resenia.component';
+
+import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';  // Importa FormsModule
+
+import { InicioComponent } from './user/inicio/inicio.component';
+import { CatalogoComponent } from './user/catalogo/catalogo.component';
+import { LibroService } from './user/service/libro.service';
+import { AutoresComponent } from './user/autores/autores.component';
+import { InicioAdminComponent } from './admin/inicio-admin/inicio-admin.component';
 
 @NgModule({
   declarations: [
@@ -19,11 +25,14 @@ import { DetalleReseniaComponent } from './user/detalle-resenia/detalle-resenia.
     InicioComponent,
     CatalogoComponent,
     ReseniaComponent,
-    DetalleReseniaComponent
+    DetalleReseniaComponent,
+    AutoresComponent,
+    InicioAdminComponent
   ],
   imports: [
     SharedModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule ,
     FormsModule,
@@ -34,9 +43,10 @@ import { DetalleReseniaComponent } from './user/detalle-resenia/detalle-resenia.
     })
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi())
-
+    provideHttpClient(withInterceptorsFromDi()),
+    LibroService
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
