@@ -7,13 +7,10 @@ import { InicioComponent } from './user/inicio/inicio.component';
 import { CatalogoComponent } from './user/catalogo/catalogo.component';
 import { AutoresComponent } from './user/autores/autores.component';
 
-//Admin
-import { InicioAdminComponent } from './admin/inicio-admin/inicio-admin.component';
-
 import { ReseniaComponent } from './user/resenia/resenia.component';
 import { DetalleReseniaComponent } from './user/detalle-resenia/detalle-resenia.component';
 import { UpdateInfoComponent } from './auth/pages/update-info/update-info.component';
-import { LayoutComponent } from './shared/components/layout/layout.component';
+
 
 const routes: Routes = [
 
