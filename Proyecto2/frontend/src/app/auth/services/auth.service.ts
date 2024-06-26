@@ -73,6 +73,14 @@ export class AuthService {
     return this.processAuthRequest(request);
   }
 
+  public registerAdmin(regData: Register): Observable<boolean> {
+    const url: string = `${this.authURL}/register`;
+    return this.httpClient.post<Tokens>(url, regData).pipe(
+      map(() => true),
+      catchError((error: HttpErrorResponse) => throwError(() => error))
+    );
+  }
+
   public logout() {
     this._currentUser.next(null);
     this._isLoggedIn.next(AuthStatus.NotAuthenticated);
