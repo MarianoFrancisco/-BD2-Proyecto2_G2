@@ -1,14 +1,20 @@
-import { Component, inject } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { addressPattern, namePattern, phonePattern } from '../../../shared/validators/patterns';
+import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
+import { User } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'auth-user-data-form',
   templateUrl: './user-data-form.component.html',
 })
-export class UserDataFormComponent {
+export class UserDataFormComponent implements OnInit {
+
+  @Input() public user?: User;
 
   private formBuilder = inject(FormBuilder);
+
   public maxDate: Date;
 
   public userDataForm: FormGroup = this.formBuilder.group({
@@ -24,10 +30,23 @@ export class UserDataFormComponent {
     this.maxDate = new Date(currentDate.getFullYear() - 10, currentDate.getMonth(), currentDate.getDate());
   }
 
-  private checkMaxDate(): ValidationErrors {
-    return (control: FormControl) => {
+  ngOnInit(): void {
+    if (this.user) {
+      if (this.user) {
+        this.userDataForm.patchValue({
+          nombre: this.user.nombre,
+          apellido: this.user.apellido,
+          direccion: this.user.direccion,
+          telefono: this.user.telefono,
+          fecha_nacimiento: new Date(this.user.fecha_nacimiento).toISOString().split('T')[0]
+        });
+      }
+    }
+  }
+
+  private checkMaxDate() {
+    return (control: FormControl): ValidationErrors | null => {
       const selectedDate = new Date(control.value);
-      console.log(this.maxDate)
       if (selectedDate > this.maxDate ) {
         return { maxDate: true }
       }

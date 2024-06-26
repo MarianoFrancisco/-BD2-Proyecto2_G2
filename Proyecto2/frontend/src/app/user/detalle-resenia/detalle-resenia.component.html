@@ -1,0 +1,51 @@
+<div class="detalle-libro-container" *ngIf="libro">
+  <div class="libro-info">
+    <h1>{{ libro.titulo }}</h1>
+    <img class="libro-imagen" [src]="libro.imagen_url" alt="Portada del libro">
+    <div class="calificacion-promedio">
+      <span>Calificación Promedio: {{ libro.puntuacion_promedio }}</span>
+      <div class="estrellas">
+        <span *ngFor="let i of generarEstrellas(libro.puntuacion_promedio)">
+          <i class="fa fa-star"></i>
+        </span>
+      </div>
+    </div>
+    <div class="libro-detalles">
+      <p><strong>Autor:</strong> {{ libro.autor_id.nombre }}</p>
+      <p><strong>Descripción:</strong> {{ libro.descripcion }}</p>
+      <p><strong>Género:</strong> {{ libro.genero_id.nombre }}</p>
+    </div>
+  </div>
+  <div class="resenas">
+    <h2>Reseñas</h2>
+    <div class="escribir-resena">
+      <h3>Escribe tu reseña</h3>
+      <label for="calificacion">Calificación:</label>
+      <select id="calificacion" [(ngModel)]="calificacion">
+        <option value="1">1 Estrella</option>
+        <option value="2">2 Estrellas</option>
+        <option value="3">3 Estrellas</option>
+        <option value="4">4 Estrellas</option>
+        <option value="5">5 Estrellas</option>
+      </select>
+      <label for="resena">Reseña:</label>
+      <textarea id="resena" [(ngModel)]="resena"></textarea>
+      <button (click)="escribirResena()">Enviar Reseña</button>
+    </div>
+    <div *ngIf="resenias.length > 0">
+      <div *ngFor="let resenia of resenias" class="reseña-item">
+        <div class="estrellas">
+          <span *ngFor="let i of generarEstrellas(resenia.puntuacion)">
+            <i class="fa fa-star"></i>
+          </span>
+        </div>
+        <p><strong>Usuario:</strong> {{ resenia.usuario_id.nombre }} {{ resenia.usuario_id.apellido }}</p>
+        <p><strong>Reseña:</strong> {{ resenia.comentario }}</p>
+        <hr>
+      </div>
+    </div>
+    <div *ngIf="resenias.length === 0">
+      <p>No hay reseñas disponibles para este libro.</p>
+    </div>
+  </div>
+</div>
