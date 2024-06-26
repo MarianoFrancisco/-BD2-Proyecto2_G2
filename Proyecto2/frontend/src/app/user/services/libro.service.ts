@@ -1,5 +1,5 @@
-import { Libro } from './../interfaces/books.interface';
-import { AuthService } from './../../auth/services/auth.service';
+import { Libro } from '../interfaces/books.interface';
+import { AuthService } from '../../auth/services/auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';

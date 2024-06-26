@@ -1,4 +1,4 @@
-import { LibroService } from './../service/libro.service';
+import { LibroService } from '../services/libro.service';
 import { Libro } from './../interfaces/books.interface';
 import { Component, OnInit } from '@angular/core';
 import { AuthService, AuthStatus } from './../../auth/services/auth.service';  // Importa el servicio de autenticación y el enum AuthStatus

@@ -13,6 +13,7 @@ import { UpdateInfoComponent } from './auth/pages/update-info/update-info.compon
 import { authGuard } from './auth/guards/auth.guard';
 import { roleGuard } from './auth/guards/role.guard';
 import { UserRole } from './auth/interfaces/user.interface';
+import { UserOrdersComponent } from './user/pages/user-orders/user-orders.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
       { path: 'resenia/:id', component: DetalleReseniaComponent },
       { path: 'profile', component: UpdateInfoComponent},
       { path: 'catalogue', component: CatalogoComponent },
-      { path: 'autores', component: AutoresComponent}
+      { path: 'autores', component: AutoresComponent},
+      { path: 'my-orders', component: UserOrdersComponent }
     ]
   }
 ];

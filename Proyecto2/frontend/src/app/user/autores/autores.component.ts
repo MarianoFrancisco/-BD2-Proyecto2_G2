@@ -1,6 +1,6 @@
 import { Autor } from './../interfaces/autor.interface';
 import { Component, OnInit } from '@angular/core';
-import { AutorService } from '../service/autor.service';
+import { AutorService } from '../services/autor.service';
 import { AuthService, AuthStatus } from './../../auth/services/auth.service';  // Importa el servicio de autenticación y el enum AuthStatus
 
 @Component({

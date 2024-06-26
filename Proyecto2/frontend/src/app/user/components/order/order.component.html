@@ -1,0 +1,47 @@
+<div class="card m-2">
+    <div class="card-header text-center">
+        Orden No. {{ orderNumber + 1 }}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="d-flex d-flex justify-content-between">
+                            <span><span class="fw-bold">Nombre: </span>{{ order.usuario_id.nombre }}</span>
+                            <span><span class="fw-bold">Apellido: </span>{{ order.usuario_id.apellido }}</span>
+                        </div>
+                        <div class="d-flex d-flex justify-content-between">
+                            <span><span class="fw-bold">Telefono: </span>{{ order.usuario_id.telefono }}</span>
+                            <span><span class="fw-bold">Pago: </span>{{ order.metodo_pago }}</span>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        Detalles:
+                        <br>
+                        <div class="col-12">
+                            @for (libro of order.libros; track $index) {
+                            {{ $index + 1 }} : {{ libro.libro_id.titulo }} - Q {{ libro.libro_id.precio }}
+                            }
+                        </div>
+                    </li>
+                    <li class="list-group-item">Direccion envio: {{ order.direccion_envio }}</li>
+                    <li class="list-group-item">Fecha envio: {{ order.fecha_envio | date: 'dd/MM/yyyy' }}</li>
+                    <li class="list-group-item">Fecha entrega: {{ order.fecha_entrega | date: 'dd/MM/yyyy' }} </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-body-secondary d-flex align-items-center" [ngClass]="order.estado === 'Enviado' ? 'justify-content-between': 'justify-content-center'">
+        <span class="mx-3">{{ order.fecha_pedido | date: 'dd/MM/yyyy' }} - <span [ngClass]="returnColorText()" class="fw-bold">{{ order.estado }}</span></span>
+        @if (order.estado === 'Enviado') {
+            <button type="button" class="btn btn-primary mx-3 d-flex align-items-center" (click)="setDelivered()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill me-2" viewBox="0 0 16 16">
+                    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
+                </svg>
+                Recibido
+            </button>
+        }
+    </div>
+</div>
