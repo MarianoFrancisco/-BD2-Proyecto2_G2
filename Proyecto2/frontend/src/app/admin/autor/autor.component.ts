@@ -29,8 +29,27 @@ export class AutorComponent implements OnInit {
     (event.target as HTMLImageElement).src = this.defaultImage;
   }
 
-  verDetalle(book: any): void {
-    this.router.navigate(['/admin/autor', book._id]);
+  verDetalle(autorId: string): void {
+    this.router.navigate(['/admin/autor', autorId]);
   }
   
+  eliminarAutor(autorId: string): void {
+    this.autorService.deleteAuthorById(autorId).subscribe(
+      () => {
+        this.autorService.getAllAuthors().subscribe(
+          (data) => {
+            this.autores = data;
+          },
+          (error) => {
+            console.error('Error fetching authors:', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Error deleting author:', error);
+      }
+    );
+  }
+  
+
 }

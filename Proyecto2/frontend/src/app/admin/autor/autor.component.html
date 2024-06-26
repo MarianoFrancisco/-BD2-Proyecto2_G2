@@ -16,7 +16,8 @@
         </ng-template>
       </div>
       <div class="libro-actions">
-        <button>Ver Más</button>
+        <button (click)="verDetalle(autor._id)">Ver Más</button>
+        <button (click)="eliminarAutor(autor._id)">Eliminar</button>
       </div>
     </div>
 </div>

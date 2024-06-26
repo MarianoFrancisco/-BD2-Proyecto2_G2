@@ -27,13 +27,24 @@ export class AutorService {
   }
 
   // Método para obtener un autor por su ID
-  getLibroById(id: string): Observable<AuthorWithBooks> {
+  getAuthorById(id: string): Observable<AuthorWithBooks> {
     const url = `${this.apiUrl}/author?id=${id}`;
     //const headers = this.authService.setHeaders();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
     return this.http.get<AuthorWithBooks>(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+   // Método para eliminar autor
+   deleteAuthorById(id: string): Observable<any> {
+    const url = `${this.apiUrl}/author/${id}`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.delete(url,{ headers }).pipe(
       catchError(this.handleError)
     );
   }
