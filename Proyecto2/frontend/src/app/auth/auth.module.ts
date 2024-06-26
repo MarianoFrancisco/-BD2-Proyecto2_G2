@@ -8,6 +8,8 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { UserDataFormComponent } from './components/user-data-form/user-data-form.component';
 import { AccountDataFormComponent } from './components/account-data-form/account-data-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateInfoComponent } from './pages/update-info/update-info.component';
+import { UpdatePwrdFormComponent } from './components/update-pwrd-form/update-pwrd-form.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterPageComponent,
     AuthLayoutComponent,
     UserDataFormComponent,
-    AccountDataFormComponent
+    AccountDataFormComponent,
+    UpdateInfoComponent,
+    UpdatePwrdFormComponent
   ],
   imports: [
     CommonModule,

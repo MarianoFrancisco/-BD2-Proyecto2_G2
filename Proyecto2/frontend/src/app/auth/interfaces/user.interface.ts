@@ -24,9 +24,9 @@ export interface User {
     fecha_nacimiento:   Date;
     fecha_registro?:    Date;
     metodo_pago:        string;
+    email?:             string;
 }
 
 export interface Register extends User {
-    email:          string;
     contrasenia:    string;
 }

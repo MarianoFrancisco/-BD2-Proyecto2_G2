@@ -1,0 +1,93 @@
+.detalle-libro-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+  }
+  
+  .libro-info {
+    flex: 1;
+    max-width: 300px;
+    margin-right: 20px;
+  }
+  
+  .libro-imagen {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .calificacion-promedio {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .calificacion-promedio span {
+    font-size: 2rem;
+    margin-right: 5px;
+  }
+  
+  .estrellas {
+    display: flex;
+  }
+  
+  .estrellas i {
+    color: gold;
+  }
+  
+  .libro-detalles {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .resenas {
+    flex: 2;
+    margin-left: 20px;
+  }
+  
+  .escribir-resena {
+    margin-bottom: 20px;
+  }
+  
+  .escribir-resena h3 {
+    margin-top: 0;
+  }
+  
+  .escribir-resena label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .escribir-resena select,
+  .escribir-resena textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+  .escribir-resena button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .escribir-resena button:hover {
+    background-color: #0056b3;
+  }
+  
+  .resenas h2 {
+    margin-top: 0;
+  }
+  
+  .resenas > div {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  

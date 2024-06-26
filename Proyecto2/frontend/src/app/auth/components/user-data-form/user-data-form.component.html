@@ -18,9 +18,9 @@
         >
     </div>
     <div class="col-6">
-        <label for="date" class="form-label">Fecha de Nacimiento</label>
-        <input class="form-control" type="date" id="date" [max]="maxDate.toISOString().split('T')[0]" 
-            placeholder="0000-0000" formControlName="fecha_nacimiento"
+        <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
+        <input class="form-control" type="date" id="birthdate" [max]="maxDate.toISOString().split('T')[0]" 
+            formControlName="fecha_nacimiento"
             [ngClass]="userDataForm.get('fecha_nacimiento')?.touched ? (userDataForm.get('fecha_nacimiento')?.invalid ? 'is-invalid' : '') : ''"
         >
     </div>
@@ -30,4 +30,5 @@
             [ngClass]="userDataForm.get('direccion')?.touched ? (userDataForm.get('direccion')?.invalid ? 'is-invalid' : '') : ''"
         >
     </div>
+    <ng-content select=".otherCamp"></ng-content>
 </form>

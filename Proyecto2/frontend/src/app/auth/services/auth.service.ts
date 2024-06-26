@@ -92,6 +92,31 @@ export class AuthService {
     );
   }
 
+  public updateUser(user: User): Observable<boolean> {
+    const url: string = `${this.userURL}/info`;
+    const headers: HttpHeaders = this.setHeaders();
+    return this.httpClient.patch<User>(url, user, { headers }).pipe(
+      map(user => {
+        this._currentUser.next(user);
+        return true;
+      }),
+      catchError((error: HttpErrorResponse) => throwError(() => error))
+    );
+
+  }
+
+  public updatePwd(contrasenia_actual: string, contrasenia: string): Observable<boolean> {
+    const url: string = `${this.userURL}/pwd`;
+    const headers: HttpHeaders = this.setHeaders();
+    return this.httpClient.patch<{ message: string }>(url, { 
+      contrasenia_actual, 
+      contrasenia 
+    }, { headers }).pipe(
+      map(() => true),
+      catchError((error: HttpErrorResponse) => throwError(() => error))
+    );
+  }
+
   public isLoggedIn(): Observable<AuthStatus> {
     return this._isLoggedIn.asObservable();
   }

@@ -1,0 +1,200 @@
+/*
+-------------------------------------------------
+------------- Configuracion del Side-Bar---------
+.------------------------------------------------
+*/
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #ffffff; /* FONDO */
+    color: #FFFFFF; /* Texto DB2*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+    padding: 11px;
+    background-color: #a70a02; /* Fondo SideBar Texto BD2 */
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-header a {
+    display: flex;
+    align-items: center;
+    text-decoration: none; 
+    color: inherit;
+}
+
+/*Datos Imagen*/
+.sidebar-header img.sidebar-img {
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+    width: 44px; 
+    height: 44px; 
+}
+
+.sidebar-title {
+    margin: 0; 
+    font-size: 2.2em; /* Tamaño de la letra de BD2 */
+}
+.sidebar-header a:focus,
+.sidebar-header a:hover,
+.sidebar-header a:active {
+  text-decoration: none; 
+  color: inherit;         
+  outline: none;          
+}
+
+/*
+---------------------------------------------------------
+--- Configuracion del Los elementos del Side-bar---------
+.---------........---------------------------------------
+*/
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.nav-list li {
+    margin: 0;
+}
+
+.nav-list li a {
+    display: flex;
+    align-items: center;
+    padding: 15px 40px;
+    color: #000000;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.nav-list li a i {
+    margin-right: 10px;
+}
+
+.nav-list li a:hover {
+    background-color: #ee8078; /* Rojo Hover de deslizamiento */
+}
+
+/*
+-------------------------------------------------
+------------- Configuracion del Nav-Bar---------
+.------------------------------------------------
+*/
+
+
+.main-content {
+    margin-left: 150px; /* Ancho de la barra lateral */
+    padding: 0;
+    width: calc(100% - 150px);
+    overflow-y: auto;
+}
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar los elementos hijos horizontalmente */
+    padding: 18.5px 20px;
+    background-color: #a70a02; /* Fondo negro */
+    color: #FFFFFF;
+    position: fixed;
+    top: 0;
+    left: 250px; /* Ajuste para la barra lateral */
+    right: 0;
+    z-index: 1;
+}
+
+.top-nav .user-name {
+    text-align: center;
+    font-weight: bold;
+    flex: 1;
+    font-size: 1.5em; /* Aumentar el tamaño del texto */
+}
+
+.top-nav .menu-btn {
+    position: absolute;
+    left: 20px; 
+}
+
+.top-nav .nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.top-nav .nav-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, padding 0.3s;
+}
+
+.top-nav .nav-link i {
+    margin-right: 5px;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none;
+    margin-right: 15px; 
+}
+
+.content {
+    padding: 70px 120px;
+    margin-top: 5px; /* Ajuste para la barra de navegación superior */
+}
+/*
+--------------------------------------------
+---------Responsive-------------------------
+--------------------------------------------
+*/
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-250px);
+    }
+
+    .menu-toggle:checked + .sidebar {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .top-nav {
+        left: 0;
+    }
+
+    .top-nav .user-name {
+        text-align: center;
+        display: none;
+    }
+
+    .top-nav .nav-links {
+        flex-grow: 1;
+        justify-content: flex-end;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+}
