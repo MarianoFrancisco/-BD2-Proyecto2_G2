@@ -15,15 +15,15 @@ const routes: Routes = [
     canActivate: [noAuthGuard]
   },
   {
-    path: 'shopping',
-    loadChildren: () => import('./shopping/shopping.module').then(m => m.ShoppingModule)
-  },
-  {
     path: 'user', component: InicioComponent, children: [
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'resenia', component: ReseniaComponent },
       { path: 'resenia/:id', component: DetalleReseniaComponent },
-      { path: 'profile', component: UpdateInfoComponent}
+      { path: 'profile', component: UpdateInfoComponent},
+      {
+        path: 'shopping',
+        loadChildren: () => import('./shopping/shopping.module').then(m => m.ShoppingModule)
+      },
     ]
   }
 
