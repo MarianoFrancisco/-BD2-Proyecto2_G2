@@ -1,5 +1,5 @@
-import { Autor } from './../interfaces/autor.interface';
-import { AuthService } from './../../auth/services/auth.service';
+import { Autor } from '../interfaces/autor.interface';
+import { AuthService } from '../../auth/services/auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
