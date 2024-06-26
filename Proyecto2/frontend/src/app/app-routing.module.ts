@@ -30,7 +30,10 @@ const routes: Routes = [
     data: { rol: UserRole.Administrador }
   },
   {
-    path: 'user', component: InicioComponent, children: [
+    path: 'user', component: InicioComponent, 
+    data: { rol: UserRole.Cliente },
+    canActivate: [ authGuard, roleGuard ],
+    children: [
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'resenia', component: ReseniaComponent },
       { path: 'resenia/:id', component: DetalleReseniaComponent },
