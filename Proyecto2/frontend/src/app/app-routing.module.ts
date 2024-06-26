@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-    canActivate: [ noAuthGuard ]
+    canActivate: [noAuthGuard]
   },
   {
     path: 'admin',
@@ -37,7 +37,12 @@ const routes: Routes = [
       { path: 'profile', component: UpdateInfoComponent},
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'autores', component: AutoresComponent},
-      { path: 'my-orders', component: UserOrdersComponent }
+      { path: 'my-orders', component: UserOrdersComponent },
+      {
+        path: 'shopping',
+        loadChildren: () => import('./shopping/shopping.module').then(m => m.ShoppingModule)
+      }
+      
     ]
   }
 ];

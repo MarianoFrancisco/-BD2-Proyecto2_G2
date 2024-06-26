@@ -1,0 +1,79 @@
+<section class="container-fluid py-4" style="background-color: #ffffff">
+    <div class="card py-4 px-4">
+        <h3 class="mb-5 text-uppercase text-center">
+            Carrito de compras
+        </h3>
+        <div class="row">
+            <div class="col-md-8">
+                Checkout
+                <div>
+                    <table class="table  table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Cant.</th>
+                                <th scope="col">Libro</th>
+                                <th scope="col">P/U</th>
+                                <th scope="col">Sub Total</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(libroPedido of librosPedio; track $index){
+                            <tr>
+                                <th scope="row">
+                                    <input type="number" max="99" class="form-control" style="width: 70px;"
+                                        [(ngModel)]="libroPedido.cantidad_pedido"
+                                        (input)="validatePositive(libroPedido)">
+                                </th>
+                                <td>{{libroPedido.titulo}} </td>
+                                <td class="text-center">Q {{(libroPedido.precio).toFixed(2)}}</td>
+                                <td class="text-center">Q {{ (libroPedido.cantidad_pedido *
+                                    libroPedido.precio).toFixed(2) }}</td>
+                                <td class="text-center" (click)="removeLibroPedido($index)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-x" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                                    </svg>
+
+                                </td>
+                            </tr>
+                            }
+                            <tr>
+                                <td class="text-end fw-bold" colspan="3">Total: </td>
+                                <td class="text-center fw-bold">Q {{ getTotalSum() }}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-end pt-3">
+                    <button type="button" class="btn btn-light " (click)="deleteShopping()">
+                        Borrar Carrito
+                    </button>
+                    <button type="button" class="btn btn-primary ms-2" (click)="confirmPedido()">
+                        Confirmar pedido
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 shadow">
+                    <h6 class="text-center mb-4">Tu informacion para la compra</h6>
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label">Direccion de envio</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="7ma calle zona 4, Mixco..." [(ngModel)]="direccion">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput2" class="form-label">Forma de pago</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Efectivo</option>
+                            <option value="1">Efectivo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
