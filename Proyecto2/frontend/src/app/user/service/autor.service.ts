@@ -17,4 +17,9 @@ export class AutorService {
     const headers = this.authService.setHeaders();
     return this.http.get<Autor[]>(this.apiUrl, { headers });
   }
+  
+  getAutorById(id: string): Observable<Autor> {
+    const headers = this.authService.setHeaders();
+    return this.http.get<Autor>(`${this.apiUrl}?id=${id}`, { headers });
+  }
 }

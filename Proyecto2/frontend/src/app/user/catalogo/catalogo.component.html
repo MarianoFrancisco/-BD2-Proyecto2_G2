@@ -13,6 +13,8 @@
     <div class="products-container">
       <div class="product-card" *ngFor="let product of filteredProducts">
         <img [src]="product.image" alt="{{product.name}}">
+        <br>
+        <br>
         <h3>{{product.name}}</h3>
         <p>{{product.description}}</p>
         <p class="price">{{product.price | currency}}</p>

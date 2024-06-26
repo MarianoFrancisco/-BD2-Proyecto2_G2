@@ -38,7 +38,7 @@ const routes: Routes = [
       { path: 'profile', component: UpdateInfoComponent},
       { path: 'autores', component: AutoresComponent},
       { path: 'detailbook/:id', component: DetalleBookComponent},
-      { path: 'detailauthor', component: DetalleAuthorComponent}
+      { path: 'detailauthor/:id', component: DetalleAuthorComponent}
     ]
   }
 ];

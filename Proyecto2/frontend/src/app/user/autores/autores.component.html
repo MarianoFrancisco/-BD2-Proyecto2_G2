@@ -8,7 +8,7 @@
         <h3>{{product.name}}</h3>
         <p>{{product.description}}</p>
         <div class="product-actions">
-            <button (click)="addToCart(product)">Ver</button>
+            <a [routerLink]="['/user/detailauthor', product.id]" class="btnaction">Ver</a>
         </div>
     </div>
 </div>
