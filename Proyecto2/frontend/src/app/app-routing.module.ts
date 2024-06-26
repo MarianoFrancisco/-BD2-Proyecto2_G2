@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [ noAuthGuard ]
   },
   {
-    path: 'homeUser', component: InicioComponent, children: [
+    path: 'user', component: InicioComponent, children: [
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'autores', component: AutoresComponent}
     ]
