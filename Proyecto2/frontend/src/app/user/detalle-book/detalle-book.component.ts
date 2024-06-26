@@ -1,5 +1,5 @@
 import { Libro } from './../interfaces/books.interface';
-import { LibroService } from './../service/libro.service';
+import { LibroService } from '../services/libro.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './detalle-book.component.html',
   styleUrl: './detalle-book.component.css'
 })
+
 export class DetalleBookComponent implements OnInit {
   libro: Libro | undefined | any;
 

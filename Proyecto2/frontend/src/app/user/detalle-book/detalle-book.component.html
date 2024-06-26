@@ -1,14 +1,18 @@
+<br>
 <div class="container">
     <div class="row">
       <div class="col-md-6">
         <div *ngIf="libro">
           <h2>{{ libro.titulo }}</h2>
+          <br>
           <img [src]="libro.imagen_url" alt="{{ libro.titulo }}" class="img-fluid mb-3">
-          <p><strong>Puntuación Promedio:</strong> {{ libro.puntuacion_promedio }}</p>
+          <br>
+          <br>
+          <p><strong>Puntuación: </strong> {{ libro.puntuacion_promedio }}</p>
           <div class="stars mb-3">
             <span *ngFor="let star of getStars(libro.puntuacion_promedio)">&#9733;</span>
           </div>
-        </div>
+         </div>
       </div>
       <div class="col-md-6">
         <div *ngIf="libro" class="card mb-3">

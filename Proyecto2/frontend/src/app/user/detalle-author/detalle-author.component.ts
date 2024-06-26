@@ -1,4 +1,4 @@
-import { AutorService } from './../service/autor.service';
+import { AutorService } from './../services/autor.service';
 import { Autor } from '../interfaces/autor.interface';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
