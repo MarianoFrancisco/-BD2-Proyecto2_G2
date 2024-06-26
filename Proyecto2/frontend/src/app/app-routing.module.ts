@@ -29,6 +29,12 @@ const routes: Routes = [
     data: { rol: UserRole.Administrador }
   },
   {
+    path: 'client',
+    loadChildren: () => import('./client/client.module').then(m => m.ClientModule),
+    canActivate: [ authGuard, roleGuard ],
+    data: { rol: UserRole.Cliente }
+  },
+  {
     path: 'user', component: InicioComponent, children: [
       { path: 'catalogue', component: CatalogoComponent },
       { path: 'resenia', component: ReseniaComponent },

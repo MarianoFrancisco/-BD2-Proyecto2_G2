@@ -14,7 +14,7 @@ export const noAuthGuard: CanActivateFn = (route, state) => {
       if (status === AuthStatus.NotAuthenticated) {
         return true;
       }
-      router.navigateByUrl('/');
+      router.navigateByUrl('/client');
       return false;
     })
   );
