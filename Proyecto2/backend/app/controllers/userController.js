@@ -42,7 +42,7 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const id = req.id;
-    const { nombre, apellido, email, telefono, direccion, contrasenia, metodo_pago, fecha_nacimiento } = req.body;
+    const { nombre, apellido, email, telefono, direccion, metodo_pago, fecha_nacimiento } = req.body;
 
     try {
         let user = await Usuario.findById(id);
@@ -51,16 +51,14 @@ const updateUser = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        user.nombre = nombre;
-        user.apellido = apellido;
-        user.email = email;
-        user.telefono = telefono;
-        user.direccion = direccion;
-        user.metodo_pago = metodo_pago;
-        user.fecha_nacimiento = fecha_nacimiento;
-        if (contrasenia) {
-            user.contrasenia = contrasenia;
-        }
+        // Solo actualiza los campos que están presentes en el body
+        if (nombre) user.nombre = nombre;
+        if (apellido) user.apellido = apellido;
+        if (email) user.email = email;
+        if (telefono) user.telefono = telefono;
+        if (direccion) user.direccion = direccion;
+        if (metodo_pago) user.metodo_pago = metodo_pago;
+        if (fecha_nacimiento) user.fecha_nacimiento = fecha_nacimiento;
 
         await user.save();
 
@@ -73,7 +71,40 @@ const updateUser = async (req, res) => {
     }
 };
 
+const updatePassword = async (req, res) => {
+    const id = req.id;
+    const { contrasenia_actual, contrasenia } = req.body;
+
+    try {
+        let user = await Usuario.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Verifica y actualiza la contraseña si se proporcionan ambas
+        if (contrasenia_actual && contrasenia) {
+            const isMatch = await user.matchPassword(contrasenia_actual); // Usando el mismo método de comparación
+            if (!isMatch) {
+                return res.status(401).json({ message: 'Contraseña actual incorrecta' });
+            }
+            user.contrasenia = contrasenia;
+        } else {
+            return res.status(400).json({ message: 'Faltan la contraseña actual o la nueva contraseña' });
+        }
+
+        // console.log(user);
+        await user.save();
+        // user.updateOne({})
+
+        res.json({ message: 'Contraseña actualizada con éxito' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 export {
     updateUser,
-    getUser
+    getUser,
+    updatePassword
 };
