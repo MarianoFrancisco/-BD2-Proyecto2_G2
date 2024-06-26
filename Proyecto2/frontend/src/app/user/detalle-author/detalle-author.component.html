@@ -6,14 +6,14 @@
       <div class="col-md-4 text-center">
         <h2>{{ autor.nombre }}</h2>
         <br>
-        <br>
         <img [src]="autor.foto_url" alt="{{ autor.nombre }}" class="img-fluid">
       </div>
-      <div class="col-md-8">
-        <p><strong>Biografía:</strong> {{ autor.biografia }}</p>
+      <div class="col-md-8 d-flex align-items-center">
+        <p class="w-100"><strong>Biografía:</strong> {{ autor.biografia }}</p>
       </div>
     </div>
-    
+    <br>
+    <br>
     <div class="row">
       <div class="col-12">
         <h3>Libros</h3>
@@ -45,6 +45,5 @@
         </div>
       </div>
     </div>
-    
   </div>
 </div>
