@@ -5,14 +5,14 @@
           <h2 class="fw-bold">Registrar Libro</h2>
         </div>
         <div class="col-12">
-          <form (ngSubmit)="onSubmit(bookForm)" #bookForm="ngForm" enctype="multipart/form-data">
+          <form (ngSubmit)="onSubmit(bookForm)" #bookForm="ngForm" enctype="multipart/form-data" class="row g-3">
             <!-- Título -->
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 col-6" >
               <label for="titulo">Título</label>
               <input type="text" id="titulo" name="titulo" ngModel required class="form-control">
             </div>
             <!-- Autor -->
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 col-6" >
               <label for="autor_id">Autor</label>
               <select id="autor_id" name="autor_id" ngModel required class="form-select">
                 <option *ngFor="let author of authors" [value]="author._id">{{ author.nombre }}</option>
@@ -24,14 +24,14 @@
               <textarea id="descripcion" name="descripcion" ngModel required class="form-control"></textarea>
             </div>
             <!-- Género -->
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 col-6" >
               <label for="genero_id">Género</label>
               <select id="genero_id" name="genero_id" ngModel required class="form-select">
                 <option *ngFor="let genre of genres" [value]="genre._id">{{ genre.nombre }}</option>
               </select>
             </div>
             <!-- Fecha de Publicación -->
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 col-6" >
               <label for="fecha_publicacion">Fecha de Publicación</label>
               <input type="date" id="fecha_publicacion" name="fecha_publicacion" ngModel required class="form-control">
             </div>
@@ -43,25 +43,22 @@
               </div>
             </div>
             <!-- Cantidad en Stock -->
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 col-6" >
               <label for="cantidad_stock">Cantidad en Stock</label>
               <input type="number" id="cantidad_stock" name="cantidad_stock" ngModel required class="form-control"
                 min="0" pattern="[0-9]+" (input)="validateNonNegativeNumber($event)">
             </div>
             <!-- Precio -->
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 col-6" >
               <label for="precio">Precio</label>
               <input type="number" step="0.01" id="precio" name="precio" ngModel required class="form-control"
                 (input)="validateNonNegativeNumber($event)">
             </div>
             <!-- Imagen -->
-            <div class="form-group mb-3">
-              <label for="imagen">Imagen</label>
+            <div class="col-12">
+              <label for="imagen" class="form-label">Imagen</label>
               <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" id="imagen" name="imagen" (change)="onFileChange($event)" class="custom-file-input">
-                  <label class="custom-file-label" for="imagen">Seleccionar archivo</label>
-                </div>
+                <input type="file" id="imagen" name="imagen" (change)="onFileChange($event)" class="form-control">
               </div>
               <!-- Vista previa de la imagen -->
               <div *ngIf="selectedFile" class="mt-3">
