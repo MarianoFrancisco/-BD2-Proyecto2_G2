@@ -5,6 +5,7 @@ import { Book, Order } from '../../models';
 import { AuthService } from './../../auth/services/auth.service'; 
 import { Subscription } from 'rxjs';
 import { User } from '../../auth/interfaces/user.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-resenia',
@@ -18,7 +19,7 @@ export class ReseniaComponent implements OnInit {
   public userId?: string;
   defaultImageUrl: string = '../../../assets/libro.png'; 
 
-  constructor(private router: Router, private libroService: LibroService, private authService: AuthService) { }
+  constructor(private router: Router, private libroService: LibroService, private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.userSub = this.authService.currentUser().subscribe(user => {
@@ -41,12 +42,18 @@ export class ReseniaComponent implements OnInit {
     this.libroService.getOrdersByUserId(this.userId)
       .subscribe(
         (orders: Order[]) => {
-          if (orders.length > 0 && orders[0].libros.length > 0) {
-            this.books = orders[0].libros.map(item => item.libro_id);
+          if (orders.length > 0) {
+            const bookMap = new Map<string, Book>();
+            orders.forEach(order => {
+              order.libros.forEach(item => {
+                bookMap.set(item.libro_id._id, item.libro_id);
+              });
+            });
+            this.books = Array.from(bookMap.values());
           }
         },
         error => {
-          console.error('Error al obtener órdenes:', error);
+          this.toastr.error('Error al obtener órdenes:','server');
         }
       );
   }
