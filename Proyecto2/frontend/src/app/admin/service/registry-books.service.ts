@@ -70,6 +70,14 @@ export class RegistryBooksService {
     );
   }
 
+  deleteAuthorById(id: string): Observable<any> {
+    const url = `${this.apiUrl}/author/${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.delete(url,{ headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: any) {
     console.error('Ocurrió un error', error);
     return throwError(error);
