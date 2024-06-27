@@ -46,21 +46,29 @@ export class RegistryBooksService {
     );
   }
 
-    getBookById(id: string): Observable<Book> {
-      const url = `${this.apiUrl}/book?id=${id}`;
-      const headers = this.authService.setHeaders();
-      return this.http.get<Book>(url, { headers }).pipe(
-        catchError(this.handleError)
-      );
-    }
+  getBookById(id: string): Observable<Book> {
+    const url = `${this.apiUrl}/book?id=${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.get<Book>(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
-    deleteBookById(id: string): Observable<any> {
-      const url = `${this.apiUrl}/book/${id}`;
-      const headers = this.authService.setHeaders();
-      return this.http.delete(url,{ headers }).pipe(
-        catchError(this.handleError)
-      );
-    }
+  deleteBookById(id: string): Observable<any> {
+    const url = `${this.apiUrl}/book/${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.delete(url,{ headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  registerAuthor(body: FormData): Observable<any> {
+    const url = `${this.apiUrl}/author`;
+    const headers = this.authService.setHeaders();
+    return this.http.post(url, body, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: any) {
     console.error('Ocurrió un error', error);
