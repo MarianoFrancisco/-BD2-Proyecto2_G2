@@ -10,6 +10,8 @@ import { RegistryBooksComponent } from './registry-books/registry-books.componen
 import { PedidosAdminComponent } from './gest-pedidos/pages/pedidos-admin/pedidos-admin.component';
 import { PedidosDetallesComponent } from './gest-pedidos/pages/pedidos-detalles/pedidos-detalles.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { ReportPageComponent } from './pages/report-page/report-page.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { VistalibroComponent } from './vistalibro/vistalibro.component';
 import { DetaillibroComponent } from './detaillibro/detaillibro.component';
 import { DetailautorComponent } from './detailautor/detailautor.component';
@@ -21,6 +23,8 @@ import { VistaautorComponent } from './vistaautor/vistaautor.component';
   declarations: [
     AdminLayoutComponent,
     RegistryBooksComponent,
+    EditBookComponent,
+    ReportPageComponent,
     PedidosAdminComponent,
     PedidosDetallesComponent,
     EditBookComponent,
@@ -35,7 +39,8 @@ import { VistaautorComponent } from './vistaautor/vistaautor.component';
     SharedModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
   ]
 })
 export class AdminModule { }
