@@ -16,6 +16,7 @@ export class ReseniaComponent implements OnInit {
   private userSub?: Subscription;
   public user?: User;
   public userId?: string;
+  defaultImageUrl: string = '../../../assets/libro.png'; 
 
   constructor(private router: Router, private libroService: LibroService, private authService: AuthService) { }
 
@@ -52,6 +53,10 @@ export class ReseniaComponent implements OnInit {
 
   verDetalle(book: Book): void {
     this.router.navigate(['/user/resenia', book._id]);
+  }
+
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
   }
 
   ngOnDestroy(): void {

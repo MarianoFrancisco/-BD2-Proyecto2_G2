@@ -10,6 +10,7 @@ import { AuthService, AuthStatus } from './../../auth/services/auth.service';  /
 export class VistaautorComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
+  defaultImageUrl: string = '../../../assets/autor.png';
 
   constructor(private autorService: AutorService, private authService: AuthService) { }
 
@@ -35,5 +36,8 @@ export class VistaautorComponent implements OnInit {
       product.name.toLowerCase().includes(searchTerm) ||
       product.description.toLowerCase().includes(searchTerm)
     );
+  }
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
   }
 }

@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class CatalogoComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
+  defaultImageUrl: string = '../../../assets/libro.png'; 
   filters: any = {
     titulo: '',
     autor: '',
@@ -135,5 +136,8 @@ export class CatalogoComponent implements OnInit {
   verifyProduct(product: any): void {
     console.log('Verificar producto:', product);
     // Próximamente
+  }
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
   }
 }
