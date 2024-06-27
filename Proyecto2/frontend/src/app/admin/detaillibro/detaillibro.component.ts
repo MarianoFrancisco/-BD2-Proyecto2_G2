@@ -4,6 +4,7 @@ import { RegistryBooksService } from '../service/registry-books.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router  } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Review } from '../../models';
 
 @Component({
   selector: 'app-detaillibro',
@@ -13,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class DetaillibroComponent implements OnInit {
   libro: Libro | undefined | any;
   id: string ='';
+  resenas: Review[] = [];
 
   constructor(private route: ActivatedRoute, private libroService: LibroService, private registryBooksService: RegistryBooksService, private router:Router,private toastr: ToastrService) { }
 
@@ -23,6 +25,10 @@ export class DetaillibroComponent implements OnInit {
         this.id=id;
         this.libroService.getLibroById(id).subscribe(libro => {
           this.libro = libro;
+        });
+        
+        this.registryBooksService.getReseñasByLibro(id).subscribe(reseñas => {
+          this.resenas = reseñas;
         });
       }
     });

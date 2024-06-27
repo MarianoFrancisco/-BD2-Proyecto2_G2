@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../../auth/services/auth.service'; 
 import { environments } from './../../../environments/environments'; 
-import { AuthorWithBooks,Genero,Book } from '../../models';
+import { AuthorWithBooks,Genero,Book,Review } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -74,6 +74,14 @@ export class RegistryBooksService {
     const url = `${this.apiUrl}/author/${id}`;
     const headers = this.authService.setHeaders();
     return this.http.delete(url,{ headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getReseñasByLibro(id: string): Observable<Review[]> {
+    const url = `${this.apiUrl}/review/book?id=${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.get<Review[]>(url, { headers }).pipe(
       catchError(this.handleError)
     );
   }
