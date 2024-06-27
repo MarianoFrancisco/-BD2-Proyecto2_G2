@@ -1,1 +1,108 @@
-<p>pedidos-detalles works!</p>
+<section class="container-fluid py-2" style="background-color: #ffffff">
+    <div class="card py-4 px-4 mx-5">
+        <h6 class="mb-5 text-uppercase text-center">
+            Detalles del pedido
+        </h6>
+        @if (pedido) {
+        <div class="row">
+            <div class="col-md-6">
+                Datos del Usuario
+                <table class="table  table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ pedido.usuario_id.nombre }}</td>
+                            <td>{{ pedido.usuario_id.apellido }}</td>
+                            <td>{{ pedido.usuario_id.email }}</td>
+                            <td>{{ pedido.usuario_id.telefono }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                Datos del pedido
+                <table class="table  table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Direccion de envio</th>
+                            <th scope="col">Metodo de pago</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ pedido.direccion_envio }}</td>
+                            <td>{{ pedido.metodo_pago }}</td>
+                            <td>{{ pedido.estado }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8">
+                Detalles libros
+                <table class="table  table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Fecha Publicacion</th>
+                            <th scope="col">Cantidad Pedida</th>
+                            <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (libro of pedido.libros; track $index) {
+                        @if (libro.libro_id !== null) {
+                            <tr>
+                                <th scope="row">{{ $index + 1 }}</th>
+                                <td>{{ libro.libro_id.titulo }}</td>
+                                <td>{{ libro.libro_id.fecha_publicacion | date: 'yyyy-MM-dd - HH:mm' }}</td>
+                                <td class="text-center">{{ libro.cantidad }}</td>
+                                <td>Q {{ (libro.libro_id.precio).toFixed(2) }}</td>
+                            </tr>
+                        }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                Fechas
+                <table class="table  table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Pedido</th>
+                            <td>{{ pedido.fecha_pedido | date: 'yyyy-MM-dd - HH:mm' }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Enviado</th>
+                            <td>{{ pedido.fecha_envio | date: 'yyyy-MM-dd - HH:mm'}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Entregado</th>
+                            <td>{{ pedido.fecha_entrega | date: 'yyyy-MM-dd - HH:mm'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        }
+        @else {
+        <h6 class="mb-5 text-center">
+            No selecciono un pedido
+        </h6>
+        }
+    </div>
+</section>

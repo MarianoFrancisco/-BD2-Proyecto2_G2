@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { PedidosServiceService } from '../../services/pedidos-service.service';
 import { Pedido } from '../../interfaces/pedido';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,6 +13,8 @@ import Swal from 'sweetalert2';
 export class PedidosAdminComponent {
 
   private readonly pedidosService = inject(PedidosServiceService)
+  private readonly router = inject(Router)
+
   estadoPedido: string = ''
 
   pedidos: Pedido[] = []
@@ -62,5 +65,10 @@ export class PedidosAdminComponent {
         console.error(err);
       }
     })
+  }
+
+  goDetail(pedido:Pedido){
+    this.pedidosService.pedido = pedido
+    this.router.navigate(['admin/gestion-pedidos/detalles'])
   }
 }

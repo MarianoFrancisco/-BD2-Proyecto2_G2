@@ -4,7 +4,7 @@ import { PedidoUsuario } from "./pedido-usuario";
 export interface Pedido {
     _id: string;
     usuario_id: PedidoUsuario;
-    libros: PedidoLibros;
+    libros: PedidoLibros[];
     direccion_envio: string;
     metodo_pago: string;
     estado: string;

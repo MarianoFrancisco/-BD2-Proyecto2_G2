@@ -12,8 +12,10 @@ export class PedidosServiceService {
 
   private readonly orderURL: string = `${environments.API_URL}/order`;
   private readonly authService = inject(AuthService)
+  private  readonly http = inject(HttpClient);
 
-  private http = inject(HttpClient);
+
+  pedido!:Pedido
 
   constructor() { }
 

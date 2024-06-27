@@ -12,6 +12,7 @@ import { DetaillibroComponent } from './detaillibro/detaillibro.component';
 import { VistaautorComponent } from './vistaautor/vistaautor.component';
 import { DetailautorComponent } from './detailautor/detailautor.component';
 import { RegisterAuthorComponent } from './register-author/register-author.component';
+import { PedidosDetallesComponent } from './gest-pedidos/pages/pedidos-detalles/pedidos-detalles.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,11 @@ const routes: Routes = [
         path: 'detail-author/:id',
         title: 'detalle autor',
         component: DetailautorComponent
+      },
+      {
+        path: 'gestion-pedidos/detalles',
+        title: 'Detalles de pedido',
+        component: PedidosDetallesComponent
       },
       {
         path: '**',
