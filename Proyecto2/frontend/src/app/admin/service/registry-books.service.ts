@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../../auth/services/auth.service'; 
 import { environments } from './../../../environments/environments'; 
-import { AuthorWithBooks,Genero,Book } from '../../models';
+import { AuthorWithBooks,Genero,Book,Review } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -46,21 +46,45 @@ export class RegistryBooksService {
     );
   }
 
-    getBookById(id: string): Observable<Book> {
-      const url = `${this.apiUrl}/book?id=${id}`;
-      const headers = this.authService.setHeaders();
-      return this.http.get<Book>(url, { headers }).pipe(
-        catchError(this.handleError)
-      );
-    }
+  getBookById(id: string): Observable<Book> {
+    const url = `${this.apiUrl}/book?id=${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.get<Book>(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
-    deleteBookById(id: string): Observable<any> {
-      const url = `${this.apiUrl}/book/${id}`;
-      const headers = this.authService.setHeaders();
-      return this.http.delete(url,{ headers }).pipe(
-        catchError(this.handleError)
-      );
-    }
+  deleteBookById(id: string): Observable<any> {
+    const url = `${this.apiUrl}/book/${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.delete(url,{ headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  registerAuthor(body: FormData): Observable<any> {
+    const url = `${this.apiUrl}/author`;
+    const headers = this.authService.setHeaders();
+    return this.http.post(url, body, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteAuthorById(id: string): Observable<any> {
+    const url = `${this.apiUrl}/author/${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.delete(url,{ headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getReseñasByLibro(id: string): Observable<Review[]> {
+    const url = `${this.apiUrl}/review/book?id=${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.get<Review[]>(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: any) {
     console.error('Ocurrió un error', error);

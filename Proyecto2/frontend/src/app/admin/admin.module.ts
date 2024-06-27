@@ -16,6 +16,7 @@ import { VistalibroComponent } from './vistalibro/vistalibro.component';
 import { DetaillibroComponent } from './detaillibro/detaillibro.component';
 import { DetailautorComponent } from './detailautor/detailautor.component';
 import { VistaautorComponent } from './vistaautor/vistaautor.component';
+import { RegisterAuthorComponent } from './register-author/register-author.component';
 
 
 
@@ -31,7 +32,8 @@ import { VistaautorComponent } from './vistaautor/vistaautor.component';
     VistalibroComponent,
     DetaillibroComponent,
     DetailautorComponent,
-    VistaautorComponent
+    VistaautorComponent,
+    RegisterAuthorComponent
   ],
   imports: [
     CommonModule,

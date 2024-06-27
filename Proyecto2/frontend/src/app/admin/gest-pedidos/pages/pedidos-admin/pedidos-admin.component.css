@@ -1,0 +1,15 @@
+svg {
+    cursor: pointer;
+}
+
+svg:hover {
+    color: rgb(0, 140, 255);
+}
+
+button {
+    background-color: rgb(12, 135, 216);
+}
+
+a{
+    cursor: pointer;
+}

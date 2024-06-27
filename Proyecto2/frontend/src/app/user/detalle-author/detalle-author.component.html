@@ -6,7 +6,7 @@
       <div class="col-md-4 text-center">
         <h2>{{ autor.nombre }}</h2>
         <br>
-        <img [src]="autor.foto_url" alt="{{ autor.nombre }}" class="img-fluid">
+        <img [src]="autor.foto_url" alt="{{ autor.nombre }}" class="img-fluid" (error)="imgError($event)">
       </div>
       <div class="col-md-8 d-flex align-items-center">
         <p class="w-100"><strong>Biografía:</strong> {{ autor.biografia }}</p>

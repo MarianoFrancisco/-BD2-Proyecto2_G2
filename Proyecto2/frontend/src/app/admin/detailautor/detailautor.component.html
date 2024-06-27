@@ -5,7 +5,7 @@
       <div class="row mb-3">
         <div class="col-md-4 text-center">
           <h2>{{ autor.nombre }}</h2>
-          <img [src]="autor.foto_url" alt="{{ autor.nombre }}" class="img-fluid mt-3 mb-3">
+          <img [src]="autor.foto_url" alt="{{ autor.nombre }}" class="img-fluid mt-3 mb-3" (error)="imgError($event)">
         </div>
         <div class="col-md-8 d-flex align-items-center">
           <p class="w-100 mb-0"><strong>Biografía:</strong> {{ autor.biografia }}</p>
@@ -41,6 +41,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="mt-3">
+        <button class="btn btn-danger me-2" (click)="confirmDeleteAutor()">Eliminar Autor</button>
       </div>
     </div>
   </div>

@@ -1,7 +1,9 @@
 import { Libro } from './../interfaces/books.interface';
 import { LibroService } from '../services/libro.service';
+import { RegistryBooksService } from '../../admin/service/registry-books.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Review } from '../../models';
 
 @Component({
   selector: 'app-detalle-book',
@@ -11,8 +13,10 @@ import { ActivatedRoute } from '@angular/router';
 
 export class DetalleBookComponent implements OnInit {
   libro: Libro | undefined | any;
+  resenas: Review[] = [];
+  defaultImageUrl: string = '../../../assets/libro.png';
 
-  constructor(private route: ActivatedRoute, private libroService: LibroService) { }
+  constructor(private route: ActivatedRoute, private libroService: LibroService,private registryBooksService: RegistryBooksService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -20,6 +24,10 @@ export class DetalleBookComponent implements OnInit {
       if (id) {
         this.libroService.getLibroById(id).subscribe(libro => {
           this.libro = libro;
+        });
+        
+        this.registryBooksService.getReseñasByLibro(id).subscribe(reseñas => {
+          this.resenas = reseñas;
         });
       }
     });
@@ -37,5 +45,9 @@ export class DetalleBookComponent implements OnInit {
     // Aquí puedes manejar la lógica para guardar la calificación
     console.log(`Calificado con ${star} estrellas`);
     alert(`Calificado con ${star} estrellas`);
+  }
+  
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
   }
 }
