@@ -28,8 +28,9 @@
     <div class="calificacion-promedio">
       <span>Calificación Promedio:</span>
       <div class="estrellas">
-        <span *ngFor="let i of generarEstrellas(calificacionPromedio)">
-          <i class="fa fa-star"></i>
+        <span *ngFor="let estrella of generarEstrellas(calificacionPromedio)">
+          <i class="fa fa-star" [class.brillante]="!estrella.media"></i>
+          <i class="fa fa-star-half" *ngIf="estrella.media"></i>
         </span>
       </div>
     </div>

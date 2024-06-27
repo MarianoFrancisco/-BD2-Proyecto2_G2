@@ -96,15 +96,21 @@ export class DetalleReseniaComponent implements OnInit {
     );
   }
 
-  generarEstrellas(calificacion: number): number[] {
-    const entero = Math.floor(calificacion); 
-    const decimal = calificacion - entero;   
-    let estrellas: number[] = [];
-    for (let i = 0; i < entero; i++) {
-      estrellas.push(i + 1);
-    }
+  generarEstrellas(calificacion: number): { entero: number, media: boolean }[] {
+    let entero = Math.floor(calificacion);
+    const decimal = calificacion - entero;
+    let estrellas: { entero: number, media: boolean }[] = [];
+  
     if (decimal >= 0.25 && decimal <= 0.75) {
-      estrellas.push(0.5); 
+      entero--; 
+      for (let i = 0; i < entero; i++) {
+        estrellas.push({ entero: i + 1, media: false }); 
+      }
+      estrellas.push({ entero: entero, media: true }); 
+    }else {
+      for (let i = 0; i < entero; i++) {
+        estrellas.push({ entero: i + 1, media: false });
+      }
     }
     return estrellas;
   }
