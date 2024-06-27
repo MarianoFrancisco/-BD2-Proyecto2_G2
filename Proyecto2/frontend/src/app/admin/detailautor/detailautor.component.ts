@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class DetailautorComponent implements OnInit {
   autor: Autor | undefined;
   id: string = '';
+  defaultImageUrl: string = '../../../assets/autor.png';
 
   constructor(private route: ActivatedRoute, private autorService: AutorService,private toastr:ToastrService,private registryBooksService: RegistryBooksService,private router: Router) { }
 
@@ -50,5 +51,7 @@ export class DetailautorComponent implements OnInit {
       }
     );
   }
-
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
+  }
 }

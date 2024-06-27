@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalleAuthorComponent implements OnInit {
   autor: Autor | undefined;
+  defaultImageUrl: string = '../../../assets/autor.png';
 
   constructor(private route: ActivatedRoute, private autorService: AutorService) { }
 
@@ -22,5 +23,8 @@ export class DetalleAuthorComponent implements OnInit {
         });
       }
     });
+  }
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
   }
 }

@@ -5,7 +5,7 @@
         <div *ngIf="libro">
           <h2>{{ libro.titulo }}</h2>
           <br>
-          <img [src]="libro.imagen_url" alt="{{ libro.titulo }}" class="img-fluid mb-3">
+          <img [src]="libro.imagen_url" alt="{{ libro.titulo }}" class="img-fluid mb-3" (error)="imgError($event)">
           <br>
           <br>
           <p><strong>Puntuación: </strong> {{ libro.puntuacion_promedio }}</p>

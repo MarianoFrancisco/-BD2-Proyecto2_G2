@@ -1,7 +1,7 @@
 <div class="detalle-libro-container" *ngIf="libro">
   <div class="libro-info">
     <h1>{{ libro.titulo }}</h1>
-    <img class="libro-imagen" [src]="libro.imagen_url" alt="Portada del libro">
+    <img class="libro-imagen" [src]="libro.imagen_url" alt="Portada del libro" (error)="imgError($event)">
     <div class="libro-detalles">
       <p><strong>Autor:</strong> {{ libro.autor_id.nombre }}</p>
       <p><strong>Descripción:</strong> {{ libro.descripcion }}</p>

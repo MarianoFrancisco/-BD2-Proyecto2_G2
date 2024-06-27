@@ -15,6 +15,7 @@ export class DetaillibroComponent implements OnInit {
   libro: Libro | undefined | any;
   id: string ='';
   resenas: Review[] = [];
+  defaultImageUrl: string = '../../../assets/libro.png'; 
 
   constructor(private route: ActivatedRoute, private libroService: LibroService, private registryBooksService: RegistryBooksService, private router:Router,private toastr: ToastrService) { }
 
@@ -70,6 +71,9 @@ export class DetaillibroComponent implements OnInit {
         this.toastr.error('Error al eliminar el libro', 'Server');
       }
     );
+  }
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
   }
 
 }

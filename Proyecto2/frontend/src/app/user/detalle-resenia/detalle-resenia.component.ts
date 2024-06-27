@@ -16,12 +16,13 @@ export class DetalleReseniaComponent implements OnInit {
   resena: string = '';
   resenias: Review[] = [];
   calificacionPromedio: number = 0;
+  defaultImageUrl: string = '../../../assets/libro.png'; 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private libroService: LibroService,
-    private toastr:ToastrService
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +51,6 @@ export class DetalleReseniaComponent implements OnInit {
       (resenias: Review[]) => {
         this.resenias = resenias;
         this.actualizarCalificacionPromedio();
-        console.log(this.resenias)
       },
       error => {
         console.error('Error al obtener las reseñas del libro', error);
@@ -87,7 +87,6 @@ export class DetalleReseniaComponent implements OnInit {
         this.resena = '';
       },
       (error) => {
-        //console.error('Error al guardar la reseña', error);
         if (error.error.error === 'You have already reviewed this book') {
           this.toastr.error('Ya has realizado una reseña de este libro anteriormente.','server');
         } else {
@@ -112,5 +111,9 @@ export class DetalleReseniaComponent implements OnInit {
 
   volver(): void {
     this.router.navigate(['/user/resenia']);
+  }
+
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
   }
 }

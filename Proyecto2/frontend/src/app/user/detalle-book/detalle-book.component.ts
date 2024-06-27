@@ -14,6 +14,7 @@ import { Review } from '../../models';
 export class DetalleBookComponent implements OnInit {
   libro: Libro | undefined | any;
   resenas: Review[] = [];
+  defaultImageUrl: string = '../../../assets/libro.png';
 
   constructor(private route: ActivatedRoute, private libroService: LibroService,private registryBooksService: RegistryBooksService) { }
 
@@ -44,5 +45,9 @@ export class DetalleBookComponent implements OnInit {
     // Aquí puedes manejar la lógica para guardar la calificación
     console.log(`Calificado con ${star} estrellas`);
     alert(`Calificado con ${star} estrellas`);
+  }
+  
+  imgError(event: any): void {
+    event.target.src = this.defaultImageUrl;
   }
 }
