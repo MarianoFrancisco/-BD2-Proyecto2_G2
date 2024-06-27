@@ -29,9 +29,19 @@
         <div class="card">
           <div class="card-body">
             <h3>Reseñas</h3>
-            <div>
-              <p><strong>Reseñas</strong> Comentarios</p>
+            <div *ngIf="resenas.length > 0">
+              <div *ngFor="let resena of resenas" class="mb-3">
+                <hr>
+                <p><strong>Usuario:</strong> {{ resena.usuario_id.nombre }} {{ resena.usuario_id.apellido }}</p>
+                <p><strong>Comentario:</strong> {{ resena.comentario }}</p>
+                <p><strong>Puntuación:</strong> {{ resena.puntuacion }}</p>
+                <p><strong>Fecha:</strong> {{ resena.fecha | date }}</p>
+              </div>
             </div>
+            <div *ngIf="resenas.length === 0">
+              <p>No hay resenas disponibles para este libro.</p>
+            </div>
+            <!--
             <div class="mt-3">
               <h4>Dejar una reseña</h4>
               <textarea class="form-control mb-2" placeholder="Escribe tu comentario"></textarea>
@@ -42,6 +52,7 @@
                 </div>
               </div>
             </div>
+          -->
           </div>
         </div>
       </div>

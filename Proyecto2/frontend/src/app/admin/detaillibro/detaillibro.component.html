@@ -32,8 +32,10 @@
         </div>
         <div class="card">
           <div class="card-body">
+            <h3>Reseñas</h3>
             <div *ngIf="resenas.length > 0">
               <div *ngFor="let resena of resenas" class="mb-3">
+                <hr>
                 <p><strong>Usuario:</strong> {{ resena.usuario_id.nombre }} {{ resena.usuario_id.apellido }}</p>
                 <p><strong>Comentario:</strong> {{ resena.comentario }}</p>
                 <p><strong>Puntuación:</strong> {{ resena.puntuacion }}</p>
