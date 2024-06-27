@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../../auth/services/auth.service'; 
 import { environments } from './../../../environments/environments'; 
-import { AuthorWithBooks,Genero } from '../../models';
+import { AuthorWithBooks,Genero,Book } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,23 @@ export class RegistryBooksService {
     );
   }
 
+  // Método para actualizar un libro
+  updatebook(body: any, id: string): Observable<any> {
+    const url = `${this.apiUrl}/book/${id}`;
+    const headers = this.authService.setHeaders();
+    return this.http.put<any>(url, body, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
+    // Método para obtener un libro por su ID
+    getBookById(id: string): Observable<Book> {
+      const url = `${this.apiUrl}/book?id=${id}`;
+      const headers = this.authService.setHeaders();
+      return this.http.get<Book>(url, { headers }).pipe(
+        catchError(this.handleError)
+      );
+    }
 
   private handleError(error: any) {
     console.error('Ocurrió un error', error);

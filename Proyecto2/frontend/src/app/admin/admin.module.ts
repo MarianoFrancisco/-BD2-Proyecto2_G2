@@ -9,6 +9,11 @@ import { SharedModule } from '../shared/shared.module';
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
 import { PedidosAdminComponent } from './gest-pedidos/pages/pedidos-admin/pedidos-admin.component';
 import { PedidosDetallesComponent } from './gest-pedidos/pages/pedidos-detalles/pedidos-detalles.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
+import { VistalibroComponent } from './vistalibro/vistalibro.component';
+import { DetaillibroComponent } from './detaillibro/detaillibro.component';
+import { DetailautorComponent } from './detailautor/detailautor.component';
+import { VistaautorComponent } from './vistaautor/vistaautor.component';
 
 
 
@@ -17,14 +22,20 @@ import { PedidosDetallesComponent } from './gest-pedidos/pages/pedidos-detalles/
     AdminLayoutComponent,
     RegistryBooksComponent,
     PedidosAdminComponent,
-    PedidosDetallesComponent
+    PedidosDetallesComponent,
+    EditBookComponent,
+    VistalibroComponent,
+    DetaillibroComponent,
+    DetailautorComponent,
+    VistaautorComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
