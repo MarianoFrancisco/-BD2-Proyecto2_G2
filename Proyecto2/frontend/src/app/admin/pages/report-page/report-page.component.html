@@ -1,0 +1,18 @@
+@if (isReady) {
+    <div class="d-flex justify-content-center align-items-center m-5">
+        <div class="row container-fluid">
+            <div class="col-6">
+                <h2 class="text-center">Representacion en el Top</h2>
+                <ngx-charts-advanced-pie-chart [results]="data"></ngx-charts-advanced-pie-chart>
+            </div>
+            <div class="col-6">
+                <h2 class="text-center mb-5">Orden</h2>
+                <ngx-charts-bar-horizontal [results]="data" [legend]="true" [view]="[600, 150]"
+                    [showDataLabel]="true" [yAxis]="true" [xAxis]="true" legendTitle="Libros"
+                    [legendPosition]="lp"></ngx-charts-bar-horizontal>
+            </div>
+        </div>
+    </div>
+} @else {
+    <shared-loading message="Obteniendo top..." class="fixed-top"></shared-loading>
+}

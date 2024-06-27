@@ -8,6 +8,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { SharedModule } from '../shared/shared.module';
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { ReportPageComponent } from './pages/report-page/report-page.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -15,7 +17,8 @@ import { EditBookComponent } from './edit-book/edit-book.component';
   declarations: [
     AdminLayoutComponent,
     RegistryBooksComponent,
-    EditBookComponent
+    EditBookComponent,
+    ReportPageComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,8 @@ import { EditBookComponent } from './edit-book/edit-book.component';
     SharedModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
   ]
 })
 export class AdminModule { }
