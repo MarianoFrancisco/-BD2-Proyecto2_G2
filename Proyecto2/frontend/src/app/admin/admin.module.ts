@@ -7,13 +7,17 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
+import { PedidosAdminComponent } from './gest-pedidos/pages/pedidos-admin/pedidos-admin.component';
+import { PedidosDetallesComponent } from './gest-pedidos/pages/pedidos-detalles/pedidos-detalles.component';
 
 
 
 @NgModule({
   declarations: [
     AdminLayoutComponent,
-    RegistryBooksComponent
+    RegistryBooksComponent,
+    PedidosAdminComponent,
+    PedidosDetallesComponent
   ],
   imports: [
     CommonModule,
