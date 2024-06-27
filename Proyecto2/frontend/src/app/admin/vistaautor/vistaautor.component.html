@@ -1,0 +1,32 @@
+<div class="search-container">
+    <input type="text" placeholder="Buscar productos..." (input)="onSearch($event)">
+</div>
+
+<div class="products-container">
+    <div class="product-card" *ngFor="let product of filteredProducts">
+        <div class="image-container">
+            <img [src]="product.image" alt="{{product.name}}">
+        </div>
+        <h3>{{product.name}}</h3>
+        <p>{{product.description}}</p>
+        <div class="product-actions">
+            <a [routerLink]="['/admin/detail-author', product.id]" class="btnaction">Ver</a>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link">1</a></li>
+      <li class="page-item"><a class="page-link">2</a></li>
+      <li class="page-item"><a class="page-link">3</a></li>
+      <li class="page-item">
+        <a class="page-link">Next</a>
+      </li>
+    </ul>
+  </nav>

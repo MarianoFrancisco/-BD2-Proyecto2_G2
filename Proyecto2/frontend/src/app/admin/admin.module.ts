@@ -7,9 +7,15 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
+import { PedidosAdminComponent } from './gest-pedidos/pages/pedidos-admin/pedidos-admin.component';
+import { PedidosDetallesComponent } from './gest-pedidos/pages/pedidos-detalles/pedidos-detalles.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { ReportPageComponent } from './pages/report-page/report-page.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { VistalibroComponent } from './vistalibro/vistalibro.component';
+import { DetaillibroComponent } from './detaillibro/detaillibro.component';
+import { DetailautorComponent } from './detailautor/detailautor.component';
+import { VistaautorComponent } from './vistaautor/vistaautor.component';
 
 
 
@@ -18,7 +24,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AdminLayoutComponent,
     RegistryBooksComponent,
     EditBookComponent,
-    ReportPageComponent
+    ReportPageComponent,
+    PedidosAdminComponent,
+    PedidosDetallesComponent,
+    EditBookComponent,
+    VistalibroComponent,
+    DetaillibroComponent,
+    DetailautorComponent,
+    VistaautorComponent
   ],
   imports: [
     CommonModule,
