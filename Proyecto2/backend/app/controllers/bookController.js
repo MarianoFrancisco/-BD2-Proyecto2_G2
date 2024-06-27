@@ -196,31 +196,20 @@ const updateBook = async (req, res) => {
 const deleteBook = async (req, res) => {
     const { id } = req.params;
 
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try {
-        const deletedBook = await Libro.findByIdAndDelete(id).session(session);
+        const updatedBook = await Libro.findByIdAndUpdate(
+            id,
+            { disponibilidad: false },
+            { new: true }
+        );
 
-        if (!deletedBook) {
-            await session.abortTransaction();
-            session.endSession();
+        if (!updatedBook) {
             return res.status(404).json({ error: 'Book not found' });
         }
 
-        await Autor.updateOne(
-            { _id: deletedBook.autor_id },
-            { $pull: { libros: deletedBook._id } }
-        ).session(session);
-
-        await session.commitTransaction();
-        session.endSession();
-
-        res.json({ message: 'Book deleted successfully', book: deletedBook });
+        res.json({ message: 'Book marked as deleted successfully', book: updatedBook });
     } catch (error) {
-        await session.abortTransaction();
-        session.endSession();
-
+        console.error('Error deleting book:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
