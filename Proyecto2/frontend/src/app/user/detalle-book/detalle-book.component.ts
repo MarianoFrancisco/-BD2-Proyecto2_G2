@@ -1,7 +1,9 @@
 import { Libro } from './../interfaces/books.interface';
 import { LibroService } from '../services/libro.service';
+import { RegistryBooksService } from '../../admin/service/registry-books.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Review } from '../../models';
 
 @Component({
   selector: 'app-detalle-book',
@@ -11,8 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 
 export class DetalleBookComponent implements OnInit {
   libro: Libro | undefined | any;
+  resenas: Review[] = [];
 
-  constructor(private route: ActivatedRoute, private libroService: LibroService) { }
+  constructor(private route: ActivatedRoute, private libroService: LibroService,private registryBooksService: RegistryBooksService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -20,6 +23,10 @@ export class DetalleBookComponent implements OnInit {
       if (id) {
         this.libroService.getLibroById(id).subscribe(libro => {
           this.libro = libro;
+        });
+        
+        this.registryBooksService.getReseñasByLibro(id).subscribe(reseñas => {
+          this.resenas = reseñas;
         });
       }
     });

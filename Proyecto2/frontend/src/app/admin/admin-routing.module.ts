@@ -6,10 +6,12 @@ import { AddAdminComponent } from '../auth/components/add-admin/add-admin.compon
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
 import { PedidosAdminComponent } from './gest-pedidos/pages/pedidos-admin/pedidos-admin.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { ReportPageComponent } from './pages/report-page/report-page.component';
 import { VistalibroComponent } from './vistalibro/vistalibro.component';
 import { DetaillibroComponent } from './detaillibro/detaillibro.component';
 import { VistaautorComponent } from './vistaautor/vistaautor.component';
 import { DetailautorComponent } from './detailautor/detailautor.component';
+import { RegisterAuthorComponent } from './register-author/register-author.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,11 @@ const routes: Routes = [
         component: RegistryBooksComponent
       },
       {
+        path: 'registry-author',
+        title: 'Registrar Autor',
+        component: RegisterAuthorComponent
+      },
+      {
         path: 'gestion-pedidos',
         title: 'Administrar pedidos',
         component: PedidosAdminComponent
@@ -40,6 +47,11 @@ const routes: Routes = [
         path: 'edit-book/:id',
         title: 'Editar libro',
         component: EditBookComponent
+      },
+      {
+        path: 'reports',
+        title: 'Reportes',
+        component: ReportPageComponent
       },
       {
         path: 'view-book',
