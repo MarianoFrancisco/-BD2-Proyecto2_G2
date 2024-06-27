@@ -12,13 +12,21 @@ export class PedidosServiceService {
 
   private readonly orderURL: string = `${environments.API_URL}/order`;
   private readonly authService = inject(AuthService)
+  private  readonly http = inject(HttpClient);
 
-  private http = inject(HttpClient);
+
+  pedido!:Pedido
 
   constructor() { }
 
-  public getOrdersAllInProces():Observable<Pedido[]>{
+  public getOrdersAll(estado:string):Observable<Pedido[]>{
     const headers = this.authService.setHeaders();
-    return this.http.get<Pedido[]>(`${this.orderURL}/search/?usuario=No&estado=En proceso`, {headers})
+    return this.http.get<Pedido[]>(`${this.orderURL}/search/?usuario=No&estado=${estado}`, {headers})
   } 
+
+  public updateStatusOreder(estado:any, _id:string):Observable<any>{
+    const headers = this.authService.setHeaders();
+    return this.http.patch<any>(`${this.orderURL}/${_id}`,estado,{headers})
+  }
+
 }
