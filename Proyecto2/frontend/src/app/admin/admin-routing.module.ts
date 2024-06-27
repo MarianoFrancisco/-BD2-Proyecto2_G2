@@ -5,6 +5,8 @@ import { UpdateInfoComponent } from '../auth/pages/update-info/update-info.compo
 import { AddAdminComponent } from '../auth/components/add-admin/add-admin.component';
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { VistalibroComponent } from './vistalibro/vistalibro.component';
+import { DetaillibroComponent } from './detaillibro/detaillibro.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,16 @@ const routes: Routes = [
         path: 'edit-book/:id',
         title: 'Editar libro',
         component: EditBookComponent
+      },
+      {
+        path: 'view-book',
+        title: 'Vista libros',
+        component: VistalibroComponent
+      },
+      {
+        path: 'detail-book/:id',
+        title: 'detalle libros',
+        component: DetaillibroComponent
       },
       {
         path: '**',
