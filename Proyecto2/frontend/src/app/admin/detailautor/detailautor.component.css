@@ -1,10 +1,44 @@
 .card-header h4 {
-    margin-bottom: 0;
-  }
-  
-  .img-fluid {
-    max-width: 100%;
-    height: auto;
-  }
+  margin-bottom: 0;
+}
 
-    
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  padding: 15px;
+}
+
+.content-wrapper {
+  max-width: 900px; /* Ajusta este valor según sea necesario */
+  margin: 0 auto;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+}
+
+.accordion-button {
+  padding: 10px;
+}
+
+.accordion-body {
+  padding: 10px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
