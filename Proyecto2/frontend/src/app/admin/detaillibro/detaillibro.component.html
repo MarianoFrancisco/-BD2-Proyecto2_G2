@@ -12,6 +12,10 @@
           <div class="stars mb-3">
             <span *ngFor="let star of getStars(libro.puntuacion_promedio)">&#9733;</span>
           </div>
+          <div class="mb-2  ">
+            <button class="btn btn-danger me-2" (click)="confirmDelete()">Eliminar Libro</button>
+            <button [routerLink]="['/admin/edit-book', libro._id]" class="btn btn-primary" >Modificar Libro</button>
+          </div>
          </div>
       </div>
       <div class="col-md-6">
