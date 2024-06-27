@@ -15,15 +15,15 @@ export class LibroService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   // Método para obtener órdenes por ID de usuario
-  getOrdersByUserId(userId: string): Observable<Order> {
-    const url = `${this.apiUrl}/order?id=${userId}`;
+  getOrdersByUserId(userId: string): Observable<Order[]> {
+    const url = `${this.apiUrl}/order/search/?usuario=Si&estado=Entregado`;
     const headers = this.authService.setHeaders();
     /*
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.token}`
     });
     */
-    return this.http.get<Order>(url, { headers }).pipe(
+    return this.http.get<Order[]>(url, { headers }).pipe(
       catchError(this.handleError)
     );
   }

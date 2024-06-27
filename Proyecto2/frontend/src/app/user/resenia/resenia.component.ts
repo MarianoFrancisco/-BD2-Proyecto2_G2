@@ -17,8 +17,6 @@ export class ReseniaComponent implements OnInit {
   public user?: User;
   public userId?: string;
 
-//  private userId = "667777f7844f7574bb644462"; // ID de usuario de ejemplo
-
   constructor(private router: Router, private libroService: LibroService, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -41,10 +39,9 @@ export class ReseniaComponent implements OnInit {
     }
     this.libroService.getOrdersByUserId(this.userId)
       .subscribe(
-        (orders: Order) => {
-          if (orders.libros.length > 0) {
-            this.books = orders.libros.map(item => item.libro_id);
-            //console.log('Libros obtenidos:', this.books);
+        (orders: Order[]) => {
+          if (orders.length > 0 && orders[0].libros.length > 0) {
+            this.books = orders[0].libros.map(item => item.libro_id);
           }
         },
         error => {
