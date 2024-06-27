@@ -1,14 +1,13 @@
-import { Autor } from './../interfaces/autor.interface';
+import { AutorService } from './../../user/services/autor.service';
+import { Autor } from './../../user/interfaces/autor.interface';
 import { Component, OnInit } from '@angular/core';
-import { AutorService } from '../services/autor.service';
 import { AuthService, AuthStatus } from './../../auth/services/auth.service';  // Importa el servicio de autenticación y el enum AuthStatus
-
 @Component({
-  selector: 'app-autores',
-  templateUrl: './autores.component.html',
-  styleUrl: './autores.component.css'
+  selector: 'app-vistaautor',
+  templateUrl: './vistaautor.component.html',
+  styleUrl: './vistaautor.component.css'
 })
-export class AutoresComponent implements OnInit {
+export class VistaautorComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
 

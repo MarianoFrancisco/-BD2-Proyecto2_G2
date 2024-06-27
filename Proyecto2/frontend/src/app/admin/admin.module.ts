@@ -8,6 +8,10 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { SharedModule } from '../shared/shared.module';
 import { RegistryBooksComponent } from './registry-books/registry-books.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { VistalibroComponent } from './vistalibro/vistalibro.component';
+import { DetaillibroComponent } from './detaillibro/detaillibro.component';
+import { DetailautorComponent } from './detailautor/detailautor.component';
+import { VistaautorComponent } from './vistaautor/vistaautor.component';
 
 
 
@@ -15,7 +19,11 @@ import { EditBookComponent } from './edit-book/edit-book.component';
   declarations: [
     AdminLayoutComponent,
     RegistryBooksComponent,
-    EditBookComponent
+    EditBookComponent,
+    VistalibroComponent,
+    DetaillibroComponent,
+    DetailautorComponent,
+    VistaautorComponent
   ],
   imports: [
     CommonModule,

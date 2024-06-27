@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LibroService {
   private apiUrl = 'http://localhost:5000/api/book'; // Reemplaza con tu URL de la API
 

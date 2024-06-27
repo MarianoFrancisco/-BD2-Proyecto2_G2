@@ -13,12 +13,14 @@
     <div class="products-container">
       <div class="product-card" *ngFor="let product of filteredProducts">
         <img [src]="product.image" alt="{{product.name}}">
+        <br>
+        <br>
         <h3>{{product.name}}</h3>
         <p>{{product.description}}</p>
         <p class="price">{{product.price | currency}}</p>
         <div class="product-actions"> 
           <button (click)="addToCart(product)">Agregar</button>
-          <button (click)="addToCart(product)">Ver</button>
+          <a [routerLink]="['/user/detailbook', product._id]" class="btnaction">Ver</a>
         </div>
       </div>
     </div>
@@ -50,3 +52,17 @@
   
 </div>
 <!-- FIN CONTENEDOR PRINCIPAL -->
+<br>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link">1</a></li>
+    <li class="page-item"><a class="page-link">2</a></li>
+    <li class="page-item"><a class="page-link">3</a></li>
+    <li class="page-item">
+      <a class="page-link">Next</a>
+    </li>
+  </ul>
+</nav>

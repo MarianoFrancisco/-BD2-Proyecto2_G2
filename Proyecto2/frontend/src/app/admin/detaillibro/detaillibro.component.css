@@ -1,0 +1,19 @@
+.stars {
+    color: #f5c518; /* Color de las estrellas */
+    font-size: 1.5rem;
+  }
+  
+  .stars-input {
+    color: #f5c518; /* Color de las estrellas */
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  textarea.form-control {
+    resize: none;
+  }
+  
