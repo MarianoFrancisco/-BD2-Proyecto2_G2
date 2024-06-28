@@ -26,6 +26,10 @@ export class DetaillibroComponent implements OnInit {
         this.id=id;
         this.libroService.getLibroById(id).subscribe(libro => {
           this.libro = libro;
+          if (typeof this.libro.fecha_publicacion === 'string') {
+            const dateParts = this.libro.fecha_publicacion.split('T')[0].split('-'); 
+            this.libro.fecha_publicacion = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2])).toISOString().substring(0, 10);
+          }
         });
         
         this.registryBooksService.getReseñasByLibro(id).subscribe(reseñas => {

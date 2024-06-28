@@ -24,7 +24,7 @@
             <p><strong>Autor:</strong> {{ libro.autor_id.nombre }}</p>
             <p><strong>Descripción:</strong> {{ libro.descripcion }}</p>
             <p><strong>Género:</strong> {{ libro.genero_id.nombre }}</p>
-            <p><strong>Fecha de Publicación:</strong> {{ libro.fecha_publicacion | date }}</p>
+            <p><strong>Fecha de Publicación:</strong> {{ libro.fecha_publicacion | date:'dd-MM-yyyy' }}</p>
             <p><strong>Disponibilidad:</strong> {{ libro.disponibilidad ? 'Disponible' : 'No disponible' }}</p>
             <p><strong>Stock:</strong> {{ libro.cantidad_stock }}</p>
             <p><strong>Precio:</strong> {{ libro.precio | currency }}</p>
