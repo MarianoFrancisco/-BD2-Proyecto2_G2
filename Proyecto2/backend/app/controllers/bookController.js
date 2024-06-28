@@ -70,10 +70,11 @@ const searchBooks = async (req, res) => {
 
         if (req.query.genero) {
             const regexGenero = new RegExp(req.query.genero, 'i');
-            const genero = await GeneroLibro.findOne({ nombre: regexGenero });
+            const generos = await GeneroLibro.find({ nombre: regexGenero }).select('_id');
 
-            if (genero) {
-                query.genero_id = genero._id;
+            if (generos.length > 0) {
+                const generoIds = generos.map(genero => genero._id);
+                query.genero_id = { $in: generoIds };
             } else {
                 return res.json([]);
             }
