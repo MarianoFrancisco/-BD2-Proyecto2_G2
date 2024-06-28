@@ -178,31 +178,46 @@ const updateBook = async (req, res) => {
         fecha_publicacion,
         disponibilidad,
         cantidad_stock,
-        precio,
-        imagen_url
+        precio
     } = req.body;
 
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
     try {
-        let libro = await Libro.findById(id);
+        let libro = await Libro.findById(id).session(session);
 
         if (!libro) {
+            await session.abortTransaction();
+            session.endSession();
             return res.status(404).json({ error: 'Book not found' });
         }
 
-        libro.titulo = titulo;
-        libro.autor_id = autor_id;
-        libro.descripcion = descripcion;
-        libro.genero_id = genero_id;
-        libro.fecha_publicacion = fecha_publicacion;
-        libro.disponibilidad = disponibilidad;
-        libro.cantidad_stock = cantidad_stock;
-        libro.precio = precio;
-        libro.imagen_url = imagen_url;
+        if (req.file) {
+            // Subir la imagen a S3
+            const data = await uploadImageToS3(req.file.buffer);
+            libro.imagen_url = data.Location;
+        }
 
-        await libro.save();
+        // Actualizar solo los campos presentes en el body
+        if (titulo) libro.titulo = titulo;
+        if (autor_id) libro.autor_id = autor_id;
+        if (descripcion) libro.descripcion = descripcion;
+        if (genero_id) libro.genero_id = genero_id;
+        if (fecha_publicacion) libro.fecha_publicacion = fecha_publicacion;
+        if (disponibilidad !== undefined) libro.disponibilidad = disponibilidad;
+        if (cantidad_stock !== undefined) libro.cantidad_stock = cantidad_stock;
+        if (precio !== undefined) libro.precio = precio;
+
+        await libro.save({ session });
+
+        await session.commitTransaction();
+        session.endSession();
 
         res.json(libro);
     } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
         res.status(500).json({ error: 'Internal server error' });
     }
 };

@@ -24,7 +24,7 @@ router.get('/search', protect, searchBooks);
 
 router.post('', protect, admin, upload.single('imagen'), addBook);
 
-router.put('/:id', protect, admin, updateBook);
+router.put('/:id', protect, admin, upload.single('imagen'), updateBook);
 
 router.delete('/:id', protect, admin, deleteBook);
 
