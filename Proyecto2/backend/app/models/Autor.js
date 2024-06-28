@@ -10,7 +10,8 @@ const autorSchema = new Schema({
     nombre: { type: String, required: true },
     biografia: { type: String, required: true },
     foto_url: { type: String, required: true },
-    libros: [{ type: Schema.Types.ObjectId, ref: 'Libro' }]
+    libros: [{ type: Schema.Types.ObjectId, ref: 'Libro' }],
+    disponibilidad: { type: Boolean, default: true }
 }, {
     collection: 'Autor',
     versionKey: false

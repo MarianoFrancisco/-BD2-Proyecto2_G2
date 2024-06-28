@@ -1,4 +1,14 @@
-<section class="container-fluid py-2" style="background-color: #ffffff">
+<section class="container-fluid py-1" style="background-color: #ffffff">
+    <div class="p-1 mx-5">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                <path
+                    d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+            </svg>
+            Regresar
+        </button>
+    </div>
     <div class="card py-4 px-4 mx-5">
         <h6 class="mb-5 text-uppercase text-center">
             Detalles del pedido
@@ -60,13 +70,13 @@
                     <tbody>
                         @for (libro of pedido.libros; track $index) {
                         @if (libro.libro_id !== null) {
-                            <tr>
-                                <th scope="row">{{ $index + 1 }}</th>
-                                <td>{{ libro.libro_id.titulo }}</td>
-                                <td>{{ libro.libro_id.fecha_publicacion | date: 'yyyy-MM-dd - HH:mm' }}</td>
-                                <td class="text-center">{{ libro.cantidad }}</td>
-                                <td>Q {{ (libro.libro_id.precio).toFixed(2) }}</td>
-                            </tr>
+                        <tr>
+                            <th scope="row">{{ $index + 1 }}</th>
+                            <td>{{ libro.libro_id.titulo }}</td>
+                            <td>{{ libro.libro_id.fecha_publicacion | date: 'yyyy-MM-dd - HH:mm' }}</td>
+                            <td class="text-center">{{ libro.cantidad }}</td>
+                            <td>Q {{ (libro.libro_id.precio).toFixed(2) }}</td>
+                        </tr>
                         }
                         }
                     </tbody>

@@ -13,7 +13,14 @@
                 <br>
                 <br>
                 <h3>{{product.name}}</h3>
-                <p>{{product.description}}</p>
+                <p>
+                    {{product.description | slice:0:100}}
+                    <span *ngIf="product.description.length > 100">...</span>
+                    <span *ngIf="product.showFullDescription">{{product.description.slice(100)}}</span>
+                    <a href="#" (click)="toggleDescription(product, $event)">
+                      {{product.showFullDescription ? 'Leer menos' : 'Leer más'}}
+                    </a>
+                  </p>
                 <p class="price">{{product.price | currency}}</p>
                 <div class="product-actions">
                     <a [routerLink]="['/admin/detail-book', product._id]" class="btnaction">Ver</a>

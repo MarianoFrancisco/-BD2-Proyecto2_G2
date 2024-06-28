@@ -32,7 +32,7 @@ export class LoginPageComponent {
           if (user) {
             this.notifService.show('Bienvenido a BookStore.', 'success');
             if (user.rol === 'Cliente') {
-              this.router.navigateByUrl('/user');
+              this.router.navigateByUrl('/user/catalogue');
             } else {
               this.router.navigateByUrl('/admin');
             }

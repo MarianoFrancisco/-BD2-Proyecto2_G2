@@ -3,29 +3,33 @@
 * Mariano Camposeco {@literal (mariano1941@outlook.es)}
 */
 import Autor from '../models/Autor.js';
+import Libro from '../models/Libro.js';
 import { uploadImageToS3 } from '../services/awsService.js';
+import mongoose from 'mongoose';
 
 const getAuthors = async (req, res) => {
     const { id } = req.query;
 
     try {
         if (id) {
-            const autor = await Autor.findById(id)
+            const autor = await Autor.findOne({ _id: id, disponibilidad: true })
                 .populate({
                     path: 'libros',
+                    match: { disponibilidad: true },
                     select: 'titulo descripcion fecha_publicacion cantidad_stock puntuacion_promedio precio imagen_url',
                     populate: { path: 'genero_id', select: 'nombre' }
                 });
 
             if (!autor) {
-                return res.status(404).json({ error: 'Author not found' });
+                return res.status(404).json({ error: 'Author not found or not available' });
             }
 
             res.json(autor);
         } else {
-            const autores = await Autor.find()
+            const autores = await Autor.find({ disponibilidad: true })
                 .populate({
                     path: 'libros',
+                    match: { disponibilidad: true },
                     select: 'titulo descripcion fecha_publicacion cantidad_stock puntuacion_promedio precio imagen_url',
                     populate: { path: 'genero_id', select: 'nombre' }
                 });
@@ -70,15 +74,37 @@ const addAuthor = async (req, res) => {
 const deleteAuthor = async (req, res) => {
     const { id } = req.params;
 
-    try {
-        const deletedAuthor = await Autor.findByIdAndDelete(id);
+    const session = await mongoose.startSession();
+    session.startTransaction();
 
-        if (!deletedAuthor) {
+    try {
+        const updatedAuthor = await Autor.findByIdAndUpdate(
+            id,
+            { disponibilidad: false },
+            { new: true, session }
+        );
+
+        if (!updatedAuthor) {
+            await session.abortTransaction();
+            session.endSession();
             return res.status(404).json({ error: 'Author not found' });
         }
 
-        res.json({ message: 'Author deleted successfully', author: deletedAuthor });
+        await Libro.updateMany(
+            { autor_id: id },
+            { disponibilidad: false },
+            { session }
+        );
+
+        await session.commitTransaction();
+        session.endSession();
+
+        res.json({ message: 'Author marked as unavailable successfully', author: updatedAuthor });
     } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
+        
+        console.error('Error marking author as unavailable:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };

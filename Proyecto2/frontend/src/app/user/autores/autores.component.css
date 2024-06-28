@@ -65,7 +65,19 @@
     font-size: 12px;
     color: #666;
     margin: 10px 0;
-}
+    overflow: hidden;
+  }
+  
+  .product-card a {
+    color: #955b5b;
+    cursor: pointer;
+    text-decoration: none; /* Quitar subrayado */
+  }
+  
+  .product-card a:hover {
+    color: #760b0b; 
+  }
+
 
 .product-actions {
     display: flex;
