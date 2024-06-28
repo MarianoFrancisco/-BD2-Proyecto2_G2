@@ -1,0 +1,98 @@
+<section class="container-fluid py-2" style="background-color: #ffffff">
+    <div class="card py-4 px-4 mx-5">
+        <h4 class="mb-5 text-uppercase text-center">
+            Administracion de pedidos
+        </h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Pedidos por estado
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" (click)="getOrders('En proceso')">En Proceso </a></li>
+                            <li><a class="dropdown-item" (click)="getOrders('Enviado')">Enviado</a></li>
+                            <li><a class="dropdown-item" (click)="getOrders('Entregado')">Entregado</a></li>
+                        </ul>
+                    </div>
+                    <h6 class="mb-5 text-uppercase text-center">
+                        Pedidos <strong>{{estadoPedido}}</strong>
+                    </h6>
+                </div>
+                <div>
+                    <table class="table  table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Direccion envio</th>
+                                @switch (estadoPedido) {
+                                    @case ('En proceso') {
+                                        <th scope="col">Fecha de pedido</th>
+                                    }
+                                    @case ('Enviado') {
+                                        <th scope="col">Fecha de Envio</th>
+                                    }
+                                    @case ('Entregado') {
+                                        <th scope="col">Fecha de Entrega</th>
+                                    }
+                                    @default {
+                                        <th scope="col">Fecha de pedido</th>
+                                    }
+                                }
+                                <th scope="col">Detalles</th>
+                                @if (estadoPedido === 'En proceso') {
+                                <th scope="col">Enviar</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(pedido of pedidos; track $index) {
+                            <tr>
+                                <th scope="row">{{ $index + 1 }}</th>
+                                <td>{{ pedido.usuario_id.nombre + ' ' + pedido.usuario_id.apellido }}</td>
+                                <td>{{ pedido.direccion_envio }}</td>
+                                @switch (estadoPedido) {
+                                    @case ('En proceso') {
+                                        <td>{{ pedido.fecha_pedido | date: 'yyyy-MM-dd - HH:mm' }}</td>
+                                    }
+                                    @case ('Enviado') {
+                                        <td>{{ pedido.fecha_envio | date: 'yyyy-MM-dd - HH:mm' }}</td>
+                                    }
+                                    @case ('Entregado') {
+                                        <td>{{ pedido.fecha_entrega | date: 'yyyy-MM-dd - HH:mm' }}</td>
+                                    }
+                                    @default {
+                                        <td>{{ pedido.fecha_pedido | date: 'yyyy-MM-dd - HH:mm' }}</td>
+                                    }
+                                }
+                                <td>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                        class="bi bi-card-list" viewBox="0 0 16 16" (click)="goDetail(pedido)">
+                                        <path
+                                            d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                                        <path
+                                            d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
+                                    </svg>
+                                </td>
+                                @if (estadoPedido === 'En proceso') {
+                                <td>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                        class="bi bi-arrow-up-right-square-fill" viewBox="0 0 16 16"
+                                        (click)="sentBook(pedido,$index)">
+                                        <path
+                                            d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707" />
+                                    </svg>
+                                </td>
+                                }
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-center align-items-center m-4">
+    <div class="rounded-4 shadow mx-3" style="width: 55rem; height: 33rem; background-color: white;">
+        <div class="row p-5">
+            <div class="col-12 text-center mb-5">
+                <h2 class="fw-bold">Ingresa sus Datos</h2>
+            </div>
+            <div class="col-6">
+                <auth-user-data-form #userData/>
+            </div>
+            <div class="col-6">
+                <auth-account-data-form #accountData/>
+            </div>
+            <div class="col-4 offset-4 pt-2">
+                <button type="submit" class="btn btn-primary w-100 mt-5" (click)="onRegisterAdmin()">
+                    Agregar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

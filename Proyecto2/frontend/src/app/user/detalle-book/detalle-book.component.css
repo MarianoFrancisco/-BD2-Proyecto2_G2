@@ -1,0 +1,50 @@
+.stars {
+    color: #f5c518; /* Color de las estrellas */
+    font-size: 1.5rem;
+  }
+  
+  .stars-input {
+    color: #f5c518; /* Color de las estrellas */
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  textarea.form-control {
+    resize: none;
+  }
+  
+/* Botón de agregar al carrito */
+.add-to-cart-button {
+  background-color: #28a745; /* Color de fondo verde */
+  color: #fff; /* Color del texto blanco */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Relleno interno */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambiar cursor al pasar por encima */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.add-to-cart-button:hover {
+  background-color: #218838; /* Color de fondo verde más oscuro al pasar el cursor */
+}
+
+.add-to-cart-button:disabled {
+  background-color: #6c757d; /* Color de fondo gris para botón deshabilitado */
+  cursor: not-allowed; /* Cursor no permitido */
+}
+
+/* Input de cantidad */
+.quantity-input {
+  width: 60px; /* Ancho del input */
+  padding: 5px; /* Relleno interno */
+  font-size: 16px; /* Tamaño de fuente */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: center; /* Centrar el texto */
+  margin-right: 10px; /* Espacio a la derecha */
+}

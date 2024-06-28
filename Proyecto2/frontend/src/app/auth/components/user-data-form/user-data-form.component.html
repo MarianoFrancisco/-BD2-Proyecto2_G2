@@ -1,0 +1,34 @@
+<form class="row g-2" [formGroup]="userDataForm">
+    <div class="col-6">
+        <label for="name" class="form-label">Nombre</label>
+        <input class="form-control" type="text" id="name" placeholder="Nick" formControlName="nombre"
+            [ngClass]="userDataForm.get('nombre')?.touched ? (userDataForm.get('nombre')?.invalid ? 'is-invalid' : '') : ''"
+        >
+    </div>
+    <div class="col-6">
+        <label for="lastname" class="form-label">Apellido</label>
+        <input class="form-control" type="text" id="lastname" placeholder="Doe" formControlName="apellido"
+            [ngClass]="userDataForm.get('apellido')?.touched ? (userDataForm.get('apellido')?.invalid ? 'is-invalid' : '') : ''"
+        >
+    </div>
+    <div class="col-6">
+        <label for="phone" class="form-label">Teléfono</label>
+        <input class="form-control" type="text" id="phone" placeholder="0000-0000" formControlName="telefono"
+            [ngClass]="userDataForm.get('telefono')?.touched ? (userDataForm.get('telefono')?.invalid ? 'is-invalid' : '') : ''"
+        >
+    </div>
+    <div class="col-6">
+        <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
+        <input class="form-control" type="date" id="birthdate" [max]="maxDate.toISOString().split('T')[0]" 
+            formControlName="fecha_nacimiento"
+            [ngClass]="userDataForm.get('fecha_nacimiento')?.touched ? (userDataForm.get('fecha_nacimiento')?.invalid ? 'is-invalid' : '') : ''"
+        >
+    </div>
+    <div class="col-12">
+        <label for="address" class="form-label">Dirección</label>
+        <input class="form-control" type="text" id="address" placeholder="7. Calle, Example" formControlName="direccion"
+            [ngClass]="userDataForm.get('direccion')?.touched ? (userDataForm.get('direccion')?.invalid ? 'is-invalid' : '') : ''"
+        >
+    </div>
+    <ng-content select=".otherCamp"></ng-content>
+</form>

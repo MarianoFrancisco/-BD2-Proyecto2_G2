@@ -1,0 +1,14 @@
+@if (myOrders.length !== 0) {
+    <div class="container-fluid">
+        <div class="row">
+            @for (order of myOrders; track $index) {
+                @if (order) {
+                    <user-order [order]="order" [orderNumber]="$index" class="col-6"></user-order>
+                }
+            }
+        </div>
+    </div>
+} @else {
+    <shared-loading message="Cargando Ordenes..." />
+}
+

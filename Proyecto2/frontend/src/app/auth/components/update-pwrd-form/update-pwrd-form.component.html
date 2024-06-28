@@ -1,0 +1,20 @@
+<form class="row g-2" [formGroup]="passwordForm">
+    <div class="col-12">
+        <label for="crpassword" class="form-label">Contraseña Actual</label>
+        <input class="form-control" type="password" id="crpassword" placeholder="••••••••" formControlName="contrasenia_actual"
+            [ngClass]="passwordForm.get('contrasenia_actual')?.touched ? (passwordForm.get('contrasenia_actual')?.invalid ? 'is-invalid' : '') : ''"
+        >
+    </div>
+    <div class="col-12">
+        <label for="password" class="form-label">Contraseña</label>
+        <input class="form-control" type="password" id="password" placeholder="••••••••" formControlName="contrasenia"
+            [ngClass]="passwordForm.get('contrasenia')?.touched ? (passwordForm.get('contrasenia')?.invalid ? 'is-invalid' : '') : ''"
+        >
+    </div>
+    <div class="col-12">
+        <label for="cpassword" class="form-label">Confirmar Contraseña</label>
+        <input class="form-control" type="password" id="cpassword" placeholder="••••••••" formControlName="c_contrasenia"
+            [ngClass]="passwordForm.get('c_contrasenia')?.touched ? (passwordForm.get('c_contrasenia')?.invalid ? 'is-invalid' : '') : ''"
+        >
+    </div>
+</form>
