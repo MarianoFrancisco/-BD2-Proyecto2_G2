@@ -10,7 +10,7 @@ import { uploadImageToS3 } from '../services/awsService.js';
 
 const getBooks = async (req, res) => {
     const { id } = req.query;
-
+    const rol = req.user.rol;
     try {
         if (id) {
             const libro = await Libro.findById(id)
@@ -23,10 +23,23 @@ const getBooks = async (req, res) => {
 
             res.json(libro);
         } else {
-            const libros = await Libro.find({ disponibilidad: true })
-                .populate('autor_id', 'nombre biografia foto_url')
-                .populate('genero_id', 'nombre');
+            let libros = [];
+            if (rol === 'Administrador') {
+                const librosSinFilterar = await Libro.find()
+                    .populate({
+                        path: 'autor_id',
+                        select: 'nombre biografia foto_url',
+                        match: { disponibilidad: true }
+                    })
+                    .populate('genero_id', 'nombre')
+                    .exec();
 
+                libros = librosSinFilterar.filter(libro => libro.autor_id !== null);
+            } else {
+                libros = await Libro.find({ disponibilidad: true })
+                    .populate('autor_id', 'nombre biografia foto_url')
+                    .populate('genero_id', 'nombre');
+            }
             res.json(libros);
         }
     } catch (error) {
