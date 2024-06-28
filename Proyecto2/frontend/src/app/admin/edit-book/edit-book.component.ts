@@ -109,27 +109,27 @@ export class EditBookComponent implements OnInit {
       return;
     }
   
-    const body = {
-      titulo: form.value.titulo,
-      autor_id: form.value.autor_id,
-      descripcion: form.value.descripcion,
-      genero_id: form.value.genero_id,
-      fecha_publicacion: form.value.fecha_publicacion,
-      disponibilidad: form.value.disponibilidad,
-      cantidad_stock: cantidadStock,
-      puntuacion_promedio: this.book.puntuacion_promedio,
-      precio: precio,
-      imagen_url: this.book.imagen_url 
-    };
+    // Create FormData object
+    const formData = new FormData();
+    formData.append('titulo', form.value.titulo);
+    formData.append('autor_id', form.value.autor_id);
+    formData.append('descripcion', form.value.descripcion);
+    formData.append('genero_id', form.value.genero_id);
+    formData.append('fecha_publicacion', form.value.fecha_publicacion);
+    formData.append('disponibilidad', form.value.disponibilidad);
+    formData.append('cantidad_stock', cantidadStock.toString());
+    formData.append('puntuacion_promedio', this.book.puntuacion_promedio.toString());
+    formData.append('precio', precio.toString());
+    formData.append('imagen_url', this.book.imagen_url);
   
     if (this.selectedFile) {
-      //formData.append('imagen', this.selectedFile,
+      formData.append('imagen', this.selectedFile, this.selectedFile.name);
     }
   
     // Llamar al servicio para actualizar el libro
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.registryBooksService.updatebook(body, id).subscribe(
+      this.registryBooksService.updatebook(formData, id).subscribe(
         response => {
           this.toastr.success('Libro actualizado exitosamente', 'Server');
         },
