@@ -24,7 +24,7 @@ export class DetalleBookComponent implements OnInit {
 
   private readonly shoppingService = inject(ShoppingServieService)
 
-  constructor(private route: ActivatedRoute, private libroService: LibroService,private registryBooksService: RegistryBooksService) { }
+  constructor(private route: ActivatedRoute, private libroService: LibroService, private registryBooksService: RegistryBooksService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -33,7 +33,7 @@ export class DetalleBookComponent implements OnInit {
         this.libroService.getLibroById(id).subscribe(libro => {
           this.libro = libro;
         });
-        
+
         this.registryBooksService.getReseñasByLibro(id).subscribe(reseñas => {
           this.resenas = reseñas;
         });
@@ -54,14 +54,14 @@ export class DetalleBookComponent implements OnInit {
     console.log(`Calificado con ${star} estrellas`);
     alert(`Calificado con ${star} estrellas`);
   }
-  
+
   imgError(event: any): void {
     event.target.src = this.defaultImageUrl;
   }
 
   addToCart(): void {
     console.log(this.libro);
-    
+
     if (!this.libro.disponibilidad || this.libro.cantidad_stock < this.quantity) {
       Swal.fire({
         title: "No Disponible",
@@ -76,13 +76,13 @@ export class DetalleBookComponent implements OnInit {
       disponibilidad: this.libro.disponibilidad,
       cantidad_stock: this.libro.cantidad_stock,
       precio: this.libro.precio,
-      cantidad_pedido: 1,
-      libro_id : this.libro._id
+      cantidad_pedido: this.quantity,
+      libro_id: this.libro._id
     }
-    
+
     const exist = this.shoppingService.librosPedio.find(li => li.libro_id === libroShopp.libro_id)
     if (exist) {
-      if (exist.cantidad_stock < exist.cantidad_pedido+this.quantity) {
+      if (exist.cantidad_stock < exist.cantidad_pedido + this.quantity) {
         Swal.fire({
           title: "No Disponible",
           text: "El libro no se encuentra disponible, intente mas tarde",
@@ -91,9 +91,9 @@ export class DetalleBookComponent implements OnInit {
         return
       }
       exist.cantidad_pedido += this.quantity;
-    }else{
+    } else {
       console.log(libroShopp);
-      
+
       this.shoppingService.librosPedio.push(libroShopp)
     }
     Swal.fire({
