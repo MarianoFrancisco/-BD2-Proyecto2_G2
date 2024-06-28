@@ -15,6 +15,8 @@ export class DetalleBookComponent implements OnInit {
   libro: Libro | undefined | any;
   resenas: Review[] = [];
   defaultImageUrl: string = '../../../assets/libro.png';
+  quantity: number = 1;
+  isValidQuantity: boolean = true;
 
   constructor(private route: ActivatedRoute, private libroService: LibroService,private registryBooksService: RegistryBooksService) { }
 
@@ -50,4 +52,14 @@ export class DetalleBookComponent implements OnInit {
   imgError(event: any): void {
     event.target.src = this.defaultImageUrl;
   }
+
+  addToCart(){
+
+  }
+
+  validateQuantity(): void {
+    const stock = this.libro?.cantidad_stock || 0;
+    this.isValidQuantity = this.quantity > 0 && this.quantity <= stock;
+  }
+
 }
