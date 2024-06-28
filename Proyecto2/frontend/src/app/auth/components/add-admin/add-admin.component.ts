@@ -36,7 +36,7 @@ export class AddAdminComponent {
 
   public onRegisterAdmin(): void {
     if (this.user.userDataForm.valid && this.account.accountDataForm.valid) {
-      this.authService.register(this.createRaw()).subscribe({
+      this.authService.registerAdmin(this.createRaw()).subscribe({
         next: () => this.notifService.show('Administrador agregado.', 'success'),
         error: () => this.notifService.show('Algo salio mal.')
       });
