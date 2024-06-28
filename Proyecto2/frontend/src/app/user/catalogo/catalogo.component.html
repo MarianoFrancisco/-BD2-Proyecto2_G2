@@ -13,10 +13,12 @@
       <div class="product-card" *ngFor="let product of filteredProducts">
         <img [src]="product.image" alt="{{product.name}}" (error)="imgError($event)">
         <h3>{{product.name}}</h3>
+        <p hidden>Autor: {{ product.autor_name }}</p>
+        <p hidden>Género: {{ product.genero }}</p>
         <p>
           {{product.description | slice:0:100}}
-          <span *ngIf="product.description.length > 100">...</span>
-          <span *ngIf="product.showFullDescription">{{product.description.slice(100)}}</span>
+        <!--          <span *ngIf="product.description.length > 100">...</span>-->
+        <!--  <span *ngIf="product.showFullDescription">{{product.description.slice(100)}}</span> -->
           <a href="#" (click)="toggleDescription(product, $event)">
             {{product.showFullDescription ? 'Leer menos' : 'Leer más'}}
           </a>

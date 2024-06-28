@@ -48,8 +48,10 @@ export class CatalogoComponent implements OnInit {
         description: libro.descripcion,
         image: libro.imagen_url,
         price: libro.precio,
+  //      genero: libro.genero_id.nombre,
         cantidad_stock: libro.cantidad_stock,
         autor_id: libro.autor_id._id,
+//        autor_name: libro.autor_id.nombre,
         disponibilidad: libro.disponibilidad,
         _id: libro._id
       }));
@@ -62,6 +64,7 @@ export class CatalogoComponent implements OnInit {
     this.filteredProducts = this.products.filter(product =>
       product.name.toLowerCase().includes(searchTerm) ||
       product.description.toLowerCase().includes(searchTerm)
+//      product.genero.toLowerCase().includes(searchTerm)
     );
   }
 
