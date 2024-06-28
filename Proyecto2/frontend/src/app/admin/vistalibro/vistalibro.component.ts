@@ -91,4 +91,8 @@ export class VistalibroComponent implements OnInit {
   imgError(event: any): void {
     event.target.src = this.defaultImageUrl;
   }
+  toggleDescription(product: any, event: Event): void {
+    event.preventDefault();
+    product.showFullDescription = !product.showFullDescription;
+  }
 }

@@ -8,7 +8,14 @@
             <img [src]="product.image" alt="{{product.name}}" (error)="imgError($event)">
         </div>
         <h3>{{product.name}}</h3>
-        <p>{{product.description}}</p>
+        <p>
+          {{product.description | slice:0:100}}
+          <span *ngIf="product.description.length > 100">...</span>
+          <span *ngIf="product.showFullDescription">{{product.description.slice(100)}}</span>
+          <a href="#" (click)="toggleDescription(product, $event)">
+            {{product.showFullDescription ? 'Leer menos' : 'Leer más'}}
+          </a>
+        </p>
         <div class="product-actions">
             <a [routerLink]="['/user/detailauthor', product.id]" class="btnaction">Ver</a>
         </div>

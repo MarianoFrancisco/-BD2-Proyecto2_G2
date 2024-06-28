@@ -1,6 +1,5 @@
-<!-- CONTENEDOR PRINCIPAL -->
 <div class="catalog-container">
-  
+
   <!-- BUSCADOR -->
   <div class="search-container">
     <input type="text" placeholder="Buscar productos..." (input)="onSearch($event)">
@@ -13,10 +12,15 @@
     <div class="products-container">
       <div class="product-card" *ngFor="let product of filteredProducts">
         <img [src]="product.image" alt="{{product.name}}" (error)="imgError($event)">
-        <br>
-        <br>
         <h3>{{product.name}}</h3>
-        <p>{{product.description}}</p>
+        <p>
+          {{product.description | slice:0:100}}
+          <span *ngIf="product.description.length > 100">...</span>
+          <span *ngIf="product.showFullDescription">{{product.description.slice(100)}}</span>
+          <a href="#" (click)="toggleDescription(product, $event)">
+            {{product.showFullDescription ? 'Leer menos' : 'Leer más'}}
+          </a>
+        </p>
         <p class="price">{{product.price | currency}}</p>
         <div class="product-actions"> 
           <button (click)="addToCart(product)">Agregar</button>
@@ -52,6 +56,7 @@
   
 </div>
 <!-- FIN CONTENEDOR PRINCIPAL -->
+
 <br>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
